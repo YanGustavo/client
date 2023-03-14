@@ -4,7 +4,7 @@ import * as actionTypesMediaQuery from 'constants/media-query-constants';
 import {useBaseContext} from "context/base-context";
 
 const useBase = () => {
-  const [ actions] = useBaseContext();
+  const [state, actions] = useBaseContext();
 
   const huge_one = useMediaQuery('(min-width: 1100px)');
   const huge = useMediaQuery('(max-width: 1099px) and (min-width: 950px)');

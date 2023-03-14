@@ -1,4 +1,3 @@
-import { color, space, fontSize, buttonStyle, variant } from 'styled-system'
 export default {
   buttons: {
     primary: {
@@ -10,7 +9,7 @@ export default {
       backgroundColor: '#daa520',
     }  
   },
-buttonSizes: {
+  buttonSizes: {
     small: {
       fontSize: '15px',
       padding: `7px 15px`,
@@ -36,7 +35,7 @@ buttonSizes: {
   },
   font: {
     family:
-      "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+      "DIN Next, sans-serif,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
     light: 300,
     normal: 400,
     bold: 600,
@@ -55,20 +54,58 @@ buttonSizes: {
     }
   },
   colors: {
+  text_color: '#8a9297',
+  text_color_rgb: '138, 146, 151',
+   heading_color: '#2d4b2a',
+   border_color: '#2d4b2a',
+  border_color_rgb: '45, 75, 42',
+  form_border_color: '#233b21',
+  accent_color: '#2d4b2a',
+  accent_color_rgb: '45, 75, 42',
+  link_color: '#ffffff',
+  link_color_hover: '#d9d9d9',
+  background: '#35511e',
+  secondary_background: '#fff',
+  secondary_background_rgb: '255, 255, 255',
+  accent_background: 'rgba(45, 75, 42, 0.08)',
+  input_background: '#fff',
+  error_color: '#ff0000',
+  error_background: 'rgba(255, 0, 0, 0.07)',
+  success_color: '#70d6ef',
+  success_background: 'rgba(112, 214, 239, 0.11)',
+  primary_button_background: '#daa520',
+  primary_button_background_rgb: '218, 165, 32',
+  primary_button_text_color: '#ffffff',
+  secondary_button_background: '#daa520',
+  secondary_button_background_rgb: '218, 165, 32',
+  secondary_button_text_color: '#ffffff',
+  header_background: '#eaeaea',
+  header_text_color: '#2d5734',
+  header_color: '#2d5734',
+  header_light_text_color: '#2d5734',
+  header_border_color: 'rgba(45, 87, 52, 0.3)',
+  header_accent_color: '#2d4b2a',
+  footer_background_color: '#2d5734',
+  footer_heading_text_color: '#ffffff',
+  footer_body_text_color: '#ffffff',
+  footer_body_text_color_rgb: '255, 255, 255',
+  footer_accent_color: '#00aa00',
+  footer_accent_color_rgb: '0, 170, 0',
+  footer_border: 'none',
+  flickity_arrow_color: '#060a05',
+  product_on_sale_accent: '#2d4b2a',
+  product_on_sale_accent_rgb: '45, 75, 42',
+  product_price_percentage: 'hsl(25, 100%, 94%)',
+  cart_img_box: '#00ffc855',
+  icons_color_hover: '#0000cd',
     white: '#fff',
     gray_50: '#f0efeb',
     gray_300: '#343a40',
-    feature_color: '#526134',
     yellow_300: '#F1C40F',
     purple_100: '#7F57DF',
     purple_300: '#5855E9',
     red_300: '#FF6666',
-    heading_color: '#2d4b2a',
-    header_light: '#2d5734',
-    background: '#35511e',
-    black: '#000000',
-    custom: '#444',
-    yellow: 'yellow'
+    black: '#0D0D0D'
   },
   spacings: {
     xxxsmall: '0.8rem',

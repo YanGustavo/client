@@ -1,25 +1,91 @@
-'use client'
+'use client';
+import React from "react";
 import Link from 'next/link';
-import clsx from 'clsx';
+import { ChevronRightRounded } from "@mui/icons-material";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import styled from 'styled-components';
+import {Container} from 'templates/base/styles';
 
-export default function Breadcrumbs(product) {
+import theme from 'styles/styled-components/theme';
+
+const Body = styled.div`
+ padding: 0;
+  margin:0;
+  display: flex;
+  justify-content: space-between;
+`;
+const Left = styled.div`
+ font-size: 16px;
+  font-weight: 500;
+  color: ${theme.colors.white};
+`;
+const Right = styled.div`
+ padding: 0;
+  margin:0;
+  display: flex;
+  justify-content: space-between;
+`;
+const P = styled.p`
+font-size: 12px;
+  color: ${theme.colors.white};
+  font-weight: 400;
+`;
+const I = styled.i`
+background: ${theme.colors.white};
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  ${this} .MuiSvgIcon-root {
+  font-size: 1rem !important;
+}
+`;
+type BreadcrumbsProps = {
+  data: Object,
+  subtitle?: String,
+  linkHref?: Object,
+}
+const Breadcrumbs = ({data, subtitle, linkHref}: BreadcrumbsProps)  => {
+  console.log(data);
+  //const {brand, name} = data;
+  const brand = "Aplle";
+  const name = "iPhone 14";
   return (
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex items-center space-x-2 text-gray-400 text-sm">
-      <Link href="/" className="hover:underline hover:text-gray-600">Home</Link>
-      <span>
-        <svg className="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </span>
-      <Link href={`/${product.brand}`} className="hover:underline hover:text-gray-600">{product.brand}</Link>
-      <span>
-        <svg className="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </span>
-      <span>{product.name}</span>
-    </div>
-  </div>
+ 
+    <Container>
+      <Body>
+      <Left>
+      <Link href="/" >
+      Página Inicial
+          </Link>          
+        <NavigateNextIcon/>
+        <Link href={`/b/${brand}`}>
+          {brand}
+          </Link>        
+        <NavigateNextIcon/>
+          {name}
+        </Left>
+      <Right>
+        {!(subtitle === undefined) && ( 
+          <>
+        <P>{subtitle}</P>
+        {!(linkHref === undefined) && ( 
+          <Link href={linkHref}>
+        <I>
+          <ChevronRightRounded/>
+        </I>
+        </Link>
+        )}
+        </>
+        )}
+     
+      </Right>
+      </Body>
+    </Container>
   );
 }
+export default Breadcrumbs;

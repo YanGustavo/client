@@ -1,26 +1,23 @@
 import React, {Suspense} from 'react';
-//import Link from 'next/link';
-//import useBase from "./useBase";
-import SkeletonComponent from 'components/SkeletonComponent';
+import useBase from "./useBase";
+import Loading from 'components/Loading';
 import * as SBase from './styles';
-import Header from "ui/base/header";
-import Footer from "ui/base/footer";
-import MenuRight from "ui/base/menu-right";
-import Announcement from "ui/base/announcement";
-import {RightMenuContextProvider} from "context/RightMenuContext";
+import Header from "ui/base/components/header";
+import Footer from "ui/base/components/footer";
+import MenuRight from "ui/base/components/menu-right";
+import Location from "ui/base/components/header/components/location";
 
 const Base = ({children}: { children: React.ReactNode }) => { 
-  // const {} = useBase(); 
-  return (
-    <RightMenuContextProvider>
+ useBase(); 
+  return (    
     <SBase.BaseTemplate>
-    <Suspense fallback={<SkeletonComponent/>}>
+    <Suspense fallback={<Loading/>}>
       <Header>
-        <Announcement/>
+        <Location/>
       </Header>
     </Suspense>       
     <SBase.BaseMain>  
-    <Suspense fallback={<SkeletonComponent/>}> 
+    <Suspense fallback={<Loading/>}> 
       {children}  
     </Suspense> 
     <Footer/>    
@@ -45,7 +42,7 @@ Frete Grátis
 Válido para todo o Brasil! aproveite!  */}
     
   </SBase.BaseTemplate>
-  </RightMenuContextProvider>
+  
   );
 }  
 export default Base;

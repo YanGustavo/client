@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from 'components/layout';
+import Layout from 'components/Layout';
 import { Base } from 'templates/base';
 import useAbout from "hooks/useAbout";
 import { useRouter } from 'next/router';

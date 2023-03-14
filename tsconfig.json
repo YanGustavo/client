@@ -57,7 +57,7 @@
     "src/templates/base/Base.tsx",
     "src/utils/translate/i18n.js",
     "src/app/useHome.jsx"
-, "src/app/product/[id]/useProduct.ts", "src/context/ProductContext/index.jsx", "src/ui/base/cart-item/index.jsx", "src/ui/tests/item-card/index.jsx", "src/ui/base/header/index.tsx", "src/hooks/useHome.ts", "src/ui/base/card/index.jsx", "src/pages/index.tsx", "src/components/rating.jsx", "src/lib/getCategories.js", "src/ui/base/menu-right/index.tsx", "src/components/free-chat-popupsmart.jsx", "src/ui/base/menu-bottom/useAnimate.js", "src/hooks/useAbout.tsx", "src/pages/about.tsx", "src/context/RightMenuContext/index.jsx", "src/context/RightMenuContext/build-actions.ts", "src/ui/base/menu-right/pages/hooks/useIndexPageAnimate.js", "src/ui/base/menu-right/pages/hooks/useIndexPage.js"  ],
+, "src/app/product/[id]/useProduct.ts", "src/context/ProductContext/index.jsx", "src/ui/base/menu-right/components/cart-item/index.jsx", "src/ui/tests/item-card/index.jsx", "src/ui/base/header/index.tsx", "src/hooks/useHome.ts", "src/ui/base/home/card/index.jsx", "src/pages/index.tsx", "src/components/rating.jsx", "src/lib/getCategories.js", "src/ui/base/menu-right/index.tsx", "src/components/free-chat-popupsmart.jsx", "src/ui/base/menu-right/components/menu-bottom/useAnimate.js", "src/hooks/useAbout.tsx", "src/pages/about.tsx", "src/context/base-context/index.jsx", "src/context/base-context/build-actions.ts", "src/ui/base/menu-right/pages/hooks/useIndexPageAnimate.js", "src/ui/base/menu-right/pages/hooks/useIndexPage.js", "src/context/product-context/index.jsx", "src/ui/base/pages/product/index.jsx"  ],
   "exclude": [
     "node_modules",
     "cypress",

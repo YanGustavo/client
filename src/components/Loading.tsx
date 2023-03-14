@@ -1,9 +1,9 @@
-'use client';
+//import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import React from "react";
-
 const Loading = () => {
   return (
-    <div className="d-flex justify-content-center">
+    <>
+      <div className="d-flex justify-content-center">
       <div
         className="spinner-border text-success"
         role="status"
@@ -12,6 +12,12 @@ const Loading = () => {
         <span className="sr-only">Carregando...</span>
       </div>
     </div>
+    {/* <SkeletonTheme baseColor="#202020" highlightColor="#444">
+         <p>
+            <Skeleton count={3} />
+         </p>
+     </SkeletonTheme> */}
+    </>  
   );
 };
 

@@ -6,10 +6,8 @@ export const BaseTemplate = styled.div`
   width: 100vw;
   height: 100vh;  
   position: relative;
-  overflow-x: hidden;
-  .BaseTemplate::-webkit-scrollbar {
-  display: none;
-}
+  overflow-y: auto;
+  overflow-x: hidden; 
 `;
 export const BaseMain = styled.main`
   margin-top: 105px;
@@ -18,26 +16,25 @@ export const BaseMain = styled.main`
   position: relative;
   display: block;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: initial;
   overflow-x: hidden;
-
-@media screen and (min-width: 541px) {
+@media screen and (min-width: 541px) {//medium
   ${this}{
     width: 100vw; 
   }
     
 }
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 650px) {//big
   ${this}{ 
     width: 100vw;
   }
 }
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 950px) {//huge
   ${this}{
     width: calc(100vw - 325px);
   }
 }
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1100px) {//huge_one
   ${this}{
      width: calc(100vw - 350px);
   }

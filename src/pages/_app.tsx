@@ -10,16 +10,15 @@ import GlobalStyles from 'styles/styled-components/global';
 import theme from 'styles/styled-components/theme';
 import 'styles/tailwind/globals.css';
 
-import { StateProvider } from "context/state-provider";
-import reducer, { initialState } from "redux/reducer-temp";
+import {BaseContextProvider} from "context/base-context";
 
 function App({ Component, pageProps: { ...pageProps } }: AppProps) {
   return (  
     <QueryClientProvider client = {queryClient}>
-    <ThemeProvider theme={theme}>      
-      <StateProvider initialState={initialState} reducer={reducer}> 
+    <ThemeProvider theme={theme}>    
+    <BaseContextProvider>
       <Component {...pageProps} />
-      </StateProvider>
+      </BaseContextProvider> 
       <GlobalStyles />
     </ThemeProvider>
     </QueryClientProvider>

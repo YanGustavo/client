@@ -4,9 +4,9 @@ import React, {Suspense} from 'react';
 import { Skeleton} from 'components/SkeletonComponent';
 import * as SBase from './styles';
 import Header from "ui/base/header";
-import Footer from "ui/base/footer";
+import Footer from "@/ui/base/components/footer";
 import MenuRight from "ui/base/menu-right";
-import Announcement from "ui/base/announcement";
+import Announcement from "@/ui/base/header/components/announcement";
 
 const Base = ({children}: { children: React.ReactNode }) => { 
 

@@ -15,6 +15,7 @@ const useBase = () => {
 
   React.useEffect(() => {
    actions.setSize(size);
+   // baseActions.setMenuRightHidden();
   },[size, actions]);
 };
 export default useBase;

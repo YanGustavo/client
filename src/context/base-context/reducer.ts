@@ -15,6 +15,8 @@ export const reducer = (state, action) => {
         return { ...state, menu_right_visible: 0};
         case actionTypes.SET_SIZE:
         return { ...state, size_media_query: action.payload};
+        case actionTypes.SET_COUNT_CART_ITEMS:
+        return { ...state, count_cart_items: action.payload};
         case actionTypes.SET_RESET:
             return { ...initialState };
   }

@@ -8,9 +8,11 @@ import Favorite from "@mui/icons-material/Favorite";
 import StarRounded from "@mui/icons-material/StarRounded";
 
 
- const Card = (product) => {
-  const {isFavourite, setIsFavourite, setCart, handleClick,} = useCard(); //itemId, imgSrc, name, price, ratings, 
+ const Card = (data) => {
+  const product = data.product;
+  const {isFavourite, setIsFavourite, setCart, handleClick, addToCart} = useCard();
   useCardAnimate(); 
+  console.log(product);
 return (
   <SCard.CardStyle>
       <section className="card-wrapper">
@@ -23,7 +25,7 @@ return (
         <Favorite />
       </div>
           <div className="card-line-top">            
-            <h1>Apple</h1>            
+            <h1>{product.brand}</h1>            
             </div>
             <div className="card-top-text">
             <div className="stars">
@@ -41,7 +43,7 @@ return (
             {/* { product.images.map((image) => (                
                 <img key={image.id} src={image.url} className="product-1 opacity" />   
            ))} */}
-           <img src="/img/iphone-12-1.png" className="product-1" />
+            <img src={product.image} className="product-1 opacity" />           
             <img src="/img/iphone-12-2.png" className="product-2" />
           </div>
           <div className ="card-line-center">                     
@@ -69,14 +71,12 @@ return (
             </div>
             <div className="price">
               <span>R$</span>
-              <span>price</span>
+                <span>{product.price}</span>
             </div> 
             <img src="/img/brand/apple.png" className="logo" />  
             <i
             className="addToCart"
-            onClick={() => {
-              setCart(Items.find((n) => n.id === itemId));
-            }}
+            onClick={addToCart(product._id)}
           >
             <AddRounded />
           </i>         

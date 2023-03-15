@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 //import * as actionTypesMediaQuery from 'constants/media-query-constants';
 //import { signOut, useSession } from 'next-auth/react';
-import {useCartContext} from "context/cart-context";
+import {useBaseContext} from "context/base-context";
 import { useRouter } from 'next/router';
 
 const useHeader = () => { 
@@ -14,16 +14,13 @@ const useHeader = () => {
       isAdmin: true,
     }
 }];
-  const [{cart}, actions] = useCartContext();
-  const [cartItemsCount, setCartItemsCount] = React.useState(0);
+  const [{count_cart_items}, actionsBase] = useBaseContext();
 
-  React.useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart]);
+
 
   const logoutHandler = () => {
-    Cookies.remove('cart');
-    actions.cartClearItems();
+   // Cookies.remove('cart');
+    //actions.cartClearItems();
     //signOut({ callbackUrl: '/login' });
   };
 
@@ -35,7 +32,7 @@ const useHeader = () => {
   };
 
  return{
-  cartItemsCount,
+  count_cart_items,
   status,
   session,
   setQuery,

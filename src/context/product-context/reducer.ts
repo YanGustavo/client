@@ -8,38 +8,20 @@ export const reducer = (state, action) => {
     case actionTypes.PRODUCT_LIST_SUCCESS:
       return {
         loading: false,
+        error:false,
         pages: action.payload.pages,
         page: action.payload.page,
         products: action.payload.products,
       };
     case actionTypes.PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-// SINGLE PRODUCT
-export const productDetailsReducer = (
-  state = { product: { reviews: [] } },
-  action:any
-) => {
-  switch (action.type) {
-    case actionTypes.PRODUCT_DETAILS_REQUEST:
-      return { ...state, loading: true };
+      case actionTypes.PRODUCT_DETAILS_REQUEST:
+      return { ...state, product: { reviews: [] }, loading: true };
     case actionTypes.PRODUCT_DETAILS_SUCCESS:
       return { loading: false, product: action.payload };
     case actionTypes.PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-// PRODUCT REVIEW CREATE
-export const productCreateReviewReducer = (state = {}, action:any) => {
-  switch (action.type) {
-    case actionTypes.PRODUCT_CREATE_REVIEW_REQUEST:
+      case actionTypes.PRODUCT_CREATE_REVIEW_REQUEST:
       return { loading: true };
     case actionTypes.PRODUCT_CREATE_REVIEW_SUCCESS:
       return { loading: false, success: true };

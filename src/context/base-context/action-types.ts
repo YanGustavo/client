@@ -13,3 +13,5 @@ export const SET_SIZE = `${prefix}/SET_SIZE`;
 
 export const SET_MENU_RIGHT_VISIBLE = `${prefix}/SET_MENU_RIGHT_VISIBLE`;
 export const SET_MENU_RIGHT_HIDDEN = `${prefix}/SET_MENU_RIGHT_HIDDEN`;
+
+export const SET_COUNT_CART_ITEMS = `${prefix}/SET_COUNT_CART_ITEMS`;

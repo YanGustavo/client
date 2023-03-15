@@ -12,47 +12,48 @@ let cartItems = [];
 //   price:any,
 // }
 
-function CartItem({ itemId, name, imgSrc, price}) { // : CartItemProps
+function CartItem(data) { // : CartItemProps
+  const product = data.data;
    const [qty, setQty] = React.useState(1);
-   const [itemPrice, setItemPrice] = React.useState(parseInt(qty) * parseFloat(price));
-  const [{ cart, total }, actions] = useCartContext();
+   const [itemPrice, setItemPrice] = React.useState(parseInt(qty) * parseFloat(product.price));
+  const [state, actions] = useCartContext();
 
-  React.useEffect(() => {
-    cartItems = cart;
-    setItemPrice(parseInt(qty) * parseFloat(price));
-  }, [qty]);
+  // React.useEffect(() => {
+  //   cartItems = cart;
+  //   setItemPrice(parseInt(qty) * parseFloat(price));
+  // }, [qty]);
 
   const updateCart = (action,id) => {
     if (action === "add") {
       setQty(qty + 1);
-      actions.addToCart(itemId, qty);
+      actions.addToCart(id, qty);
     }if (action === "remove") {
       setQty(qty - 1);
-      actions.addToCart(itemId, qty);
+      actions.addToCart(id, qty);
     }else if(action === "remove") {
         setQty(0);
-        actions.removeFromCart(itemId);
+        actions.removeFromCart(id);
       }
   };
 
   return (
-    <div className="cartItem" id={itemId}>
+    <div className="cartItem" id={product._id}>
       <div className="imgBox">
-        <img src={imgSrc} alt="" />
+        <img src={product.image} alt="" />
       </div>
       <div className="itemSection">
-        <h2 className="itemName">{name}</h2>
+        <h2 className="itemName">{product.name}</h2>
         <div className="itemQuantity">
           <span>x {qty}</span>
           <div className="quantity">
             <RemoveRounded
               className="itemRemove"
-              onClick={() => updateCart("remove", itemId)}
+              onClick={() => updateCart("remove", product._id)}
              //onClick={() => actions.removeFromCart(itemId)}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => updateCart("add", itemId)}
+              onClick={() => updateCart("add", product._id)}
               //onClick={() => actions.addToCart(itemId)}
             />
           </div>
@@ -60,8 +61,8 @@ function CartItem({ itemId, name, imgSrc, price}) { // : CartItemProps
       </div>
       <p className="itemPrice">
         <span className="dolorSign">$</span>{" "}
-        <span className="itemPriceValue">{itemPrice}</span>
-        <span onClick={() => updateCart("remove", itemId)}><DeleteIcon/></span>
+        <span className="itemPriceValue">{product.price}</span>
+        <span onClick={() => updateCart("remove", product._id)}><DeleteIcon/></span>
       </p>
     </div>
   );

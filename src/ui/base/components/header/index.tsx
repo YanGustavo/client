@@ -13,7 +13,7 @@ import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
 
 
 const Header = ({children} :  {children: React.ReactNode } ) => { 
- const {cartItemsCount, status, session, setQuery, submitHandler, logoutHandler,} = useHeader();
+ const {count_cart_items, status, session, setQuery, submitHandler, logoutHandler,} = useHeader();
  useHeaderAnimate();
   return (
     <SHeader.HeaderStyle>
@@ -39,9 +39,9 @@ const Header = ({children} :  {children: React.ReactNode } ) => {
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
         
-        {cartItemsCount > 0 ? (
+        {count_cart_items > 0 ? (
         <div className="cart_content"> 
-        <p>{cartItemsCount}</p> 
+        <p>{count_cart_items}</p> 
         </div>
         ) : (
         <div className="noCartItem"> 

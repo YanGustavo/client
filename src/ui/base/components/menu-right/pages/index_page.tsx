@@ -9,7 +9,7 @@ import Button from "components/Button";
 import useIndexPage from "./hooks/useIndexPage";
 
 export default function IndexPage() {
-  const {cartItems, subTotal, total, checkOutHandler,continueToShopping} = useIndexPage();
+  const {loading,cart, total, checkOutHandler,continueToShopping} = useIndexPage();
   return (
     <>
       <SMenuRight.DebitCardContainer>
@@ -21,28 +21,23 @@ export default function IndexPage() {
                   src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2FemptyCart.png?alt=media&token=50b733d4-cdd9-4025-bffe-8efa4066ca24"
                   alt=""
                   />
-                </SMenuRight.AddSomeItem>            
+                </SMenuRight.AddSomeItem> 
+                {loading ? (<Loading/>): ( 
+                  <>          
               <Container>
            <div className="cartItems">
-          <Suspense fallback={<Loading/>}>
-        {/* {!(cartItems === [] ) && (
-        cartItems.map((data) => (
-          <CartItem
-            key={data._id}
-            itemId={data.id}
-            name={data.name}
-            imgSrc={data.imgSrc}
-            price={data.price}
-          />
-        )))} */}
-         </Suspense>               
+           
+            <Suspense fallback={<Loading/>}>            
+            {cart.length > 0 && (
+            cart.map((data,index) => (
+              <CartItem  key={index} data = {data}/>
+            )))}
+             </Suspense>          
+                         
     </div>
     </Container>
     <Container>
-     <h3>Sub-Total</h3>
-     <p> <span>$ </span>{subTotal}</p>
-     <h3>Total</h3>
-     <p> <span>$ </span>{total}</p>
+     <h3>Total:<span>R$: </span>{total}</h3>
      </Container>
      <Container>
       <Button onClick={continueToShopping}>Continue Comprando</Button>
@@ -51,6 +46,8 @@ export default function IndexPage() {
     <Container>
       <Button onClick={checkOutHandler}>Check Out</Button>
        </Container>
+       )}
+       </>
       )}
      </>
   );

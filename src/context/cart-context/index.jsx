@@ -6,10 +6,9 @@ import * as actionTypes from './action-types';
 import Cookies from 'js-cookie';
 
 export const initialState = {
-  // cart: Cookies.get('cart')
-  //   ? JSON.parse(Cookies.get('cart'))
-  //   : { cartItems: [], shippingAddress: {}, paymentMethod: '' },
-  cart: { cartItems: [], shippingAddress: {}, paymentMethod: '' },
+  cartItems: Cookies.get('cartItems')?JSON.parce(Cookies.get('cartItems')): [],
+  shippingAdress: Cookies.get('shippingAdress')?JSON.parce(Cookies.get('shippingAdress')): [],
+  paymentMethod: Cookies.get('paymentMethod')?JSON.parce(Cookies.get('paymentMethod')): '',
 };
 
 const Context = React.createContext([initialState]);

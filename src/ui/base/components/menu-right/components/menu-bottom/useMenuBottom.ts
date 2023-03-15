@@ -1,14 +1,11 @@
 import React from 'react';
-import {useCartContext} from "context/cart-context";
+import {useBaseContext} from "context/base-context";
 
 const useMenuBottom = () => {
-  const [{cart}, actions] = useCartContext();
-  const [cartItemsCount, setCartItemsCount] = React.useState(0);
-  React.useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
+  const [{count_cart_items}, actions] = useBaseContext();
+
  return{
-  cartItemsCount
+  count_cart_items,
  };  
 }
 export default useMenuBottom;

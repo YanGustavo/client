@@ -9,6 +9,7 @@ export const initialState = {
   menu_right_page: actionTypes.HOME,
   menu_right_visibility: 0,
   loading: false,
+  count_cart_items: 0,
 };
 const Context = React.createContext([initialState]);
 

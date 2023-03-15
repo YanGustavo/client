@@ -9,5 +9,6 @@ export const buildActions = (dispatch) => {
       setSize: (size:string) => dispatch({ type: actionTypes.SET_SIZE, payload: size, }),
       setMenuRightVisible: () => dispatch({ type: actionTypes.SET_MENU_RIGHT_VISIBLE }),
       setMenuRightHidden: () => dispatch({ type: actionTypes.SET_MENU_RIGHT_HIDDEN }),
+      setCountCartItems: (payload) => dispatch({ type: actionTypes.SET_COUNT_CART_ITEMS, payload: payload}),
   };
 };

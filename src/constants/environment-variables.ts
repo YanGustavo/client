@@ -3,8 +3,8 @@ import packageJson from '../../package.json';
 const { version } = packageJson;
 
 const uri: { [key: string]: string } = {
-  development: 'https://jsonplaceholder.typicode.com/todos',
-  production: 'https://jsonplaceholder.typicode.com',
+  development: 'http://localhost:5000',
+  production: 'https://api/eaichefinho.com.br',
   test: 'https://'
 };
 

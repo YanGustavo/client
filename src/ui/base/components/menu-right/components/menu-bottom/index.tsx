@@ -13,7 +13,7 @@ import useAnimate from "./useAnimate";
 import * as actionTypes from 'context/base-context/action-types';
 const MenuBottom =() => {
  
-  const {cartItemsCount} = useMenuBottom();
+  const {count_cart_items} = useMenuBottom();
   useAnimate();
   
      
@@ -23,7 +23,7 @@ const MenuBottom =() => {
     <div className="menuBottom">
       <ul id="menu">
         {/* prettier-ignore */}
-        <MenuContainer click={actionTypes.HOME} link={'#'} icon={<ShoppingCartRounded/>} counter ={cartItemsCount} title= {"Carrinho"} isHome={true}/>
+        <MenuContainer click={actionTypes.HOME} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isHome={true}/>
           {/* prettier-ignore */}
           <MenuContainer click={actionTypes.ORDER} link={'#'} icon={<SummarizeRounded/>} counter ={0} title= {"Pedidos"}/>
           {/* prettier-ignore */}

@@ -5,8 +5,9 @@ import { reducer } from './reducer';
 import * as actionTypes from './action-types';
 
 export const initialState = {
-  value: actionTypes.HOME,
+  products: [],
   loading: false,
+  error: false,
 };
 const Context = React.createContext([initialState]);
 

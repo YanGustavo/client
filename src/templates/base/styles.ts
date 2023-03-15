@@ -42,12 +42,14 @@ export const BaseMain = styled.main`
 
 `;
 export const Container = styled.section`
-  width: 100%;
+  width: 95%;
+  margin-left: 2.5%;
   max-width: 1480px;
   margin-top: 1%;
   position: relative; 
   display: flex;
   align-content: center;
+  align-items: center;
 `;
 export const ContainerFlush = styled.div`
 background: #FFFFFF;

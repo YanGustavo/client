@@ -35,10 +35,11 @@ max-height: 2rem;
 `;
 export const MenuRightCenter = styled.div`
 width: 100%;
-max-height: 87rem;
+max-height: 90rem;
 overflow-y: auto;
 overflow-x: hidden;
 scrollbar-width: thin;
+padding-bottom: 2rem;
   scrollbar-color: ${props => props.theme.colors.header_text_color} ${props => props.theme.colors.header_text_color};
   ${this}::-webkit-scrollbar {
   width: 0.4rem;  
@@ -63,25 +64,33 @@ export const MenuRightBottom = styled.div`
   bottom: 0;
   left: 0; 
   width: 100%;
-  height: 5.5rem;
-  background: #FFF;
+  height: 3rem;
+  background: ${theme.colors.right_menu_background_child_rgb};
   z-index: 106;
-  padding-top: 2.3rem;
+  padding-top: 0;
 `;
 
 export const AddSomeItem = styled.div`
   width: 20rem;
   height: 25rem;
   padding: 10px;
-  display: flex;
+  display: none;
+  transform: translateX(200%);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  ${this}.active {
+    transform: translateX(0%);
+    display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateX(0%);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  ${this}:unactive {
-    transform: translateX(200%);
-  display: none;
   }
+  ${this}.active ${DebitCardContainer} {
+    display: none;
+  }
+`;
+//right_menu_background_childrens_rgb
+export const MenuRightChild = styled.div`
+background: ${theme.colors.right_menu_background_child_rgb};
+
 `;
 export const MenuRight = styled.div`
   position: fixed;  
@@ -89,7 +98,7 @@ export const MenuRight = styled.div`
   right: 0;
   width: 100vw;
   height: calc(100vh - 105px);
-  background: #fff;
+  background: ${theme.colors.right_menu_background_rgb};
   z-index: 105;
   display: flex;
   flex-direction: column;
@@ -98,15 +107,11 @@ export const MenuRight = styled.div`
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
   border-left: 1px solid ${theme.colors.header_text_color};
-  
+  padding-bottom: 2rem;
 
-${this}.active {
+${this}.activ {
   transform: translateX(0%);
 }
-
-
-
-
 .cardGroup {
   position: relative;
   overflow: hidden;

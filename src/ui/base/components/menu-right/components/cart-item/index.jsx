@@ -1,8 +1,8 @@
-'use client';
-import { AddRounded, RemoveRounded } from "@mui/icons-material";
+import AddRounded from "@mui/icons-material/AddRounded";
+import RemoveRounded from "@mui/icons-material/RemoveRounded";
+import DeleteIcon from '@mui/icons-material/Delete';
  import React from "react";
-// import { actionType } from "redux/reducer-temp";
-// import { useStateValue } from "context/state-provider";
+ import {useCartContext} from "context/cart-context";
 let cartItems = [];
 
 // type CartItemProps = {
@@ -15,30 +15,25 @@ let cartItems = [];
 function CartItem({ itemId, name, imgSrc, price}) { // : CartItemProps
    const [qty, setQty] = React.useState(1);
    const [itemPrice, setItemPrice] = React.useState(parseInt(qty) * parseFloat(price));
-  // const [{ cart, total }, dispatch] = useStateValue();
+  const [{ cart, total }, actions] = useCartContext();
 
-  // React.useEffect(() => {
-  //   cartItems = cart;
-  //   setItemPrice(parseInt(qty) * parseFloat(price));
-  // }, [qty]);
+  React.useEffect(() => {
+    cartItems = cart;
+    setItemPrice(parseInt(qty) * parseFloat(price));
+  }, [qty]);
 
-  // const updateQty = (action,id) => {
-  //   if (action == "add") {
-  //     setQty(qty + 1);
-  //   } else {
-  //     // initial state value is one so you need to check if 1 then remove it
-  //     if (qty == 1) {
-  //       cartItems.pop(id);
-  //       dispatch({
-  //         type: actionType.SET_CART,
-  //         cart: cartItems,
-  //       });
-  //     } else {
-  //       setQty(qty - 1);
-  //       console.log(qty);
-  //     }
-  //   }
-  // };
+  const updateCart = (action,id) => {
+    if (action === "add") {
+      setQty(qty + 1);
+      actions.addToCart(itemId, qty);
+    }if (action === "remove") {
+      setQty(qty - 1);
+      actions.addToCart(itemId, qty);
+    }else if(action === "remove") {
+        setQty(0);
+        actions.removeFromCart(itemId);
+      }
+  };
 
   return (
     <div className="cartItem" id={itemId}>
@@ -52,11 +47,13 @@ function CartItem({ itemId, name, imgSrc, price}) { // : CartItemProps
           <div className="quantity">
             <RemoveRounded
               className="itemRemove"
-              onClick={() => updateQty("remove", itemId)}
+              onClick={() => updateCart("remove", itemId)}
+             //onClick={() => actions.removeFromCart(itemId)}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => updateQty("add", itemId)}
+              onClick={() => updateCart("add", itemId)}
+              //onClick={() => actions.addToCart(itemId)}
             />
           </div>
         </div>
@@ -64,6 +61,7 @@ function CartItem({ itemId, name, imgSrc, price}) { // : CartItemProps
       <p className="itemPrice">
         <span className="dolorSign">$</span>{" "}
         <span className="itemPriceValue">{itemPrice}</span>
+        <span onClick={() => updateCart("remove", itemId)}><DeleteIcon/></span>
       </p>
     </div>
   );

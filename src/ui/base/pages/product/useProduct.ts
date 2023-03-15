@@ -1,4 +1,7 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+import {useCartContext} from "context/cart-context";
+import {useBaseContext} from "context/base-context";
 //Products
 import data from "utils/productTest";
 
@@ -8,12 +11,8 @@ type UseProductProps = {
 }
 
 const useProduct = ({params, ref}: UseProductProps) => {  
-  //Images
-const minus = "/images/icon-minus.svg";
-const plus = "./images/product/icon-plus.svg";
-const  prev = "./images/product/icon-previous.svg";
-const  next = "./images/product/icon-next.svg";
-const cart = "./images/product/icon-cart-white.svg";
+  const [state, actions] = useCartContext();
+  const [baseState, baseActions] = useBaseContext();
   const [quantity, setQuantity] = React.useState(0);
   const [preview, setPreview] = React.useState(0);
   const [carousel, setCarousel] = React.useState(false);
@@ -42,23 +41,35 @@ const cart = "./images/product/icon-cart-white.svg";
   const activeImageHandler = (key) => {
     setPreview(key);
   };
+  const addToCartHandler = async (id, qty) => {
+    actions.addToCart(id, qty);
+    // const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    // const quantity = existItem ? existItem.quantity + 1 : 1;
+    // const { data } = await axios.get(`/api/products/${product._id}`);
+
+    // if (data.countInStock < quantity) {
+    //   return toast.error('Sorry. Product is out of stock');
+    // }
+
+    // dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    // router.push('/cart');
+    baseActions.setMenuRightVisible();
+    return toast.error('Sorry. Product is out of stock');
+  };
+
 
 return{
   data,
   quantity,
   carousel,
   preview,
-  minus,
-  plus,
-  prev,
-  next,
-  cart,
   setCarousel,
   discountPrice,
   nextHandler,
   prevHandler,
   quantityHandler,
   activeImageHandler,
+  addToCartHandler,
 };
 }
 export default useProduct;

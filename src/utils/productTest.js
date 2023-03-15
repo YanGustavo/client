@@ -5,6 +5,7 @@ const image4 = "/images/4.png";
 
 const Products = [
   {
+    _id:'63d6ae4fabe21a29359d3a52',
     name: "iPhone 8 Plus",
     brand: "Apple",
     description:
@@ -12,6 +13,7 @@ const Products = [
     price: 1850.00,
     discountPercentage: 5,
     images: [image1, image2, image3, image4],
+    countInStock: 27,
   },
 ];
 

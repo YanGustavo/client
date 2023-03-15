@@ -4,8 +4,6 @@ import theme from 'styles/styled-components/theme';
 
 export const Body = styled.div`
   max-width: 1152px;
-  margin: auto;
-  padding: 90px 50px 90px 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   hr {

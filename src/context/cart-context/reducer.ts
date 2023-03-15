@@ -1,10 +1,7 @@
 //import { initialState } from '.';
 import * as actionTypes from './action-types';
 
-export const reducer = (
-  state:any = { cartItems: [], shippingAddress: {} },
-  action:any
-) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.CART_DETAILS_REQUEST:
       return { ...state, loading: true};

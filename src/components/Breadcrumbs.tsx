@@ -9,8 +9,10 @@ import {Container} from 'templates/base/styles';
 import theme from 'styles/styled-components/theme';
 
 const Body = styled.div`
- padding: 0;
-  margin:0;
+  width: 100%;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: space-between;
 `;

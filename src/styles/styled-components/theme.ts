@@ -92,6 +92,8 @@ export default {
   footer_accent_color: '#00aa00',
   footer_accent_color_rgb: '0, 170, 0',
   footer_border: 'none',
+  right_menu_background_rgb: 'rgb(254 242 242)',
+  right_menu_background_child_rgb: 'rgb(243 244 246)',
   flickity_arrow_color: '#060a05',
   product_on_sale_accent: '#2d4b2a',
   product_on_sale_accent_rgb: '45, 75, 42',

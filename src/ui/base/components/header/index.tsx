@@ -13,7 +13,7 @@ import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
 
 
 const Header = ({children} :  {children: React.ReactNode } ) => { 
- useHeader();
+ const {cartItemsCount, status, session, setQuery, submitHandler, logoutHandler,} = useHeader();
  useHeaderAnimate();
   return (
     <SHeader.HeaderStyle>
@@ -32,25 +32,32 @@ const Header = ({children} :  {children: React.ReactNode } ) => {
       />
       </Link>
       <div className="inputBox">
-        <SearchRounded className="searchIcon" />
-        <input type="text" placeholder="Search" />
+        <SearchRounded className="searchIcon" onClick={submitHandler} />
+        <input onChange={(e) => setQuery(e.target.value)} type="text" placeholder="Search" />
       </div>
 
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
-        <div className="noCartItem"> 
-        <p>1</p> 
-        {/* <div className={`${!cart ? "noCartItem" : "cart_content"}`}> 
-        <p>{cart ? cart.length : ""}</p> */}        
+        
+        {cartItemsCount > 0 ? (
+        <div className="cart_content"> 
+        <p>{cartItemsCount}</p> 
         </div>
-      </div>
+        ) : (
+        <div className="noCartItem"> 
+        <p>1</p>  
+        </div>
+        )}  
+        </div>
       
       
       <div className="profileContainer"> 
-      {/* {userInfo && (
+      {status === 'loading' ? (
+                'Loading'
+              ) : session?.user ? (
                 <Menu as="div" className="relative inline-block">
                   <Menu.Button className="text-blue-600">
-                    {userInfo.name}
+                    {session.user.name}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                     <Menu.Item>
@@ -66,7 +73,7 @@ const Header = ({children} :  {children: React.ReactNode } ) => {
                         Pedidos
                       </DropdownLink>
                     </Menu.Item>
-                    {userInfo.isAdmin && (
+                    {session.user.isAdmin && (
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"
@@ -87,8 +94,11 @@ const Header = ({children} :  {children: React.ReactNode } ) => {
                     </Menu.Item>
                   </Menu.Items>
                 </Menu>
-              ) }
-              {!userInfo && (<Link href="/login">Área de Pedidos</Link>)} */}
+              ) : (
+                <Link href="/login">
+                  <i className="p-2">Login</i>
+                </Link>
+              )} 
  </div>
      <div className="toggleMenu">
         <BarChart className="toggleIcon"/>

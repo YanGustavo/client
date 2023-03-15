@@ -1,17 +1,31 @@
 import React from "react";
-import { useStateValue } from "context/state-provider";
+import {useCartContext} from "context/cart-context";
+import {useBaseContext} from "context/base-context";
+
 const useIndexPage = () => {
-  const [{ cart, total }, dispatch] = useStateValue();
-  const [totalPrice, setTotalPrice] = React.useState(0);
- React.useEffect(() => {
-   if(cart){
-     document.querySelector(".addSomeItem").classList.toggle("unactive");
+  const [{cart: { cartItems },}, actions] = useCartContext();
+  const [baseState, baseActions] = useBaseContext();
+  const total = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
+  const subTotal = cartItems.reduce((a, c) => a + c.quantity, 0);
+  React.useEffect(() => {
+   if(!cartItems === []){
+     document.querySelector(".addSomeItem").classList.remove("active");
+   }else{
+    document.querySelector(".addSomeItem").classList.add("active");
    }
-}, [cart, total, totalPrice]); 
+}, [cartItems, total]); 
+const checkOutHandler = () => {
+  history.push("/login?redirect=shipping");
+};
+const continueToShopping = () => {
+  baseActions.setMenuRightHidden();
+};
 return {
-  cart,
+  cartItems,  
+  subTotal,
   total,
-  totalPrice,
+  checkOutHandler,
+  continueToShopping,
 }
 }
 export default useIndexPage;

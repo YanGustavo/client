@@ -7,13 +7,13 @@ import Settings from "@mui/icons-material/Settings";
 import SummarizeRounded from "@mui/icons-material/SummarizeRounded";
 import * as SMenuBottom from './styles';
 import MenuContainer from "ui/base/components/menu-right/components/menu-container";
-//import useMenuBottom from "./useMenuBottom";
+import useMenuBottom from "./useMenuBottom";
 import useAnimate from "./useAnimate";
 
 import * as actionTypes from 'context/base-context/action-types';
 const MenuBottom =() => {
  
-  //useMenuBottom();
+  const {cartItemsCount} = useMenuBottom();
   useAnimate();
   
      
@@ -23,7 +23,7 @@ const MenuBottom =() => {
     <div className="menuBottom">
       <ul id="menu">
         {/* prettier-ignore */}
-        <MenuContainer click={actionTypes.HOME} link={'#'} icon={<ShoppingCartRounded/>} counter ={1} title= {"Carrinho"} isHome={true}/>
+        <MenuContainer click={actionTypes.HOME} link={'#'} icon={<ShoppingCartRounded/>} counter ={cartItemsCount} title= {"Carrinho"} isHome={true}/>
           {/* prettier-ignore */}
           <MenuContainer click={actionTypes.ORDER} link={'#'} icon={<SummarizeRounded/>} counter ={0} title= {"Pedidos"}/>
           {/* prettier-ignore */}

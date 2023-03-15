@@ -20,7 +20,7 @@ import Breadcrumbs from "components/Breadcrumbs";
 // }
 const Product = (params) => {//{params}: ProductProps
   const ref = React.useRef(null);
- const {data,quantity, carousel,  preview, minus, plus, prev, next, cart, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,} = useProduct(params, ref);
+ const {data,quantity, carousel,  preview, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(params, ref);
  const [carouselPosition, setCarouselPosition] = React.useState(0);
   
 
@@ -40,7 +40,8 @@ const Product = (params) => {//{params}: ProductProps
       )}
       <Container>
           <Breadcrumbs data={data[0]} subtitle="Saiba Mais" linkHref="/login"/>
-        </Container>
+      </Container>
+          <Container>
       <SProduct.Body>       
        <Container>
         <ContainerFlush>
@@ -118,6 +119,18 @@ const Product = (params) => {//{params}: ProductProps
             </SProduct.Price>
           </SProduct.ProductDetails>
           <SProduct.Buttons>
+          {/* <select
+                    value={item.qty}
+                    onChange={(e) =>
+                      dispatch(addToCart(item.product, Number(e.target.value)))
+                    }
+                  >
+                    {[...Array(item.countInStock).keys()].map((x) => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
+                  </select> */}
             <div className="quantity">
               <div
                 className="dec"
@@ -138,8 +151,8 @@ const Product = (params) => {//{params}: ProductProps
               </div>
             </div>
             <div className="add-to-cart">
-              <button>
-                <ShoppingCartRounded/> Add to cart
+              <button onClick={() => addToCartHandler(data[0]._id, 1)}>
+                <ShoppingCartRounded/> Adicionar ao Carrinho
               </button>
             </div>
           </SProduct.Buttons>
@@ -147,6 +160,7 @@ const Product = (params) => {//{params}: ProductProps
         </ContainerFlush>
         </Container>
       </SProduct.Body>
+      </Container>
     </>
   );
 };

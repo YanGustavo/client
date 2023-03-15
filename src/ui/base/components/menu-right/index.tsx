@@ -30,7 +30,7 @@ return (
           </SMenuRight.CloseMenu>
         <SMenuRight.MenuRightTop>
          <Container>
-          {false && (data)}
+          {data}
           </Container>                  
             </SMenuRight.MenuRightTop>
 <SMenuRight.MenuRightCenter>

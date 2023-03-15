@@ -15,9 +15,7 @@ const useRightMenu = () => {
 
   function navigate(page) {
     startTransition(() => {
-      console.log("entrou no transition e menu_right_page é:"+ menu_right_page+"e page:"+page);
       setPage(menu_right_page);      
-      console.log("e page depois do set:"+page);
     });
     if (page === actionTypes.HOME) {
         setData("Eai Chefinho, Seja bem vindo!");

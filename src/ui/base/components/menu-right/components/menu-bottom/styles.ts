@@ -72,28 +72,8 @@ export const MenuBottomStyle = styled.div`
   
 }
 .menuBottom ul li.active .title{
-  top: 2.3rem;
+  top: 2.15rem;
 }
-
-/* .menuBottom ul li:nth-child(1).active a::before{
-  content: "Carrinho";
-}
-.menuBottom ul li:nth-child(2).active a::before{
-  content: "Pedidos";
-}
-.menuBottom ul li:nth-child(3).active a::before{
-  content: "Perfil";
-}
-.menuBottom ul li:nth-child(4).active a::before{
-  content: "Favoritos";
-}
-.menuBottom ul li:nth-child(5).active a::before{
-  content: "Mensagens";
-}
-.menuBottom ul li:nth-child(6).active a::before{
-  content: "Sair";
-} */
-
 .menuBottom ul li a .icon {
   position: relative;
   display: block;
@@ -126,7 +106,7 @@ export const MenuBottomStyle = styled.div`
   background: ${theme.colors.heading_color};
   top: -1.45rem;
   border-radius: 50%;
-  border: 6px solid #faf9fb;
+  border: 6px solid ${theme.colors.right_menu_background_child_rgb};
   transition: 0.5s;
 }
 .indicator::before {
@@ -138,7 +118,7 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-right-radius: 18px;
-  box-shadow: 0px -10px 0 0 #faf9fb;
+  //box-shadow: 0px -10px 0 0 ${theme.colors.right_menu_background_child_rgb};
 }
 
 .indicator::after {
@@ -150,7 +130,7 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-left-radius: 1rem;
-  box-shadow: 0px -10px 0 0 #faf9fb;
+  //box-shadow: 0px -10px 0 0 ${theme.colors.right_menu_background_child_rgb};
 }
 
 .menuBottom ul li:nth-child(1).active ~ .indicator {
@@ -176,48 +156,5 @@ export const MenuBottomStyle = styled.div`
 
 .menuBottom ul li:nth-child(6).active ~ .indicator {
   transform: translateX(calc(2.97rem * 5));
-}
-/* .menuBottom ul li:nth-child(1).active a .icon .MuiSvgIcon-root {
-  color: white;
-}
-.menuBottom ul li:nth-child(2).active a .icon .MuiSvgIcon-root {
-  color: blue;
-}
-.menuBottom ul li:nth-child(3).active a .icon .MuiSvgIcon-root {
-  color: orange;
-}
- .menuBottom ul li:nth-child(4).active a .icon .MuiSvgIcon-root {
-  color: yellow;
-}
-.menuBottom ul li:nth-child(5).active a .icon .MuiSvgIcon-root {
-  color: #b40e04;
-}
-.menuBottom ul li:nth-child(6).active a .icon .MuiSvgIcon-root {
-  color: grey;
-} */
-@media screen and (min-width: 375px) {
-  .menuBottom {
-    /* left: calc(100vw - 99vw);
-    width: 98vw; */
-  }
-}
-@media screen and (min-width: 650px) {
-  .menuBottom {
-    /* left: calc(100vw - 90vw);
-    width: 80vw; */
-  }
-}
-
-@media screen and (min-width: 950px) {
-  .menuBottom {
-    /* left: calc(100vw - 90vw);
-    width: 50vw; */
-  }
-}
-@media screen and (min-width: 1500px) {
-  .menuBottom {
-    /* left: calc(100vw - 75vw);
-    width: 50vw; */
-  }
 }
 `;

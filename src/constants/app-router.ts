@@ -10,7 +10,8 @@ export const APP_ROUTES = {
     payment: '/payment',
     profile: '/profile',
     place_order: '/place_order',
-    shipping: '/shipping'
+    shipping: '/shipping',
+    product: '/p',
 
   }, 
   public: {
@@ -20,8 +21,8 @@ export const APP_ROUTES = {
     not_found: '/not_found',
     register: '/register',
     about: '/about',
-    product: '/product',
-    product_id: '/product/[id]',
-    cart: '/cart',
+    product: '/p',
+    brand: '/b',
+    landingPage: '/l',
   }
 };

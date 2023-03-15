@@ -11,7 +11,7 @@ type FormLoginProps = {
 export default function FormLogin ({activeLogin, google} : FormLoginProps) {
   const { email, password, errors, setEmail, setPassword, handleSubmit, register, submitHandler, control} = useFormLogin(activeLogin); 
 return (
-  <section className="bg-red-50 min-h-screen w-[calc(100vw-350px)] flex items-center justify-center">
+  <section className="min-h-screen w-[calc(100vw-350px)] flex items-center justify-center">
   {/* login container  */}
  <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
     {/* form  */}

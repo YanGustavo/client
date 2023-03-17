@@ -2,7 +2,7 @@ import React from 'react';
 import * as SCard from './styles';
 import useCard from "./useCard";
 import useCardAnimate from "./useCardAnimate";
-import Rating from "components/rating";
+import Rating from "components/Rating";
 import AddRounded from "@mui/icons-material/AddRounded";
 import Favorite from "@mui/icons-material/Favorite";
 import StarRounded from "@mui/icons-material/StarRounded";

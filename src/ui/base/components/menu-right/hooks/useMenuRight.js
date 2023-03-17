@@ -5,12 +5,14 @@ import FavoritePage from './pages/favorite_page';
 import Loading from "components/Loading";
 import {useBaseContext} from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';
+
 const useRightMenu = () => {  
   const [data, setData] = React.useState("Carregando");  
   const [page, setPage] = React.useState(actionTypes.LOADING);
   const [content, setContent] = React.useState(<Loading/>); 
   const [isPending, startTransition] = React.useTransition(); 
   const [{ menu_right_page, loading }, actions] = useBaseContext();
+  const [{count_cart_items}, actionsCart] = useBaseContext();
   
 
   function navigate(page) {
@@ -39,6 +41,7 @@ return{
   data,
  isPending,
  content,
+ count_cart_items,
 };
 }
 export default useRightMenu;

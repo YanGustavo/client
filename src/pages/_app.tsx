@@ -13,12 +13,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'styles/styled-components/global';
 import theme from 'styles/styled-components/theme';
 import 'styles/tailwind/globals.css';
-
-import {UserContextProvider} from "context/user-context";
-import {ProductContextProvider} from "context/product-context";
-import {CartContextProvider} from "context/cart-context";
-import {OrderContextProvider} from "context/order-context";
-import {BaseContextProvider} from "context/base-context";
+import ContextApp from "context";
 
 import Loading from "components/Loading";
 
@@ -30,12 +25,8 @@ const pathname = usePathname()
   return (  
      <SessionProvider session={session}>
     <QueryClientProvider client = {queryClient}>
-    <ThemeProvider theme={theme}>  
-    <UserContextProvider> 
-    <ProductContextProvider>  
-    <CartContextProvider>
-   <OrderContextProvider>
-    <BaseContextProvider>
+    <ThemeProvider theme={theme}> 
+    <ContextApp>
          {/* {isPublicPage && (<Component {...pageProps} />)}
         {!isPublicPage && <PrivateRoute>{<Component {...pageProps} />}</PrivateRoute>} */}
         
@@ -47,11 +38,7 @@ const pathname = usePathname()
             <Component {...pageProps} />
           )}
 
-      </BaseContextProvider>
-      </OrderContextProvider>
-      </CartContextProvider>
-      </ProductContextProvider>
-      </UserContextProvider>
+      </ContextApp>
       <GlobalStyles />
     </ThemeProvider>
     </QueryClientProvider>

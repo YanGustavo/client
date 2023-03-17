@@ -2,9 +2,9 @@ import {Suspense} from "react";
 import Loading from "components/Loading";
 import Link from 'next/link';
 import {Container} from 'templates/base/styles';
-import * as SMenuRight from '../styles';
-import CreditCard from "ui/base/components/menu-right/components/credit-card";
-import CartItem from "../components/cart-item";
+import * as SMenuRight from '../styles/styles';
+import CreditCard from "@/ui/base/components/menu-right/pages/components/credit-card";
+import CartItem from "./components/cart-item";
 import Button from "components/Button";
 import useIndexPage from "./hooks/useIndexPage";
 

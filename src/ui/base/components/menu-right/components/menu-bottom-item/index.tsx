@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {useBaseContext} from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';
 
-type MenuContainerProps = {
+type MenuBottomItemProps = {
   link: Object,
   icon: any,
   isHome?:Boolean,
@@ -12,7 +12,7 @@ type MenuContainerProps = {
   counter?: number,
 }
 
-const MenuContainer = ({ link, icon, isHome=false, click, title, counter}: MenuContainerProps ) => {
+const MenuBottomItem = ({ link, icon, isHome=false, click, title, counter}: MenuBottomItemProps ) => {
 
   
   const [{state}, actions] = useBaseContext();
@@ -46,4 +46,4 @@ const MenuContainer = ({ link, icon, isHome=false, click, title, counter}: MenuC
   );
 }
 
-export default MenuContainer;
+export default MenuBottomItem;

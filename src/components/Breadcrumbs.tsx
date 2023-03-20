@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ChevronRightRounded } from "@mui/icons-material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import styled from 'styled-components';
-import {Container} from 'templates/base/styles';
+import {Container} from 'templates/base';
 
 import theme from 'styles/styled-components/theme';
 

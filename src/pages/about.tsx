@@ -3,7 +3,7 @@ import Layout from 'components/Layout';
 import { Base } from 'templates/base';
 import useAbout from "hooks/useAbout";
 import { useRouter } from 'next/router';
-import {Container, ContainerFlush} from 'templates/base/styles';
+import {Container, ContainerFlush} from 'templates/base';
 import LayoutTransition from 'components/layoutTransition';
 
 export default function About() {  

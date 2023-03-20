@@ -8,7 +8,8 @@ export const initialState = {
   size_media_query: "",
   menu_right_page: actionTypes.HOME,
   profile_page: actionTypes.ORDER,
-  menu_right_visibility: 0,
+  menu_right_visibility: false,
+  toggle_menu_visibility: true,
   loading: false,
   count_cart_items: 0,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Layout from 'components/Layout';
 //style base
-import { Template } from 'templates/base';
+import { Base } from 'templates/base';
 //import FormLogin from "ui/base/pages/login/form";
 //hooks
 import useLogin from "hooks/useLogin";
@@ -15,7 +15,7 @@ export default function LoginPage () {
   const { error, loading, redirect, activeLogin, google } = useLogin(); 
   return (
     <Layout title="Login">
-    <Template>
+    <Base>
       <div className="">
         {error && <Message variant="alert-danger">{error}</Message>}
         {loading && <Loading />}
@@ -29,7 +29,7 @@ export default function LoginPage () {
           </p> 
           
       </div>
-    </Template>
+    </Base>
     </Layout>
   );
 };

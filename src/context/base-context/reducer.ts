@@ -21,9 +21,9 @@ export const reducer = (state, action) => {
         return { ...state, profile_page: actionTypes.CONFIG};
         //State Menu Right and ToggleMenu Visibility
         case actionTypes.SET_MENU_RIGHT_VISIBLE:
-        return { ...state, menu_right_visible: 1};
+        return { ...state, menu_right_visible: true, toggle_menu_visible: false};
         case actionTypes.SET_MENU_RIGHT_HIDDEN:
-        return { ...state, menu_right_visible: 0};
+        return { ...state, menu_right_visible: false, toggle_menu_visible: true};
         case actionTypes.SET_SIZE:
         return { ...state, size_media_query: action.payload};
         //counters State

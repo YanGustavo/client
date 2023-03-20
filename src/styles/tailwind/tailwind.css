@@ -690,6 +690,10 @@ video {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
 }
@@ -736,6 +740,10 @@ video {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.min-w-full {
+  min-width: 100%;
 }
 
 .max-w-7xl {
@@ -829,6 +837,10 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .rounded-full {
@@ -979,6 +991,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -987,11 +1004,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
 }
 
 .py-3 {
@@ -1019,6 +1031,10 @@ video {
 
 .pl-1 {
   padding-left: 0.25rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -1281,20 +1297,6 @@ video {
   color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 
-.container {
-  width: 100%;
-  max-width: 1480px;
-  margin-top: 1%;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-}
-
-.container--flush {
-  background: #FFFFFF;
-  border-radius: 0.2rem;
-}
-
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1412,3 +1414,4 @@ video {
     padding-right: 2rem;
   }
 }
+

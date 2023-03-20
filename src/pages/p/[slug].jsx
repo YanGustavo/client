@@ -5,8 +5,9 @@ import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from 'components/ErrorFallback';
 //component head layout
 import Layout from 'components/Layout';
+import {Base} from 'templates/base';
 //styles
-import {Template, Main, Container, ContainerFlush, ToggleMenu,} from 'templates/base';
+import {Container, ContainerFlush, ToggleMenu,} from 'templates/base/style';
 import * as SProduct from 'styles/styled-components/pages/product-styles';
 //components main
 import Header from "ui/base/header";
@@ -15,6 +16,7 @@ import MenuRight from "ui/base/menu-right";
 import MenuBottomItem from "ui/base/menu-right/components/menu-bottom-item";
 //hooks
 import useProduct from "hooks/useProduct";
+import useProductAnimation from "ui/pages/product/hooks/productAnimation";
 import useMenuRight from "ui/base/menu-right/hooks/useMenuRight";
 //context
 import * as actionTypes from 'context/base-context/action-types';
@@ -51,7 +53,7 @@ export default function  ProductPage({ params }) { //: PageProps
   const [carouselPosition, setCarouselPosition] = React.useState(0);
   const {data,quantity, carousel,  preview, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(params, ref);
   const {count_cart_items, setNewPage,} = useMenuRight(); 
-  
+  useProductAnimation();
   console.log("router"+pathname);
  
   React.useEffect(() => {
@@ -61,13 +63,7 @@ export default function  ProductPage({ params }) { //: PageProps
 
   return (
     <Layout title={data[0].name}>
-     <Template>
-     <Header>
-     <ToggleMenu>
-        <BarChart className="toggleIcon"/>
-      </ToggleMenu> 
-      </Header>
-      <Main>
+     <Base>
       <ErrorBoundary
     fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
       resetErrorBoundary={resetErrorBoundary}/>
@@ -135,7 +131,7 @@ export default function  ProductPage({ params }) { //: PageProps
           </ContainerFlush>
         </SProduct.Images>      
         
-        <SProduct.Details>
+        <SProduct.Details id="product_detail" className='content'>
           <ContainerFlush>
           <SProduct.Name>
             <div className="brand">{data[0].brand}</div>
@@ -206,8 +202,6 @@ export default function  ProductPage({ params }) { //: PageProps
     {/* end content*/}
     
     </ErrorBoundary>  
-           
-      </Main> 
       <MenuRight>
          {/* prettier-ignore */}
          <MenuBottomItem handleClick={setNewPage} param={actionTypes.CART} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isHome={true}/>
@@ -215,9 +209,8 @@ export default function  ProductPage({ params }) { //: PageProps
           <MenuBottomItem  handleClick={setNewPage} param={actionTypes.PROFILE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"}/>
           {/* prettier-ignore */}
           <MenuBottomItem handleClick={setNewPage} param={actionTypes.LOGIN} link={'#'} icon={<LoginIcon/>}  title= {"Login"}/>
-    </MenuRight>
-    <Footer/>         
-     </Template>
+    </MenuRight>       
+     </Base>
     </Layout>
   );
 }

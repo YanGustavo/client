@@ -16,12 +16,8 @@ const useRightMenu = () => {
   const [page, setPage] = React.useState(actionTypes.LOADING);
   const [content, setContent] = React.useState(<Loading/>); 
   const [isPending, startTransition] = React.useTransition(); 
-  const [{ menu_right_page, loading }, actions] = useBaseContext();
+  const [{ size_media_query, menu_right_visibility, menu_right_page, loading }, actions] = useBaseContext();
   const [{count_cart_items}, actionsCart] = useCartContext();
-
-  React.useEffect(() => {
-    actions.reset();
-  },[actions]);
 
   const setNewPage = (type) => {
   switch (type) {
@@ -55,14 +51,17 @@ const useRightMenu = () => {
   };
   React.useEffect(() => {
       navigate(menu_right_page);
-    },[menu_right_page]);
+    },[size_media_query, menu_right_visibility, count_cart_items, menu_right_page]);
 
 return{ 
+  size_media_query,
+  menu_right_visibility,
   data,
  isPending,
  content,
  count_cart_items,
  setNewPage,
+ actions,
 };
 }
 export default useRightMenu;

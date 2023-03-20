@@ -64,7 +64,7 @@ gap: 1rem;
 }
 
 .our-team:hover .picture img {
-  box-shadow: 0 0 0 14px #f7f5ec;
+  box-shadow: 0 0 0 14px ${theme.colors.footer_accent_color};
   transform: scale(0.7);
 }
 

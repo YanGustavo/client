@@ -2,42 +2,10 @@ import styled from 'styled-components';
 
 import theme from 'styles/styled-components/theme';
 
-export const Body = styled.div`
-  min-width: 100%;
-  width: 100%;
-  max-width: 100%;
-  display: grid;
-  //grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
-  grid-template-columns: [first] 20% [line2] 20% [line3] auto [col4-start] 20%  [five] 20% [end];
-  grid-template-rows: auto;
-  column-gap: 1rem;
-  hr {
-   padding: 0;
-   border: none;
-   border-top: medium double #333;
-   color: #333;
-   text-align: center;
- }
-  img {
-    cursor: pointer;
-    user-select: none;
-  }
-  @media (max-width: 1099px) {
-    grid-column-gap: 40px;
-  }
-  @media (max-width: 1039px) {
-    padding: 90px;
-  }
-  @media (max-width: 768px) {
-    padding: 70px 0 0 0;
-    grid-template-columns: 100%;
-  }
-`;
-
 export const Images = styled.div`
  grid-column-start: first;
- grid-column: 1 / 4;
-  padding: 10px;
+ grid-column: 1 / 6;
+ margin-bottom: 1rem;
   .displayed {
     position: relative;
     .overlay {
@@ -87,19 +55,59 @@ export const Images = styled.div`
     }
   }
 `;
-
 export const Details = styled.div`
 grid-column-start: col4-start;
-grid-column: 4 / 6;
-  padding: 40px;
-  @media (max-width: 1099px) {
-    padding: 40px 0;
-  }
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
+grid-column: 1 / 6;
 `;
-
+export const Body = styled.div`
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  //grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
+  grid-template-columns: [first] 10% [line2] 30% [line3] auto [col4-start] 30%  [five] 10% [end];
+  grid-template-rows: auto;
+  column-gap: 1rem;
+  hr {
+   padding: 0;
+   border: none;
+   border-top: medium double #333;
+   color: #333;
+   text-align: center;
+ }
+  img {
+    cursor: pointer;
+    user-select: none;
+  }
+  @media screen and (min-width: 541px) {}
+@media screen and (min-width: 650px) {
+  grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 35%  [five] 5% [end];
+  ${Images}{
+    grid-column: 2 / 5;
+  }
+  ${Details}{
+    grid-column: 2 / 5;
+  }
+}
+@media screen and (min-width: 950px) {
+  grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 20%  [five] 20% [end];
+  ${Images}{
+    grid-column: 1 / 4;
+  }
+  ${Details}{
+    grid-column: 4 / 6;
+  }
+}
+@media screen and (min-width: 1100px) {
+  grid-template-columns: [first] 1% [line2] 39% [line3] auto [col4-start] 20%  [five] 20% [end];
+  ${Images}{
+    grid-column: 2 / 4;
+  }
+  ${Details}{
+    grid-column: 4 / 6;
+  }
+}
+`;
 export const Name = styled.div`
   .brand {
     text-transform: uppercase;

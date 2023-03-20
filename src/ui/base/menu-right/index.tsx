@@ -3,8 +3,7 @@ import React from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from 'components/ErrorFallback';
 //styles
-import {Container} from 'templates/base';
-import * as SMenuRight from './styles/styles';
+import {Container, ContainerFlush,  CloseMenu, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer, AddSomeItem, Body, MenuRightChild,} from './styles/styles';
 //hooks
 import useMenuRight from "./hooks/useMenuRight";
 //components
@@ -13,37 +12,39 @@ import MenuBottom from "ui/base/menu-right/components/menu-bottom";
 import LayoutTransition from 'components/layoutTransition';
 //icons
 import CloseIcon from '@mui/icons-material/Close';
-
+//context
+import * as actionTypesMediaQuery from 'constants/media-query-constants';
 
  const MenuRight = ({children}: { children: React.ReactNode }) => {  
-  const {isPending, content} = useMenuRight(); 
-return (
+  const {size_media_query, menu_right_visibility, isPending, content, actions,} = useMenuRight(); 
+  //const yes:any = size ? actionTypesMediaQuery.HUGE_ONE: true ? actionTypesMediaQuery.HUGE : true ? actionTypesMediaQuery.BIG : false ? actionTypesMediaQuery.MEDIUM : false ? actionTypesMediaQuery.SMALL : false;
+//console.log("yes"+size_media_query);
+console.log("menu visib"+menu_right_visibility);
+  return (
   
-      <SMenuRight.MenuRight className ="menuRight">
+      <Body className={menu_right_visibility ? 'active': ''}>
         <ErrorBoundary
     fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
       resetErrorBoundary={resetErrorBoundary}/>
     )}
     >  
-        <SMenuRight.CloseMenu className = "closeMenu">
-            <CloseIcon className="toggleIcon"/>
-          </SMenuRight.CloseMenu>
-        <SMenuRight.MenuRightTop>
-         <Container>
-          </Container>                  
-            </SMenuRight.MenuRightTop>
-          <SMenuRight.MenuRightCenter>
+        <CloseMenu>
+          <ToggleIcon onClick={() => alert(menu_right_visibility)}><CloseIcon/></ToggleIcon>            
+          </CloseMenu>
+        <MenuRightTop>                
+            </MenuRightTop>
+          <MenuRightCenter>
             <LayoutTransition isPending={isPending}>
                 {content}
             </LayoutTransition>                      
-             </SMenuRight.MenuRightCenter>
-              <SMenuRight.MenuRightBottom>
+             </MenuRightCenter>
+              <MenuRightBottom>
               <MenuBottom>
             {children}
               </MenuBottom>
-              </SMenuRight.MenuRightBottom>
+              </MenuRightBottom>
               </ErrorBoundary> 
-            </SMenuRight.MenuRight>
+            </Body>
 
 );
 }

@@ -7,8 +7,9 @@ import useHome from "hooks/useHome";
 import useMenuRight from "ui/base/menu-right/hooks/useMenuRight";
 //component head layout
 import Layout from 'components/Layout';
+import {Base} from 'templates/base';
 //styles
-import {Template, Main, Container, ContainerFlush, ToggleMenu,} from 'templates/base';
+import {Container, ContainerFlush, ToggleMenu,} from 'templates/base/style';
 //context
 import * as actionTypes from 'context/base-context/action-types';
 //components
@@ -29,10 +30,10 @@ import LoginIcon from '@mui/icons-material/Login';
 //icons header
 import BarChart from "@mui/icons-material/BarChart";
 //import LogoutIcon from '@mui/icons-material/Logout';
+//context
+//import {useBaseContext} from "context/base-context";
 
 
-import Header from "ui/base/header";
-import Footer from "ui/base/footer";
 
 type HomeProps = {
   keyword: string;
@@ -40,17 +41,13 @@ type HomeProps = {
 }
 
 export default function HomePage({keyword, pagenumber}: HomeProps) { 
-  const { loading, error, products, page, pages, } = useHome(keyword, pagenumber);
+  //const [state, actions] = useBaseContext();
+  const { loading, error, products, page, pages,} = useHome(keyword, pagenumber);
   const {count_cart_items, setNewPage,} = useMenuRight(); 
+  console.log("Products:" + products);
   return (
     <Layout title="">
-     <Template>
-     <Header>
-     <ToggleMenu>
-        <BarChart className="toggleIcon"/>
-      </ToggleMenu> 
-      </Header>
-      <Main>
+     <Base>     
       <Container>
     <Suspense fallback={<Loading/>}> 
     <BannerName name="Chefinho" discount={"20"} more={"#"} />
@@ -67,11 +64,11 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
       <ShopSection>
       {loading && (<div className="mb-5"><Loading /></div>)}
                 { error && (<Error variant="alert-danger">{error}</Error>)}
-                {(products.length > 0) ? (
+                {!(products === undefined && products === null) ? (
                   <>
-                    {products.map((product,index) => (
+                    {/* {products.map((product,index) => (
                       <Card key={index} product={product}/>
-                    ))} 
+                    ))}  */}
                   </>
                 ): (
                   <div> Nada Encontrado, Erro no servidor</div>
@@ -89,9 +86,7 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
     </ErrorBoundary>  
     </ContainerFlush>
     </Container> 
-    <Container><ContainerFlush><Team/></ContainerFlush></Container>
-    <Footer/> 
-    </Main>
+    <Container><ContainerFlush><Team/></ContainerFlush></Container>    
     <MenuRight>
          {/* prettier-ignore */}
          <MenuBottomItem handleClick={setNewPage} param={actionTypes.CART} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isHome={true}/>
@@ -99,9 +94,8 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
           <MenuBottomItem  handleClick={setNewPage} param={actionTypes.PROFILE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"}/>
           {/* prettier-ignore */}
           <MenuBottomItem handleClick={setNewPage} param={actionTypes.LOGIN} link={'#'} icon={<LoginIcon/>}  title= {"Login"}/>
-    </MenuRight>
-     
-     </Template>
+    </MenuRight>     
+     </Base>
     </Layout>
   );
 }

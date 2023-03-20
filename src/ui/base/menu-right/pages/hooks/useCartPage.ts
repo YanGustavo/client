@@ -18,10 +18,12 @@ const useCartPage = () => {
   const  getCartItems = () => {
     if(cartItems !== undefined){
       setCart(cartItems);
+      if(!cartItems === undefined && cartItems.length && cartItems.length !== 0 && cartItems !== null){
       baseActions.setCountCartItems(cartItems.length);
       setTotal(cartItems.reduce((a, i) => a + i.qty * i.price, 0).toFixed(2));
       //document.querySelector(".addSomeItem").classList.remove("active"); 
-      setLoading(false);     
+      setLoading(false); 
+      }    
     }else{
     // document.querySelector(".addSomeItem").classList.add("active");
     }

@@ -1,5 +1,5 @@
 import {Card, Action,Button,} from "@/ui/pages/components/cards-model/profile";
-import {Container, ContainerFlush} from "templates/base";
+import {Container, ContainerFlush} from "templates/base/style";
 //icons
 import SummarizeRounded from "@mui/icons-material/SummarizeRounded";
 import Favorite from "@mui/icons-material/Favorite";

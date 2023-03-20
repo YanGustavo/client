@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import theme from 'styles/styled-components/theme';
 
-export const ContainerFlush = styled.div`
+const ContainerFlush = styled.div`
 background: ${theme.colors.right_menu_background_child_rgb};
   border-radius: 0.2rem;
   padding: 1rem;
   width: 100%;
   border: 1px solid ${theme.colors.border_color};
 `;
-export const Container = styled.div`
+const Container = styled.div`
 margin-left: 2.5%;
   max-width: 95%;
   min-width: 95%;
@@ -19,8 +19,12 @@ margin-left: 2.5%;
   align-content: center;
   align-items: center;
 `;
-export const CloseMenu = styled.div`
-
+const ToggleIcon = styled.div`
+color: #373848;
+  font-size: 30px !important;
+  transition: all 0.5s ease;
+`;
+const CloseMenu = styled.div`
 @keyframes closeMenuAnimation {
 	0% { opacity: 1; transform: translateY(-2px); color: black;  }
   25% { opacity: 0.8; transform: translateY(-2px); color: green;  }
@@ -39,18 +43,13 @@ export const CloseMenu = styled.div`
   align-items: center;
   animation: closeMenuAnimation 1.5s infinite; 
 
-${this}.toggleIcon {
-  color: #373848;
-  font-size: 30px !important;
-  transition: all 0.5s ease;
-} 
  `;
-export const MenuRightTop = styled.div`
+const MenuRightTop = styled.div`
 width: 100%;
 height: auto;
 max-height: 2rem;
 `;
-export const MenuRightCenter = styled.div`
+const MenuRightCenter = styled.div`
 width: 100%;
 max-height: 90rem;
 overflow-y: auto;
@@ -71,12 +70,12 @@ ${this}::-webkit-scrollbar-thumb {
   border: 3px solid ${props => props.theme.colors.header_text_color};
 }
 `;
-export const DebitCardContainer = styled.div`
+const DebitCardContainer = styled.div`
   padding: 10px;
   width: 100%;
   height: auto;
 `;
-export const MenuRightBottom = styled.div`
+const MenuRightBottom = styled.div`
   position: absolute;
   bottom: 0;
   left: 0; 
@@ -87,7 +86,7 @@ export const MenuRightBottom = styled.div`
   padding-top: 0;
 `;
 
-export const AddSomeItem = styled.div`
+const AddSomeItem = styled.div`
   width: 20rem;
   height: 25rem;
   padding: 10px;
@@ -105,11 +104,11 @@ export const AddSomeItem = styled.div`
   }
 `;
 //right_menu_background_childrens_rgb
-export const MenuRightChild = styled.div`
+const MenuRightChild = styled.div`
 background: ${theme.colors.right_menu_background_child_rgb};
 
 `;
-export const MenuRight = styled.div`
+const Body = styled.div`
   position: fixed;  
   top: 105px;
   right: 0;
@@ -126,7 +125,7 @@ export const MenuRight = styled.div`
   border-left: 1px solid ${theme.colors.header_text_color};
   padding-bottom: 2rem;
 
-${this}.activ {
+${this}.active {
   transform: translateX(0%);
 }
 .cardGroup {
@@ -375,7 +374,7 @@ ${this}.activ {
 }
 @media screen and (min-width: 650px) {
   ${this}{
-  width: 300px;
+  width: 250px;
   } 
   ${AddSomeItem} & {
   width: 18rem;
@@ -384,20 +383,20 @@ ${this}.activ {
 }
 @media screen and (min-width: 950px) {
   ${this} {
-  width: 325px; 
+  width: 280px; 
   transform: translateX(0%);
   }
-  ${CloseMenu} & {
-  display: none;
+  ${CloseMenu} {
+  //display: none;
   }
-  ${AddSomeItem} & {
+  ${AddSomeItem} {
   width: 19rem;
   height: 24rem;
   }
 }
 @media screen and (min-width: 1100px) {
   ${this}{
-  width: 350px;
+  width: 300px;
   }
   ${AddSomeItem} & {
   width: 20rem;
@@ -405,3 +404,4 @@ ${this}.activ {
   }
 }
 `;
+export {Container, ContainerFlush,  CloseMenu, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer, AddSomeItem, Body, MenuRightChild,};

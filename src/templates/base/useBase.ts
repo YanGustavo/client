@@ -4,7 +4,7 @@ import * as actionTypesMediaQuery from 'constants/media-query-constants';
 import {useBaseContext} from "context/base-context";
 
 const useBase = () => {
-  const [state, actions] = useBaseContext();
+  const [{toggle_menu_visibility}, actions] = useBaseContext();
 
   const huge_one = useMediaQuery('(min-width: 1100px)');
   const huge = useMediaQuery('(max-width: 1099px) and (min-width: 950px)');
@@ -15,7 +15,12 @@ const useBase = () => {
 
   React.useEffect(() => {
    actions.setSize(size);
-   // baseActions.setMenuRightHidden();
-  },[size, actions]);
+   actions.setMenuRightVisible();
+  },[]);
+
+  return {
+    toggle_menu_visibility,
+    actions,
+  }
 };
 export default useBase;

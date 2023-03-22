@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderPage from '../order_page';
-import FavoritePage from '../favorite_page';
-import MessagePage from '../message_page';
-import ConfigPage from '../config_page';
+import OrderPage from '../order';
+import FavoritePage from '../favorite';
+import MessagePage from '../message';
+import ConfigPage from '../config';
 import Loading from "components/Loading";
 import {useBaseContext} from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';

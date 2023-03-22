@@ -20,7 +20,7 @@ h3 {
 
 img {
 			max-width: 100%;
-			filter: drop-shadow(1px 1px 3px $color-secondary);
+			filter: drop-shadow(1px 1px 3px ${theme.colors.background_light});
 		}
 `;
 /* ----- Photo Section ----- */
@@ -39,8 +39,8 @@ position: absolute;
 `;
 const PhotoMain = styled.div`
 border-radius: 6px 6px 0 0;
-	background-color: #9be010;
-	background: radial-gradient(#e5f89e, #96e001);
+	background-color: ${theme.colors.background_light};
+	background: ${theme.colors.background_light_radial};
 
 	img {
 		position: absolute;
@@ -102,7 +102,7 @@ h1 {
 `;
 const Price = styled.div`
 	margin: 1.5em 0;
-	color: #a6a6a6;
+	color: ${theme.colors.secondary_button_background};
 	font-size: 1.2em;
 
 	span {
@@ -128,7 +128,7 @@ li {
 
   &:first-child,
   &:hover {
-    border: 1px solid #a6a6a6;
+    border: 1px solid ${theme.colors.border_color};
   }
 }
 
@@ -162,9 +162,9 @@ padding: 1.5em 3.1em;
 	font-size: 0.8em;
 	font-weight: 700;
 	letter-spacing: 1.3px;
-	color: #fff;
-	background-color: #ff3f40;
-	box-shadow: 2px 2px 25px -7px #4c4c4c;
+	color: ${theme.colors.tertiary_button_text_color};
+	background-color: ${theme.colors.tertiary_button_background};
+	box-shadow: 2px 2px 25px -7px ${theme.colors.border_color};
 	cursor: pointer;
 
 	&:active {

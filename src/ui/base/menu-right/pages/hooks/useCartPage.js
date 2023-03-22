@@ -25,7 +25,7 @@ const useCartPage = () => {
       setLoading(false); 
       }    
     }else{
-    // document.querySelector(".addSomeItem").classList.add("active");
+     document.querySelector(".addSomeItem").classList.add("active");
     }
     }
 

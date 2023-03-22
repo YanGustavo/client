@@ -3,7 +3,7 @@ import React from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from 'components/ErrorFallback';
 //styles
-import { MenuRightTop, MenuRightCenter, MenuRightBottom, Body,} from './styles/styles';
+import { MenuRightTop, MenuRightCenter, MenuRightBottom, Body,} from './styles';
 //hooks
 import useMenuRight from "./hooks/useMenuRight";
 //components

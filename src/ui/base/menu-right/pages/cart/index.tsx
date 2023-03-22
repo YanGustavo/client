@@ -1,9 +1,13 @@
 import Loading from "components/Loading";
-import {Container, ContainerFlush, DebitCardContainer, AddSomeItem,} from '../styles/styles';
+import {Container, ContainerFlush, DebitCardContainer, AddSomeItem,} from '../../styles';
 import CreditCard from "@/ui/base/menu-right/pages/components/credit-card";
-import CartItem from "./components/cart-item";
+import CartItem from "../components/cart-item";
 import Button from "components/Button";
-import useCartPage from "./hooks/useCartPage";
+import useCartPage from "../hooks/useCartPage";
+//icons
+import KeyboardTabIcon from '@mui/icons-material/KeyboardTab';
+import UndoIcon from '@mui/icons-material/Undo';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 export default function CartPage() {
   const {loading,cart, total,  checkOutHandler,continueToShopping} = useCartPage();
@@ -15,8 +19,8 @@ export default function CartPage() {
                   
                 <AddSomeItem className="addSomeItem">
                   <img
-                  src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2FemptyCart.png?alt=media&token=50b733d4-cdd9-4025-bffe-8efa4066ca24"
-                  alt=""
+                  src="img/empty-cart.png"
+                  alt="Seu Carrinho está vazio!"
                   />
                 </AddSomeItem> 
                 {loading ? (<Loading/>): ( 
@@ -34,15 +38,15 @@ export default function CartPage() {
     )}
     <Container>
     <ContainerFlush>
-     <h3>Total:<span>R$: </span>{total}</h3>
+     <h3>Total<span>R$: {total}</span></h3>
      </ContainerFlush>
      </Container>
      <Container>
-      <Button onClick={continueToShopping}>Continue Comprando</Button>
+      <Button onClick={continueToShopping}>Continue Comprando <ShoppingCartCheckoutIcon/></Button>
     </Container>
     {total > 0 && (
     <Container>
-      <Button onClick={checkOutHandler}>Check Out</Button>
+      <Button onClick={checkOutHandler}>Prosseguir Compra <KeyboardTabIcon/></Button>
        </Container>
        )}
        

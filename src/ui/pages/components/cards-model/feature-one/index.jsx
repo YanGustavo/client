@@ -1,3 +1,4 @@
+'use client'
 import {Container} from "templates/base/styles";
 import {Body, ProductPhoto, PhotoContainer, PhotoMain, Controls, PhotoAlbum, ProductInfo, Title, Price, Variant, Description, BuyButton,} from "./styles";
 import Tooltip from '@mui/material/Tooltip';
@@ -13,8 +14,8 @@ const FeatureOne = () => {
 		<PhotoContainer>
 			<PhotoMain>
 				<Controls>
-					<i className="material-icons"><Tooltip title="Compartilhar"><ShareIcon/></Tooltip></i>
-					<i className="material-icons"><Tooltip title="Adicionar aos seus Favoritos"><FavoriteBorderIcon/></Tooltip></i>
+					<i><Tooltip title="Compartilhar"><ShareIcon/></Tooltip></i>
+					<i><Tooltip title="Adicionar aos seus Favoritos"><FavoriteBorderIcon/></Tooltip></i>
 				</Controls>
 				<img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice"/>
 			</PhotoMain>

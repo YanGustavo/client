@@ -6,10 +6,9 @@ import Favorite from "@mui/icons-material/Favorite";
 import EmailIcon from '@mui/icons-material/Email';
 import SettingsIcon from '@mui/icons-material/Settings';
 //hooks
-import useProfile from "./hooks/useProfile";
+import useProfile from "../hooks/useProfile";
 //context
 import {useBaseContext} from "context/base-context";
-import * as actionTypes from 'context/base-context/action-types';
 
 export default function ProfilePage() {
   const {content} = useProfile(); 

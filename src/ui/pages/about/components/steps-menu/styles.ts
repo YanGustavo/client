@@ -71,6 +71,7 @@ ${this} a {
   justify-content: center;
   align-items: center;  
   flex-wrap: wrap;
+  margin: auto;
   ${this}:hover {    
   }
   ${this}:first-child {

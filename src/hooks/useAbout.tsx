@@ -9,8 +9,6 @@ import FAQPage from "ui/pages/about/pages/faq";
 import AboutUsPage from "ui/pages/about/pages/about_us";
 import NotFound from "ui/pages/components/not-found";
 import Loading from "components/Loading";
-//import Error from "components/Error";
-
 const useAbout = (router) => { 
   const [data, setData] = React.useState("Carregando");
   const [content, setContent] = React.useState(<Loading/>);

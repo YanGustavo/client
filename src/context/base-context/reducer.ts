@@ -5,11 +5,11 @@ export const reducer = (state, action) => {
   switch (action.type) {
        //Pages Menu Right
       case actionTypes.SET_CART:
-        return { ...state, menu_right_page: actionTypes.CART};      
+        return { ...state, menu_right_visibility: true, toggle_menu_visibility: false, menu_right_page: actionTypes.CART};      
         case actionTypes.SET_PROFILE:
-        return { ...state, menu_right_page: actionTypes.PROFILE};        
+        return { ...state,  menu_right_visibility: true, toggle_menu_visibility: false, menu_right_page: actionTypes.PROFILE};        
         case actionTypes.SET_LOGIN:
-        return { ...state, menu_right_page: actionTypes.LOGIN};
+        return { ...state, menu_right_visibility: true, toggle_menu_visibility: false, menu_right_page: actionTypes.LOGIN};
         // Pages Profile
         case actionTypes.SET_ORDER:
         return { ...state, profile_page: actionTypes.ORDER};
@@ -21,9 +21,9 @@ export const reducer = (state, action) => {
         return { ...state, profile_page: actionTypes.CONFIG};
         //State Menu Right and ToggleMenu Visibility
         case actionTypes.SET_MENU_RIGHT_VISIBLE:
-        return { ...state, menu_right_visible: true, toggle_menu_visible: false};
+        return { ...state, menu_right_visibility: true, toggle_menu_visibility: false};
         case actionTypes.SET_MENU_RIGHT_HIDDEN:
-        return { ...state, menu_right_visible: false, toggle_menu_visible: true};
+        return { ...state, menu_right_visibility: false, toggle_menu_visibility: true};
         case actionTypes.SET_SIZE:
         return { ...state, size_media_query: action.payload};
         //counters State

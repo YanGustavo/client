@@ -54,6 +54,7 @@ const useRightMenu = () => {
     },[size_media_query, menu_right_visibility, count_cart_items, menu_right_page]);
 
 return{ 
+  menu_right_page,
   size_media_query,
   menu_right_visibility,
   data,

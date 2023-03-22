@@ -4,34 +4,20 @@ import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from 'components/ErrorFallback';
 //hooks
 import useHome from "hooks/useHome";
-import useMenuRight from "ui/base/menu-right/hooks/useMenuRight";
+
 //component head layout
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
-import {Container, ContainerFlush, ToggleMenu,} from 'templates/base/style';
-//context
-import * as actionTypes from 'context/base-context/action-types';
+import {Container, ContainerFlush} from 'templates/base/styles';
 //components
 import Loading from 'components/Loading';
 import BannerName from "ui/pages/home/banner-name";
 import ShopSection from "ui/pages/home/shop-section";
 import Pagination from "components/Pagination";
-import Card from "ui/pages/home/shop-section/components/card-modern";
 import Error from "components/Error";
 import Team from "ui/pages/components/cards-model/team";
-import MenuRight from "ui/base/menu-right";
-import MenuBottomItem from "@/ui/base/menu-right/components/menu-bottom-item";
-//icons menu right 
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
-
-import LoginIcon from '@mui/icons-material/Login';
-//icons header
-import BarChart from "@mui/icons-material/BarChart";
-//import LogoutIcon from '@mui/icons-material/Logout';
-//context
-//import {useBaseContext} from "context/base-context";
+import FeatureOne from "ui/pages/product/feature-one";
 
 
 
@@ -43,7 +29,7 @@ type HomeProps = {
 export default function HomePage({keyword, pagenumber}: HomeProps) { 
   //const [state, actions] = useBaseContext();
   const { loading, error, products, page, pages,} = useHome(keyword, pagenumber);
-  const {count_cart_items, setNewPage,} = useMenuRight(); 
+  
   console.log("Products:" + products);
   return (
     <Layout title="">
@@ -53,6 +39,7 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
     <BannerName name="Chefinho" discount={"20"} more={"#"} />
       </Suspense> 
       </Container>
+      <FeatureOne/>
       <Container>
         <ContainerFlush>
       <ErrorBoundary
@@ -86,15 +73,8 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
     </ErrorBoundary>  
     </ContainerFlush>
     </Container> 
-    <Container><ContainerFlush><Team/></ContainerFlush></Container>    
-    <MenuRight>
-         {/* prettier-ignore */}
-         <MenuBottomItem handleClick={setNewPage} param={actionTypes.CART} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isHome={true}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem  handleClick={setNewPage} param={actionTypes.PROFILE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem handleClick={setNewPage} param={actionTypes.LOGIN} link={'#'} icon={<LoginIcon/>}  title= {"Login"}/>
-    </MenuRight>     
+    <Container><ContainerFlush><Team/></ContainerFlush></Container>   
+       
      </Base>
     </Layout>
   );

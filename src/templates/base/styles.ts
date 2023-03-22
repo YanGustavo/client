@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 
 const Container = styled.section`
   margin-left: 2.5%;
@@ -16,41 +15,6 @@ background: #FFFFFF;
   border-radius: 0.2rem;
   padding: 1rem;
   width: 100%;
-`;
-
-const ToggleMenu = styled.main`
-transform: rotate(90deg);
-@keyframes toggleMenuAnimation {
-	0% { opacity: 0; transform: translateY(-2px); color: indigo;  }
-  25% { opacity: 0; transform: translateY(-2px); color: green;  }
-	50% { opacity: 1; transform: translateY(0); color: greenyellow;}
-	100% { opacity: 0; transform: translateY(2px); color: green;}
-}
-${this} .hidden {
-  display:none;
-}
-
-${this} .toggleIcon {
-  color: #373848;
-  font-size: 30px !important;
-  transition: all 0.5s ease; 
-  animation: toggleMenuAnimation 1.5s infinite; 
-  
-}
-${this}::after  {
-  transform: rotate(-90deg);
-  content: "Menu";
-  position: absolute;
-  top: 1.2rem;
-  right: -0.7rem;
-  width: 18px;
-  height: auto;
-  font-size: 0.7rem;
-  color: ${theme.colors.heading_color};
-}
- /* ${this}.isLoaded .toggleIcon  { 
-  animation: bounce-down 1.5s infinite; 
-} */
 `;
 const Main = styled.main`
   margin-top: 105px;
@@ -91,9 +55,6 @@ const Template = styled.div`
   ${Main}{
     width: calc(100vw - 280px);
   }
-  ${ToggleMenu}{
-    display: none;
-  }
   .sticky {
   position: fixed;
   top: 75px;
@@ -111,4 +72,4 @@ const Template = styled.div`
 }
 }
 `;
-export {Container, ContainerFlush, ToggleMenu, Main, Template, }
+export {Container, ContainerFlush, Main, Template, }

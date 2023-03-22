@@ -6,7 +6,7 @@ import Button from "components/Button";
 import useCartPage from "./hooks/useCartPage";
 
 export default function CartPage() {
-  const {loading,cart, total, checkOutHandler,continueToShopping} = useCartPage();
+  const {loading,cart, total,  checkOutHandler,continueToShopping} = useCartPage();
   return (
     <>
       <DebitCardContainer>
@@ -30,6 +30,8 @@ export default function CartPage() {
                          
     </div>
     </Container>
+    </>
+    )}
     <Container>
     <ContainerFlush>
      <h3>Total:<span>R$: </span>{total}</h3>
@@ -43,8 +45,8 @@ export default function CartPage() {
       <Button onClick={checkOutHandler}>Check Out</Button>
        </Container>
        )}
-       </>
-      )}
+       
+      
      </>
   );
 }

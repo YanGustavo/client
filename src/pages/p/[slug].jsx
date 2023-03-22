@@ -7,17 +7,15 @@ import ErrorFallback from 'components/ErrorFallback';
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
-import {Container, ContainerFlush, ToggleMenu,} from 'templates/base/style';
+import {Container, ContainerFlush, ToggleMenu,} from 'templates/base/styles';
 import * as SProduct from 'styles/styled-components/pages/product-styles';
 //components main
 import Header from "ui/base/header";
 import Footer from "ui/base/footer";
-import MenuRight from "ui/base/menu-right";
 import MenuBottomItem from "ui/base/menu-right/components/menu-bottom-item";
 //hooks
 import useProduct from "hooks/useProduct";
 import useProductAnimation from "ui/pages/product/hooks/productAnimation";
-import useMenuRight from "ui/base/menu-right/hooks/useMenuRight";
 //context
 import * as actionTypes from 'context/base-context/action-types';
 //components Products
@@ -52,7 +50,7 @@ export default function  ProductPage({ params }) { //: PageProps
   const ref = React.useRef(null);
   const [carouselPosition, setCarouselPosition] = React.useState(0);
   const {data,quantity, carousel,  preview, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(params, ref);
-  const {count_cart_items, setNewPage,} = useMenuRight(); 
+
   useProductAnimation();
   console.log("router"+pathname);
  
@@ -201,15 +199,7 @@ export default function  ProductPage({ params }) { //: PageProps
     </>
     {/* end content*/}
     
-    </ErrorBoundary>  
-      <MenuRight>
-         {/* prettier-ignore */}
-         <MenuBottomItem handleClick={setNewPage} param={actionTypes.CART} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isHome={true}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem  handleClick={setNewPage} param={actionTypes.PROFILE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem handleClick={setNewPage} param={actionTypes.LOGIN} link={'#'} icon={<LoginIcon/>}  title= {"Login"}/>
-    </MenuRight>       
+    </ErrorBoundary>        
      </Base>
     </Layout>
   );

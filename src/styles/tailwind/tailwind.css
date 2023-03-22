@@ -1192,6 +1192,10 @@ video {
   color: rgb(254 240 138 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1271,6 +1275,10 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
@@ -1295,6 +1303,10 @@ video {
   padding: 0.75rem;
   --tw-text-opacity: 1;
   color: rgb(21 128 61 / var(--tw-text-opacity));
+}
+
+.active {
+  transform: translateX(0%);
 }
 
 .hover\:scale-105:hover {
@@ -1414,4 +1426,3 @@ video {
     padding-right: 2rem;
   }
 }
-

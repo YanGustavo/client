@@ -4,16 +4,16 @@ import Link from 'next/link';
 type MenuBottomItemProps = {
   link: Object,
   icon: any,
-  isHome?:Boolean,
+  isActive?:Boolean,
   title: string,
   counter?: number,
   handleClick: any,
   param: any,
 }
 
-const MenuBottomItem = ({ link, icon, isHome=false,title, counter, handleClick, param}: MenuBottomItemProps ) => {
+const MenuBottomItem = ({ link, icon, isActive=false,title, counter, handleClick, param}: MenuBottomItemProps ) => {
   return (
-    <li onClick={() => handleClick(param)} className={isHome ? `active` : ``}>
+    <li onClick={() => handleClick(param)} className={isActive ? `active` : ``}>
       <Link href={link}>
         <span className="icon">{icon}</span>        
       </Link>

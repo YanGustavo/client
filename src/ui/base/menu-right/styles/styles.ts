@@ -24,26 +24,26 @@ color: #373848;
   font-size: 30px !important;
   transition: all 0.5s ease;
 `;
-const CloseMenu = styled.div`
-@keyframes closeMenuAnimation {
-	0% { opacity: 1; transform: translateY(-2px); color: black;  }
-  25% { opacity: 0.8; transform: translateY(-2px); color: green;  }
-	50% { opacity: 1; transform: translateY(0); color: black;}
-	100% { opacity: 1; transform: translateY(2px); color: green;}
-}  
-  position: absolute;
-  top: 0.2rem;
-  right: 1rem;
-  z-index: 109;
-  transform: translateX(0);
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  padding: 0.2rem;
-  display: flex;
-  align-items: center;
-  animation: closeMenuAnimation 1.5s infinite; 
+// const CloseMenu = styled.div`
+// @keyframes closeMenuAnimation {
+// 	0% { opacity: 1; transform: translateY(-2px); color: black;  }
+//   25% { opacity: 0.8; transform: translateY(-2px); color: green;  }
+// 	50% { opacity: 1; transform: translateY(0); color: black;}
+// 	100% { opacity: 1; transform: translateY(2px); color: green;}
+// }  
+//   position: absolute;
+//   top: 0.2rem;
+//   right: 1rem;
+//   z-index: 109;
+//   transform: translateX(0);
+//   background-color: #FFFFFF;
+//   border-radius: 50%;
+//   padding: 0.2rem;
+//   display: flex;
+//   align-items: center;
+//   animation: closeMenuAnimation 1.5s infinite; 
 
- `;
+//  `;
 const MenuRightTop = styled.div`
 width: 100%;
 height: auto;
@@ -109,6 +109,7 @@ background: ${theme.colors.right_menu_background_child_rgb};
 
 `;
 const Body = styled.div`
+  #menu_right{
   position: fixed;  
   top: 105px;
   right: 0;
@@ -125,9 +126,12 @@ const Body = styled.div`
   border-left: 1px solid ${theme.colors.header_text_color};
   padding-bottom: 2rem;
 
-${this}.active {
+ 
+  }
+  #menu_right.active {
   transform: translateX(0%);
-}
+  }
+  
 .cardGroup {
   position: relative;
   overflow: hidden;
@@ -367,27 +371,24 @@ ${this}.active {
     width: 280px;
     padding-bottom: 3rem;
   }
-  ${AddSomeItem} & {
+  ${AddSomeItem} {
   width: 15rem;
   height: 20rem;
   }
 }
 @media screen and (min-width: 650px) {
-  ${this}{
+  ${this} #menu_right.active {
   width: 250px;
   } 
-  ${AddSomeItem} & {
+  ${AddSomeItem} {
   width: 18rem;
   height: 23rem;
   }
 }
 @media screen and (min-width: 950px) {
-  ${this} {
+  ${this} #menu_right{
   width: 280px; 
   transform: translateX(0%);
-  }
-  ${CloseMenu} {
-  //display: none;
   }
   ${AddSomeItem} {
   width: 19rem;
@@ -395,13 +396,13 @@ ${this}.active {
   }
 }
 @media screen and (min-width: 1100px) {
-  ${this}{
+  ${this} #menu_right.active{
   width: 300px;
   }
-  ${AddSomeItem} & {
+  ${AddSomeItem} {
   width: 20rem;
   height: 25rem;
   }
 }
 `;
-export {Container, ContainerFlush,  CloseMenu, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer, AddSomeItem, Body, MenuRightChild,};
+export {Container, ContainerFlush, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer, AddSomeItem, Body, MenuRightChild,};

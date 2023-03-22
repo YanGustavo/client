@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import Layout from 'components/Layout';
-import { Base } from 'templates/base/style';
+import { Base } from 'templates/base/styles';
 import Product from "ui/base/pages/product";
 
 type PageProps = {

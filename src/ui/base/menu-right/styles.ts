@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
+
 import theme from 'styles/styled-components/theme';
+
+const Layout = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 const ContainerFlush = styled.div`
 background: ${theme.colors.right_menu_background_child_rgb};
@@ -51,7 +57,7 @@ max-height: 2rem;
 `;
 const MenuRightCenter = styled.div`
 width: 100%;
-max-height: 90rem;
+height: 90rem;
 overflow-y: auto;
 overflow-x: hidden;
 scrollbar-width: thin;
@@ -86,30 +92,12 @@ const MenuRightBottom = styled.div`
   padding-top: 0;
 `;
 
-const AddSomeItem = styled.div`
-  width: 20rem;
-  height: 25rem;
-  padding: 10px;
-  display: none;
-  transform: translateX(200%);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  ${this}.active {
-    transform: translateX(0%);
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-  ${this}.active ${DebitCardContainer} {
-    display: none;
-  }
-`;
 //right_menu_background_childrens_rgb
 const MenuRightChild = styled.div`
 background: ${theme.colors.right_menu_background_child_rgb};
 
 `;
 const Body = styled.div`
-  #menu_right{
   position: fixed;  
   top: 105px;
   right: 0;
@@ -120,16 +108,13 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;  
-  transform: translateX(200%);
+  transform: translateX(200%);  
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
   border-left: 1px solid ${theme.colors.header_text_color};
   padding-bottom: 2rem;
-
- 
-  }
-  #menu_right.active {
-  transform: translateX(0%);
+  &.active {
+  transform: translateX(0%);  
   }
   
 @media screen and (min-width: 541px) {
@@ -137,38 +122,22 @@ const Body = styled.div`
     width: 280px;
     padding-bottom: 3rem;
   }
-  ${AddSomeItem} {
-  width: 15rem;
-  height: 20rem;
-  }
 }
 @media screen and (min-width: 650px) {
   ${this} #menu_right.active {
   width: 250px;
   } 
-  ${AddSomeItem} {
-  width: 18rem;
-  height: 23rem;
-  }
 }
 @media screen and (min-width: 950px) {
   ${this} #menu_right{
   width: 280px; 
   transform: translateX(0%);
   }
-  ${AddSomeItem} {
-  width: 19rem;
-  height: 24rem;
-  }
 }
 @media screen and (min-width: 1100px) {
   ${this} #menu_right.active{
   width: 300px;
   }
-  ${AddSomeItem} {
-  width: 20rem;
-  height: 25rem;
-  }
 }
 `;
-export {Container, ContainerFlush, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer, AddSomeItem, Body, MenuRightChild,};
+export {Layout, Container, ContainerFlush, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer,Body, MenuRightChild,};

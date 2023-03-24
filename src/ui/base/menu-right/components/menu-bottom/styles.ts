@@ -92,7 +92,6 @@ export const MenuBottomStyle = styled.div`
 .menuBottom ul li.active a .icon {
   transform: translateY(-1.6rem);
 }
-
 .menuBottom ul li.active a .icon .MuiSvgIcon-root {
   font-size: 1.6rem;
   color: #FFFFFF;

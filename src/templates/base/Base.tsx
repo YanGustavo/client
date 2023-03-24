@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import { Main, Template,} from './styles';
 import useBase from './useBase';
@@ -24,17 +25,17 @@ import DropdownLink from 'ui/base/header/components/drop-down-link';
 import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
 
 const Base = ({children}: { children: React.ReactNode }) => {
- const {toggle_menu_visibility, actions} = useBase();
- const {menu_right_page, count_cart_items, setNewPage,} = useMenuRight();
+ const {toggle_menu_visible, actions} = useBase();
+ const {menu_right_page, count_cart, setNewPage,} = useMenuRight();
  const {status, session, logoutHandler,} = useHeader();
 return (
   <Template id="base_template">
     <HeaderPage>
-    <ShopCart onClick={() => actions.cart()}>
+    <ShopCart onClick={() => actions.setCartPage()}>
         <ShoppingCartRounded className="cart" />        
-        {count_cart_items > 0 ? (
+        {count_cart > 0 ? (
         <div className="cart_content"> 
-        <p>{count_cart_items}</p> 
+        <p>{count_cart}</p> 
         </div>
         ) : (
         <div className="noCartItem"> 
@@ -86,15 +87,15 @@ return (
                   </Menu.Items>
                 </Menu>
               ) : (
-                <Link href="#" onClick={() => actions.login()}>
+                <Link href="#" onClick={() => actions.setLoginPage()}>
                   <i className="p-2"><Tooltip title="Login"><LoginIcon/></Tooltip></i>
                 </Link>
               )} 
  </ProfileContainer>
-     <ToggleMenu className={toggle_menu_visibility ? '' : 'hidden'} >
+     <ToggleMenu className={toggle_menu_visible ? '' : 'hidden'} >
         <BarChart className="toggleIcon" onClick={() => actions.setMenuRightVisible()} />
       </ToggleMenu> 
-      <ToggleMenu className={toggle_menu_visibility ? 'hidden' : ''} >
+      <ToggleMenu className={toggle_menu_visible ? 'hidden' : ''} >
         {/* //value={"Fechar"} value={"Menu"} */}
         <CloseIcon className="toggleIcon" onClick={() => actions.setMenuRightHidden()}/>
       </ToggleMenu> 
@@ -105,11 +106,11 @@ return (
   </Main>
   <MenuRight>
          {/* prettier-ignore */}
-         <MenuBottomItem handleClick={setNewPage} param={actionTypes.CART} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isActive={menu_right_page === actionTypes.CART ? true: false}/>
+         <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_CART_PAGE} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart} title= {"Carrinho"} isActive={menu_right_page === actionTypes.SET_CART_PAGE ? true: false}/>
           {/* prettier-ignore */}
-          <MenuBottomItem  handleClick={setNewPage} param={actionTypes.PROFILE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.PROFILE ? true: false}/>
+          <MenuBottomItem  handleClick={setNewPage} param={actionTypes.SET_PROFILE_PAGE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.SET_PROFILE_PAGE ? true: false}/>
           {/* prettier-ignore */}
-          <MenuBottomItem handleClick={setNewPage} param={actionTypes.LOGIN} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.LOGIN ? true: false}/>
+          <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_LOGIN_PAGE} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.SET_LOGIN_PAGE ? true: false}/>
     </MenuRight>  
   </Template>
 )

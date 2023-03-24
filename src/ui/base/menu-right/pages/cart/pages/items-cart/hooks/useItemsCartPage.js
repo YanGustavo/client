@@ -2,7 +2,7 @@ import React from "react";
 import {useCartContext} from "context/cart-context";
 import {useBaseContext} from "context/base-context";
 
-const useCartPage = () => {
+const useItemsCartPage = () => {
   const [loading, setLoading] = React.useState(true);
    const [cart, setCart] = React.useState([{}]);
   const [total, setTotal] = React.useState(0);
@@ -42,4 +42,4 @@ return {
 }
 
 }
-export default useCartPage;
+export default useItemsCartPage;

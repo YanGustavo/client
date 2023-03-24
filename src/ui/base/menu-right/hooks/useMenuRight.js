@@ -1,9 +1,6 @@
 import React from 'react';
 import CartPage from '../pages/cart';
-import OrderPage from '../pages/order';
 import ProfilePage from '../pages/profile';
-import FavoritePage from '../pages/favorite';
-import MessagePage from '../pages/message';
 import LoginPage from '../pages/login';
 import Loading from "components/Loading";
 import {useBaseContext} from "context/base-context";
@@ -16,17 +13,17 @@ const useRightMenu = () => {
   const [page, setPage] = React.useState(actionTypes.LOADING);
   const [content, setContent] = React.useState(<Loading/>); 
   const [isPending, startTransition] = React.useTransition(); 
-  const [{ size_media_query, menu_right_visibility, menu_right_page, loading }, actions] = useBaseContext();
+  const [{ size_media_query, menu_right_visible, menu_right_page, loading }, actions] = useBaseContext();
   const [{count_cart_items}, actionsCart] = useCartContext();
 
   const setNewPage = (type) => {
   switch (type) {
-    case actionTypes.CART: 
-      return actions.cart(); 
-      case actionTypes.PROFILE: 
-      return actions.profile(); 
-      case actionTypes.LOGIN: 
-      return actions.login(); 
+    case actionTypes.SET_CART_PAGE: 
+      return actions.setCartPage(); 
+      case actionTypes.SET_PROFILE_PAGE: 
+      return actions.setProfilePage(); 
+      case actionTypes.SET_LOGIN_PAGE: 
+      return actions.setLoginPage(); 
   }
   }
 
@@ -34,14 +31,14 @@ const useRightMenu = () => {
     startTransition(() => {
       setPage(menu_right_page);      
     });
-    if (page === actionTypes.CART) {
+    if (page === actionTypes.SET_CART_PAGE) {
         setData("Carrinho");
         setContent(<CartPage/>);
       } 
-      else if (page === actionTypes.PROFILE) {
+      else if (page === actionTypes.SET_PROFILE_PAGE) {
         setData("Perfil");
         setContent(<ProfilePage/>);
-      }else if (page === actionTypes.LOGIN) {
+      }else if (page === actionTypes.SET_LOGIN_PAGE) {
         setData("Login");
         setContent(<LoginPage/>);
       }else{
@@ -51,12 +48,12 @@ const useRightMenu = () => {
   };
   React.useEffect(() => {
       navigate(menu_right_page);
-    },[size_media_query, menu_right_visibility, count_cart_items, menu_right_page]);
+    },[size_media_query, menu_right_visible, count_cart_items, menu_right_page]);
 
 return{ 
   menu_right_page,
   size_media_query,
-  menu_right_visibility,
+  menu_right_visible,
   data,
  isPending,
  content,

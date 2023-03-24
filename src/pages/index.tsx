@@ -19,6 +19,7 @@ import Pagination from "components/Pagination";
 import Team from "ui/pages/components/cards-model/team";
 import FeatureOne from "ui/pages/components/cards-model/feature-one";
 import ProductPreview from "ui/pages/components/cards-model/product-preview";
+import MenuDropDown from "ui/pages/home/menu-drop-down";
 
 
 
@@ -39,6 +40,9 @@ export default function HomePage({keyword, pagenumber}: HomeProps) {
     <Suspense fallback={<Loading/>}> 
     <BannerName name="Chefinho" discount={"20"} more={"#"} />
       </Suspense> 
+      </Container>
+      <Container>
+        <MenuDropDown/>
       </Container>
       <FeatureOne/>
       <Container>

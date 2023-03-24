@@ -102,7 +102,7 @@ export default {
   product_on_sale_accent: '#2d4b2a',
   product_on_sale_accent_rgb: '45, 75, 42',
   product_price_percentage: 'hsl(25, 100%, 94%)',
-  cart_img_box: '#00ffc855',
+  cart_img_box: 'rgba(0,255,255,0.2)',//#00ffc855,
   icons_color_hover: '#0000cd',
     white: '#fff',
     gray_50: '#f0efeb',

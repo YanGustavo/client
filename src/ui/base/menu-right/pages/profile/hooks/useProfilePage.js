@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderPage from '../order';
-import FavoritePage from '../favorite';
-import MessagePage from '../message';
-import ConfigPage from '../config';
+import OrderPage from '../pages/order';
+import FavoritePage from '../pages/favorite';
+import MessagePage from '../pages/message';
+import ConfigPage from '../pages/config';
 import Loading from "components/Loading";
 import {useBaseContext} from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';
@@ -13,13 +13,13 @@ const useProfile = () => {
   const [{ profile_page, loading }, actions] = useBaseContext();
 
   function navigate(){
-    if (profile_page === actionTypes.ORDER) {
+    if (profile_page === actionTypes.SET_ORDER_PAGE) {
       setContent(<OrderPage/>);
-    }else if (profile_page === actionTypes.FAVORITE) {
+    }else if (profile_page === actionTypes.SET_FAVORITE_PAGE) {
       setContent(<FavoritePage/>);
-    }else if (profile_page === actionTypes.MESSAGE) {
+    }else if (profile_page === actionTypes.SET_MESSAGE_PAGE) {
       setContent(<MessagePage/>);
-    }else if (profile_page === actionTypes.CONFIG) {
+    }else if (profile_page === actionTypes.SET_CONFIG_PAGE) {
       setContent(<ConfigPage/>);
     }else{
       setContent(<OrderPage/>);
@@ -30,7 +30,8 @@ const useProfile = () => {
         navigate();
       },[profile_page]);
 
-return{ 
+return{
+  actions, 
  content,
 };
 }

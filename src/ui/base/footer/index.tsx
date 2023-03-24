@@ -1,3 +1,4 @@
+'use client'
 import * as SFooter from './styles';
 import Link from 'next/link';
 import { PRIVACY_POLICY, EXCHANGE_AND_REFUND_POLICY, SHIPPING_POLICY, SERVICE_TERMS, CONTACT, FAQ, ABOUT_US} from "constants/about-constants";

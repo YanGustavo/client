@@ -1,9 +1,11 @@
+'use client'
 import AddRounded from "@mui/icons-material/AddRounded";
 import RemoveRounded from "@mui/icons-material/RemoveRounded";
 import DeleteIcon from '@mui/icons-material/Delete';
  import React from "react";
  import {useCartContext} from "context/cart-context";
-let cartItems = [];
+ import {CartItemBody, ImageBox, ItemSection, ItemName, ItemQuantity, Quantity, ItemPrice, DolorSign, ItemPriceValue,} from "./styles";
+//let cartItems = [];
 
 // type CartItemProps = {
 //   itemId: Number,
@@ -12,10 +14,9 @@ let cartItems = [];
 //   price:any,
 // }
 
-function CartItem(data) { // : CartItemProps
-  const product = data.data;
+function CartItem({ itemId, name, imgSrc, price }) { // : CartItemProps
    const [qty, setQty] = React.useState(1);
-   const [itemPrice, setItemPrice] = React.useState(parseInt(qty) * parseFloat(product.price));
+   const [itemPrice, setItemPrice] = React.useState(parseInt(qty) * parseFloat(price));
   const [state, actions] = useCartContext();
 
   // React.useEffect(() => {
@@ -37,34 +38,34 @@ function CartItem(data) { // : CartItemProps
   };
 
   return (
-    <div className="cartItem" id={product._id}>
-      <div className="imgBox">
-        <img src={product.image} alt="" />
-      </div>
-      <div className="itemSection">
-        <h2 className="itemName">{product.name}</h2>
-        <div className="itemQuantity">
+    <CartItemBody id={itemId}>
+      <ImageBox>
+        <img src={imgSrc} alt="" />
+      </ImageBox>
+      <ItemSection>
+        <ItemName>{name}</ItemName>
+        <ItemQuantity>
           <span>x {qty}</span>
-          <div className="quantity">
+          <Quantity>
             <RemoveRounded
               className="itemRemove"
-              onClick={() => updateCart("remove", product._id)}
+              onClick={() => updateCart("remove", itemId)}
              //onClick={() => actions.removeFromCart(itemId)}
             />
             <AddRounded
               className="itemAdd"
-              onClick={() => updateCart("add", product._id)}
+              onClick={() => updateCart("add", itemId)}
               //onClick={() => actions.addToCart(itemId)}
             />
-          </div>
-        </div>
-      </div>
-      <p className="itemPrice">
-        <span className="dolorSign">$</span>{" "}
-        <span className="itemPriceValue">{product.price}</span>
-        <span onClick={() => updateCart("remove", product._id)}><DeleteIcon/></span>
-      </p>
-    </div>
+          </Quantity>
+        </ItemQuantity>
+      </ItemSection>
+      <ItemPrice>
+        <DolorSign>$</DolorSign>{" "}
+        <ItemPriceValue>{price}</ItemPriceValue>
+        <span onClick={() => updateCart("remove", itemId)}><DeleteIcon/></span>
+      </ItemPrice>
+    </CartItemBody>
   );
 }
 

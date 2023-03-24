@@ -1,29 +1,29 @@
-import React from 'react';
-import {CardWrapper, CardHeader, CardHeading, CardBody, CardFieldset, CardInput, CardInputPassWord, CardOptionsNote, Hr, CardOptions, CardIcon, CardOptionsItem, CardButton, CardLink} from './styles';
+//import {CheckOut,} from '../../styles';
+import Button from "components/Button";
+import {Container} from "ui/base/menu-right/styles";
+import {CardWrapper, CardHeader, CardHeading, CardBody, CardFieldset, CardInput, CardInputPassWord, CardOptionsNote, Hr, CardOptions, CardIcon, CardOptionsItem, CardButton, CardLink} from '../../styles';
+
 //hooks
-import useLogin from "./useLogin";
+import useLoginPage from "../../hooks/useLoginPage";
 import IsolateReRender from "functions/isolate-re-render";
 //icons
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
+import LoginIcon from '@mui/icons-material/Login';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
-const LoginCard = ({activeLogin, google}) => {//{children}: { children: React.ReactNode }
-const {email, errors, values, control, setEmail, handleSubmit, register, submitHandler, handleClickShowPassword, handleMouseDownPassword,handlePasswordChange,} = useLogin(activeLogin)
-
+export default function SignInPage({actions}) {
+  const {email, errors, values, control,  handleSubmit, register, setEmail,submitHandler, handleClickShowPassword, handleMouseDownPassword,handlePasswordChange, google,} = useLoginPage()
   return (
+    <> 
+    <Container>
     <CardWrapper>
     <CardHeader>
       <CardHeading>Entrar</CardHeading>
     </CardHeader>
 
     <CardBody>
-      <CardFieldset>
-        <CardInput
-             placeholder="Nome" type="text" required />
-      </CardFieldset>
-
       <CardFieldset>
         <CardInput  {...register('email', {
               required: 'Por valor entre com seu E-mail!',
@@ -80,7 +80,7 @@ const {email, errors, values, control, setEmail, handleSubmit, register, submitH
       </CardFieldset>
 
       <CardFieldset>
-        <CardButton type="button" onSubmit={handleSubmit(submitHandler)}>Vamos Lá <CelebrationIcon/></CardButton>
+        <CardButton type="button" onSubmit={handleSubmit(submitHandler)}>Entrar <LoginIcon/></CardButton>
       </CardFieldset>
       <CardFieldset>
       {errors?.email && (<div className="text-red-500">{errors.email.message}</div>
@@ -93,10 +93,11 @@ const {email, errors, values, control, setEmail, handleSubmit, register, submitH
           )}
       </CardFieldset>
       <CardFieldset>
-        <CardLink>Já tenho uma conta!</CardLink>
+        <CardLink onClick={() => actions.setRegisterPage()}>Não tenho Conta!</CardLink>
       </CardFieldset>
     </CardBody>
   </CardWrapper>
+  </Container>
+     </>
   );
 }
-export default LoginCard;

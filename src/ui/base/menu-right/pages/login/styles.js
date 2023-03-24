@@ -89,7 +89,7 @@ export const CardIcon = styled.span`
   &:hover {
     opacity: .95;
   }
-/* 
+
   ${props =>
     props.big &&
     css`
@@ -108,7 +108,7 @@ export const CardIcon = styled.span`
     props.small &&
     css`
       font-size: 14px;
-    `} */
+    `}
 `;
 
 export const CardOptionsNote = styled.small`

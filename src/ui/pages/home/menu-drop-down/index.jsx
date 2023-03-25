@@ -1,92 +1,98 @@
 'use client';
 import React from "react";
-import {Body} from './styles';
+import {Ul, Li, A, Search, SearchMobile,} from './styles';
+//https://codepen.io/rizkykurniawanritonga/pen/VwvOMW
+//icons
+import HomeIcon from '@mui/icons-material/Home';
+import EditIcon from '@mui/icons-material/Edit';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import CommentIcon from '@mui/icons-material/Comment';
+import SearchIcon from '@mui/icons-material/Search';
 
 function MenuDropDown() {
   return (
-    <Body>
 <nav>
-		<ul className="mcd-menu">
-			<li>
-				<a href="">
-					<i className="fa fa-home"></i>
+		<Ul>
+			<Li>
+				<A href="">
+					<HomeIcon/>
 					<strong>Home</strong>
 					<small>sweet home</small>
-				</a>
-			</li>
-			<li>
-				<a href="" className="active">
-					<i className="fa fa-edit"></i>
+				</A>
+			</Li>
+			<Li>
+				<A href="" className={`active`}>
+					<EditIcon/>
 					<strong>About us</strong>
 					<small>sweet home</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i className="fa fa-gift"></i>
+				</A>
+			</Li>
+			<Li>
+				<A href="">
+					<CardGiftcardIcon/>
 					<strong>Features</strong>
 					<small>sweet home</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i className="fa fa-globe"></i>
+				</A>
+			</Li>
+			<Li>
+				<A href="">
+					<NewspaperIcon/>
 					<strong>News</strong>
 					<small>sweet home</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i className="fa fa-comments-o"></i>
+				</A>
+			</Li>
+			<Li>
+				<A href="">
+					<CommentIcon/>
 					<strong>Blog</strong>
 					<small>what they say</small>
-				</a>
+				</A>
 				<ul>
-					<li><a href="#"><i className="fa fa-globe"></i>Mission</a></li>
+					<li><a href="#"><NewspaperIcon/>Mission</a></li>
 					<li>
-						<a href="#"><i className="fa fa-group"></i>Our Team</a>
+						<a href="#"><NewspaperIcon/>Our Team</a>
 						<ul>
-							<li><a href="#"><i className="fa fa-female"></i>Leyla Sparks</a></li>
+							<li><a href="#"><NewspaperIcon/>Leyla Sparks</a></li>
 							<li>
-								<a href="#"><i className="fa fa-male"></i>Gleb Ismailov</a>
+								<a href="#"><NewspaperIcon/>Gleb Ismailov</a>
 								<ul>
-									<li><a href="#"><i className="fa fa-leaf"></i>About</a></li>
-									<li><a href="#"><i className="fa fa-tasks"></i>Skills</a></li>
+									<li><a href="#"><NewspaperIcon/>About</a></li>
+									<li><a href="#"><NewspaperIcon/>Skills</a></li>
 								</ul>
 							</li>
-							<li><a href="#"><i className="fa fa-female"></i>Viktoria Gibbers</a></li>
+							<li><a href="#"><NewspaperIcon/>Viktoria Gibbers</a></li>
 						</ul>
 					</li>
-					<li><a href="#"><i className="fa fa-trophy"></i>Rewards</a></li>
-					<li><a href="#"><i className="fa fa-certificate"></i>Certificates</a></li>
+					<li><a href="#"><NewspaperIcon/>Rewards</a></li>
+					<li><a href="#"><NewspaperIcon/>Certificates</a></li>
 				</ul>
-			</li>
-			<li>
-				<a href="">
-					<i className="fa fa-picture-o"></i>
+			</Li>
+			<Li>
+				<A href="">
+        <CommentIcon/>
 					<strong>Portfolio</strong>
 					<small>sweet home</small>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i className="fa fa-envelope-o"></i>
+				</A>
+			</Li>
+			<Li>
+				<A href="">
+        <CommentIcon/>
 					<strong>Contacts</strong>
 					<small>drop a line</small>
-				</a>
-			</li>
-			<li className="float">
-				<a className="search">
+				</A>
+			</Li>
+			<Li className={`float`}>
+				<Search>
 					<input type="text" value="search ..."/>
-					<button><i className="fa fa-search"></i></button>
-				</a>
-				<a href="" className="search-mobile">
-					<i className="fa fa-search"></i>
-				</a>
-			</li>
-		</ul>
+					<button><SearchIcon/></button>
+				</Search>
+				<SearchMobile>
+        <SearchIcon/>
+				</SearchMobile>
+			</Li>
+		</Ul>
 	</nav>
-    </Body>
   );
 }
 

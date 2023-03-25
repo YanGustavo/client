@@ -1,6 +1,5 @@
 import React from 'react';
 import {Nav, MenuTrigger, Avatar, Ul, Main,} from "./styles";
-import {Container, ContainerFlush} from "ui/base/menu-right/styles";
 import useComponentVisible from "functions/check-click-outside";
 //icons
 import SummarizeRounded from "@mui/icons-material/SummarizeRounded";
@@ -17,18 +16,6 @@ export default function ProfilePage() {
   const {actions, content} = useProfile(); 
   return (
     <>    
-    {/* <Card>
-    <Action>
-      <Button onClick={() => actions.setOrderPage()}><SummarizeRounded/></Button>
-    <Button onClick={() => actions.setFavoritePage()}><Favorite/></Button>
-    <Button onClick={() => actions.setMessagePage()}><EmailIcon/></Button>
-    <Button onClick={() => actions.setConfigPage()}><SettingsIcon/></Button>
-    </Action>
-    </Card>
-    
-    <Container>
-      <ContainerFlush>{content}</ContainerFlush>
-    </Container>   */}
    <MenuTrigger className={isComponentVisible === true ? `active `: ``} onClick={()=> setIsComponentVisible(!isComponentVisible)}>{isComponentVisible === true ? <CloseIcon/>: <KeyboardArrowRightIcon/>}</MenuTrigger>
 <Nav ref={ref} className={isComponentVisible === true ? `active `: ``}>	 
 
@@ -47,9 +34,7 @@ export default function ProfilePage() {
 </Nav>
 
 <Main >
-  <Container>
   {content}
-  </Container>
 </Main>
   </>
   );

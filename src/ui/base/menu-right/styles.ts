@@ -16,14 +16,28 @@ background: ${theme.colors.right_menu_background_child_rgb};
   border: 1px solid ${theme.colors.border_color};
 `;
 const Container = styled.div`
-margin-left: 2.5%;
-  max-width: 95%;
-  min-width: 95%;
+margin-left: 10%;
+  width: 80%;
   margin-top: 1%;
   position: relative; 
   display: flex;
   align-content: center;
   align-items: center;
+  @media screen and (min-width: 541px) {
+  ${this} {
+    margin-left: 2.5%;
+    width: 95%;
+  }
+}
+@media screen and (min-width: 650px) {
+
+}
+@media screen and (min-width: 950px) {
+
+}
+@media screen and (min-width: 1100px) {
+
+}
 `;
 const ToggleIcon = styled.div`
 color: #373848;
@@ -119,23 +133,23 @@ const Body = styled.div`
   
 @media screen and (min-width: 541px) {
   ${this} {
-    width: 280px;
+    width: 250px;
     padding-bottom: 3rem;
   }
 }
 @media screen and (min-width: 650px) {
-  ${this} #menu_right.active {
-  width: 250px;
+  ${this} {
+  width: 260px;
   } 
 }
 @media screen and (min-width: 950px) {
-  ${this} #menu_right{
+  ${this}{
   width: 280px; 
   transform: translateX(0%);
   }
 }
 @media screen and (min-width: 1100px) {
-  ${this} #menu_right.active{
+  ${this} {
   width: 300px;
   }
 }

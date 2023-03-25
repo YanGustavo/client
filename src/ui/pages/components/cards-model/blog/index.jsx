@@ -68,7 +68,7 @@ const StyledPhoto = styled.img`
   object-fit: cover;
   border: ${(props) => `1px solid ${props.theme.colors.border_color}`}`;
 
-type CardProps = {
+/* type CardProps = {
   image: Object,
   title: string,
   date: any,
@@ -77,7 +77,7 @@ type CardProps = {
   likes: any,
   views:any,
   actions:any, 
-}
+} */
 const Card = ({
   image,
   title,
@@ -87,7 +87,7 @@ const Card = ({
   likes,
   views,
   actions,
-}: CardProps) => (
+}) => ( //: CardProps) 
   <StyledContainer>
   {/* prettier-ignore */}
     <StyledPhoto src={image}/>

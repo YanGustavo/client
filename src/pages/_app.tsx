@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { SessionProvider, useSession } from 'next-auth/react';
+//import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 import {usePathname} from 'next/navigation'
@@ -18,48 +18,48 @@ import ContextApp from "context";
 import Loading from "components/Loading";
 
 //function App({ Component, pageProps: { session, ...pageProps }}: AppProps) {
-function App({ Component, pageProps: { session, ...pageProps }}: AppProps) {
+function App({ Component, pageProps: { ...pageProps }}: AppProps) {
 const pathname = usePathname()
   const isPublicPage = checkIsPublicRoute(pathname!);
 
   return (  
-     <SessionProvider session={session}>
+    //  <SessionProvider session={session}>
     <QueryClientProvider client = {queryClient}>
     <ThemeProvider theme={theme}> 
     <ContextApp>
          {/* {isPublicPage && (<Component {...pageProps} />)}
         {!isPublicPage && <PrivateRoute>{<Component {...pageProps} />}</PrivateRoute>} */}
         
-         {Component.auth ? (
+         {/* {Component.auth ? (
             <Auth adminOnly={Component.auth.adminOnly}>
-              <Component {...pageProps} />
+              
            </Auth>
           ) : (
             <Component {...pageProps} />
-          )}
-
+          )} */}
+          <Component {...pageProps} />
       </ContextApp>
       <GlobalStyles />
     </ThemeProvider>
     </QueryClientProvider>
-    </SessionProvider>
+    // </SessionProvider>
   );
 }
-function Auth({ children, adminOnly }) {
-  const router = useRouter();
-  const { status, data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push('/login?message=login required');
-    },
-  });
-  if (status === 'loading') {
-    return <Loading/>;
-  }
-  if (adminOnly && !session.user.isAdmin) {
-    router.push('/login?message=admin login required');
-  }
-  return children;
-}
+// function Auth({ children, adminOnly }) {
+//   const router = useRouter();
+//   const { status, data: session } = useSession({
+//     required: true,
+//     onUnauthenticated() {
+//       router.push('/login?message=login required');
+//     },
+//   });
+//   if (status === 'loading') {
+//     return <Loading/>;
+//   }
+//   if (adminOnly && !session.user.isAdmin) {
+//     router.push('/login?message=admin login required');
+//   }
+//   return children;
+// }
 
 export default App;

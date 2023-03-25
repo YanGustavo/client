@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import Card from '@/ui/all/cards-model/blog';
+import Card from 'ui/pages/components/cards-model/blog';
 const StyledRoot = styled.div`
   padding: 50px 12px;
 `

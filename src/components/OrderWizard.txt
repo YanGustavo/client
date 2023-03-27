@@ -148,6 +148,3 @@ const OrderWizard = ( order:any ) => {
         </OrderWizardStyle>
   );
 }
-export default OrderWizard;
-
-

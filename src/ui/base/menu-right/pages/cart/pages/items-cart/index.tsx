@@ -1,7 +1,7 @@
 'use client'
-import {CheckOut,} from '../../styles';
+import CreditCard from "ui/base/menu-right/pages/cart/components/credit-card";
+import {Container} from "ui/base/menu-right/styles";
 import {AddSomeItem, CartCheckOutContianer, CartContainer, CartItems, TotalSection,} from './styles';
-import CreditCard from "@/ui/base/menu-right/pages/cart/components/credit-card";
 import CartItem from "./components/cart-item";
 import Button from "components/Button";
 import useItemsCartPage from "./hooks/useItemsCartPage";
@@ -13,6 +13,7 @@ export default function ItemsCartPage({actions}) {
   const {loading,cart, total,  checkOutHandler,continueToShopping} = useItemsCartPage();
   return (
     <>
+        <CreditCard name="Yan Gustavo" />
      {false? (
             <AddSomeItem className="active">
             <img
@@ -22,7 +23,8 @@ export default function ItemsCartPage({actions}) {
           </AddSomeItem> 
           ) : (
             <>
-            <CartCheckOutContianer>
+            <Container><Button size="large" onClick={continueToShopping}>Continue Comprando <ShoppingCartCheckoutIcon/></Button></Container>
+                        <CartCheckOutContianer>
               <CartContainer>
 
                 <CartItems>
@@ -92,17 +94,15 @@ export default function ItemsCartPage({actions}) {
             <TotalSection>
             <h3>Total</h3>
             <p>
-              <span>$ </span> {total}
+              <span>R$: </span> {total},00
             </p>
           </TotalSection>
           {/* <CheckOut>Check Out</CheckOut> */}
-          <CheckOut>
-          <Button onClick={continueToShopping}>Continue Comprando <ShoppingCartCheckoutIcon/></Button>
-    {total > -1 && (
-      <Button onClick={() => actions.setCartShippingPage()}>Prosseguir Compra <KeyboardTabIcon/></Button>
-       )}
           
-          </CheckOut>
+    {total > -1 && (
+      <Container><Button size="large" onClick={() => actions.setCartShippingPage()}>Prosseguir Compra <KeyboardTabIcon/></Button></Container>
+      
+       )}
           
           </> )}  
      </>

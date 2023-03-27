@@ -59,6 +59,11 @@ export const Details = styled.div`
 grid-column-start: col4-start;
 grid-column: 1 / 6;
 `;
+export const DescriptionContainer = styled.div`
+  position: relative;
+  grid-row: 2; /* ocupa a segunda linha */
+  grid-column: 1 / 6; /* ocupa da segunda coluna até a quarta coluna */
+`;
 export const Body = styled.div`
   min-width: 100%;
   width: 100%;
@@ -66,7 +71,7 @@ export const Body = styled.div`
   display: grid;
   //grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
   grid-template-columns: [first] 10% [line2] 30% [line3] auto [col4-start] 30%  [five] 10% [end];
-  grid-template-rows: auto;
+  grid-template-rows: auto auto auto;
   column-gap: 1rem;
   hr {
    padding: 0;
@@ -97,6 +102,11 @@ export const Body = styled.div`
   ${Details}{
     grid-column: 4 / 6;
   }
+  ${DescriptionContainer} {
+    grid-row: 2; /* ocupa a segunda linha */
+  grid-column: 2 / 4; /* ocupa da segunda coluna até a quarta coluna */
+  }
+  
 }
 @media screen and (min-width: 1100px) {
   grid-template-columns: [first] 1% [line2] 39% [line3] auto [col4-start] 20%  [five] 20% [end];

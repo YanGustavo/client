@@ -1,48 +1,74 @@
-import { Suspense } from 'react';
-import {Container, ContainerFlush} from "ui/base/menu-right/styles";
-import Loading from 'components/Loading';
+import React from 'react';
+import styled from 'styled-components';
 
-
-export default function OrderPage() {
-  return (
-    <>      
-      <Container>
-          <ContainerFlush>
-          <Suspense fallback={<Loading />}>
-        
-        <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead className="border-b">
-                <tr>
-                  <th className="px-5 text-left">ID</th>
-                  <th className="p-5 text-left">DATE</th>
-                  <th className="p-5 text-left">TOTAL</th>
-                  <th className="p-5 text-left">PAID</th>
-                  <th className="p-5 text-left">DELIVERED</th>
-                  <th className="p-5 text-left">ACTION</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr className="border-b">
-                    <td className=" p-5 ">EAI_OR_3405060</td>
-                    <td className=" p-5 ">25/10/2023</td>
-                    <td className=" p-5 ">$100</td>
-                    <td className=" p-5 ">
-                      not paid
-                    </td>
-                    <td className=" p-5 ">
-                      not delivered
-                    </td>
-                    <td className=" p-5 ">
-                        <a>Details</a>
-                    </td>
-                  </tr>
-              </tbody>
-            </table>
-          </div>     
-        </Suspense>
-          </ContainerFlush>
-        </Container>
-    </>
-  );
+interface OrderPageProps {
+  orders: Order[];
 }
+
+interface Order {
+  id: number;
+  date: string;
+  status: string;
+  totalPrice: number;
+}
+
+const OrderPage: React.FC<OrderPageProps> = ({ orders }) => {
+  return (
+    <Container>
+      <Title>Order History</Title>
+      {orders.map(order => (
+        <OrderItem key={order.id}>
+          <OrderInfo>
+            <OrderNumber>Order #{order.id}</OrderNumber>
+            <OrderDate>{order.date}</OrderDate>
+            <OrderStatus>{order.status}</OrderStatus>
+          </OrderInfo>
+          <OrderPrice>${order.totalPrice.toFixed(2)}</OrderPrice>
+        </OrderItem>
+      ))}
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  margin: 20px;
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  margin-bottom: 20px;
+`;
+
+const OrderItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const OrderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const OrderNumber = styled.span`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const OrderDate = styled.span`
+  font-size: 14px;
+  margin-top: 5px;
+`;
+
+const OrderStatus = styled.span`
+  font-size: 14px;
+  margin-top: 5px;
+`;
+
+const OrderPrice = styled.span`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+export default OrderPage;

@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "next",
     "react",
     "@typescript-eslint",
     "react-hooks",

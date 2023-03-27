@@ -2,7 +2,37 @@ import styled from 'styled-components';
 
 
 import theme from 'styles/styled-components/theme';
+const ButtonsFullAlign = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-top: 1rem;
 
+  button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+const ButtonsAlign = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+
+  button {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 const Layout = styled.div`
   width: 100%;
   height: 100%;
@@ -154,4 +184,4 @@ const Body = styled.div`
   }
 }
 `;
-export {Layout, Container, ContainerFlush, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer,Body, MenuRightChild,};
+export {ButtonsFullAlign, ButtonsAlign, Layout, Container, ContainerFlush, ToggleIcon, MenuRightTop, MenuRightCenter, MenuRightBottom, DebitCardContainer,Body, MenuRightChild,};

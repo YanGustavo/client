@@ -116,6 +116,40 @@ const Products = [
     countInStock: 27,
   },
 ];
+const Product = [
+  {
+    id: 1,
+    name: "Produto 1",
+    description: "Descrição do produto 1",
+    price: 19.99,
+    imageUrl: "images/1.png",
+    isFavorite: true,
+  },
+  {
+    id: 2,
+    name: "Produto 2",
+    description: "Descrição do produto 2",
+    price: 29.99,
+    imageUrl: "https://via.placeholder.com/150",
+    isFavorite: true,
+  },
+  {
+    id: 3,
+    name: "Produto 3",
+    description: "Descrição do produto 3",
+    price: 9.99,
+    imageUrl: "https://via.placeholder.com/150",
+    isFavorite: false,
+  },
+  {
+    id: 4,
+    name: "Produto 4",
+    description: "Descrição do produto 4",
+    price: 39.99,
+    imageUrl: "https://via.placeholder.com/150",
+    isFavorite: false,
+  },
+];
 
 
-export { MenuItems, Items, Products };
+export { MenuItems, Items, Products, Product, };

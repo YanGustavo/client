@@ -22,6 +22,7 @@ import * as actionTypes from 'context/base-context/action-types';
 import Breadcrumbs from "components/Breadcrumbs";
 import Carousel from "ui/pages/product/carousel";
 import Thumbnails from "ui/pages/product/thumbnails";
+import Description from "ui/pages/product/description";
 //icons
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -44,6 +45,22 @@ import BarChart from "@mui/icons-material/BarChart";
 //   children?: React.ReactNode;
 //   product: any;
 // };
+
+const DescriptionProps = `
+<div>
+  <h1>Descrição</h1>
+  <p>O iPhone XR é um dos modelos de smartphones da Apple lançados em 2018.</p>
+  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr__dazdnq0bwz2i_large.svg" alt="iPhone XR" width="500"/>
+  <p>Ele possui uma tela Liquid Retina de 6.1 polegadas com resolução de 1792 x 828 pixels.</p>
+  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_display__c204cj3q8e6y_large.svg" alt="Tela do iPhone XR" width="500"/>
+  <p>O iPhone XR vem com o processador A12 Bionic, que proporciona desempenho rápido e eficiente.</p>
+  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_performance__ey2vwyylfom6_large.svg" alt="Processador do iPhone XR" width="500"/>
+  <p>Ele conta ainda com uma câmera de 12 megapixels com abertura f/1.8 e estabilização óptica de imagem, além de gravação de vídeo em 4K.</p>
+  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_camera__dc5lmnop1kwy_large.svg" alt="Câmera do iPhone XR" width="500"/>
+  <p>O iPhone XR também é resistente à água e poeira, com certificação IP67.</p>
+  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_waterresistance__cau6dnj9d4wy_large.svg" alt="Resistência à água e poeira do iPhone XR" width="500"/>
+</div>
+`;
 export default function  ProductPage({ params }) { //: PageProps
   const router= useRouter();
   const  pathname = router.pathname;  
@@ -196,6 +213,17 @@ export default function  ProductPage({ params }) { //: PageProps
         
       </SProduct.Body>
       </Container>
+     <SProduct.DescriptionContainer>
+<Container>
+        <ContainerFlush> 
+          
+      <Description description={DescriptionProps}/>
+      </ContainerFlush>
+      </Container>
+     </SProduct.DescriptionContainer>
+      
+      
+      
     </>
     {/* end content*/}
     

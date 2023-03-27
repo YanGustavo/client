@@ -6,7 +6,7 @@ import {TopAnnouncement , Marquee, HeaderCenter, Logo, InputBox, Header,}from '.
 //hooks
 import useHeader from "./useHeader";
 //componets
-import Location from "ui/base/header/components/location";
+import Location from "components/Location";
 //icons
 import SearchRounded from "@mui/icons-material/SearchRounded";
 

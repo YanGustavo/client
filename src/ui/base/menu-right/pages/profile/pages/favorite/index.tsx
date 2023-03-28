@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { Product } from "utils/data";
+import {  Product } from "lib/Products";
 
 type Props = {
-  favoriteProducts: typeof Product[];
+  favoriteProducts: Product[];
 }
 
 const FavoritePage: React.FC<Props> = ({ favoriteProducts }) => {
-  const [favorites, setFavorites] = useState<typeof Product[]>([]);
+  const [favorites, setFavorites] = useState<Product[]>([]);
 
   useEffect(() => {
     setFavorites(favoriteProducts);
@@ -20,8 +20,8 @@ const FavoritePage: React.FC<Props> = ({ favoriteProducts }) => {
       {favorites.length > 0 && (
         <List>
           {favorites.map((product) => (
-            <ListItem key={product.id}>
-              <Image src={product.image} alt={product.name} />
+            <ListItem key={product._id}>
+              <Image src={product.images[0]} alt={product.name} />
               <Name>{product.name}</Name>
               <Price>R$ {product.price.toFixed(2)}</Price>
             </ListItem>

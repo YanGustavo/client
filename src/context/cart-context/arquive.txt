@@ -1,0 +1,123 @@
+// import P from 'prop-types';
+// import React, {useState} from 'react';
+// import { buildActions } from './build-actions';
+// import { reducer } from './reducer';
+// import * as actionTypes from './action-types';
+// import Cookies from 'js-cookie';
+
+// export const initialState = {
+//   cartItems: Cookies.get('cartItems')?JSON.parce(Cookies.get('cartItems')): [],
+//   shippingAdress: Cookies.get('shippingAdress')?JSON.parce(Cookies.get('shippingAdress')): [],
+//   paymentMethod: Cookies.get('paymentMethod')?JSON.parce(Cookies.get('paymentMethod')): '',
+// };
+
+// const Context = React.createContext([initialState]);
+
+// export const CartContextProvider = ({children}) => {
+//   const [state, dispatch] = React.useReducer(reducer, initialState);
+//   const actions = React.useRef(buildActions(dispatch));
+
+//   return <Context.Provider value={[state, actions.current]}>{children}</Context.Provider>;
+// };
+
+
+
+// export const useCartContext = () => {
+//   const context = React.useContext(Context);
+//   return [...context];
+// };
+// cart-context.js
+// import create from 'zustand';
+// import Cookies from 'js-cookie';
+// import { buildActions } from './build-actions';
+// import * as actionTypes from './action-types';
+
+// export const useCartStore = create((set, get) => ({
+//   cartItems: Cookies.get('cartItems') ? JSON.parse(Cookies.get('cartItems')) : [],
+//   shippingAdress: Cookies.get('shippingAdress') ? JSON.parse(Cookies.get('shippingAdress')) : {},
+//   paymentMethod: Cookies.get('paymentMethod') ? JSON.parse(Cookies.get('paymentMethod')) : '',
+//   ...buildActions ,
+//   dispatch: (action) => {
+//     set((state) => reducer(state, action));
+//     Cookies.set('cartItems', JSON.stringify(get().cartItems));
+//     Cookies.set('shippingAdress', JSON.stringify(get().shippingAdress));
+//     Cookies.set('paymentMethod', JSON.stringify(get().paymentMethod));
+//   },
+// }));
+
+// export const useCartContext = () => useCartStore();
+import axios from "axios";
+import create from 'zustand';
+import Cookies from 'js-cookie';
+import produce from 'immer';
+
+export const useCartStore = create((set, get) => ({
+  cartItems: Cookies.get('cartItems') ? JSON.parse(Cookies.get('cartItems')) : [],
+  shippingAddress: Cookies.get('shippingAddress') ? JSON.parse(Cookies.get('shippingAddress')) : {},
+  paymentMethod: Cookies.get('paymentMethod') ? JSON.parse(Cookies.get('paymentMethod')) : '',
+
+  addToCart: async (id, qty) => {
+    try {
+      set(produce(get(), draft => {
+        draft.loading = true;
+      }));
+
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_SERVER_URL}/api/products/${id}`);
+
+      set(produce(get(), draft => {
+        draft.cartItems.push({
+          product: data._id,
+          name: data.name,
+          image: data.image,
+          price: data.price,
+          countInStock: data.countInStock,
+          qty,
+        });
+        draft.loading = false;
+      }));
+
+      Cookies.set('cartItems', JSON.stringify(get().cartItems));
+    } catch (error) {
+      set(produce(get(), draft => {
+        draft.loading = false;
+        draft.error = error.response && error.response.data.message ? error.response.data.message : error.message;
+      }));
+    }
+  },
+
+  removeFromCart: async (id) => {
+    set(produce(get(), draft => {
+      draft.cartItems = draft.cartItems.filter(item => item.product !== id);
+    }));
+
+    Cookies.set('cartItems', JSON.stringify(get().cartItems));
+  },
+
+  saveShippingAddress: (data) => {
+    set(produce(get(), draft => {
+      draft.shippingAddress = data;
+    }));
+
+    Cookies.set('shippingAddress', JSON.stringify(data));
+  },
+
+  savePaymentMethod: (data) => {
+    set(produce(get(), draft => {
+      draft.paymentMethod = data;
+    }));
+
+    Cookies.set('paymentMethod', JSON.stringify(data));
+  },
+
+  clearCart: () => {
+    set(produce(get(), draft => {
+      draft.cartItems = [];
+      draft.shippingAddress = {};
+      draft.paymentMethod = '';
+    }));
+
+    Cookies.remove('cartItems');
+    Cookies.remove('shippingAddress');
+    Cookies.remove('paymentMethod');
+  },
+}));

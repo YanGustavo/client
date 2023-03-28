@@ -16,6 +16,9 @@ import 'styles/tailwind/globals.css';
 import ContextApp from "context";
 
 import Loading from "components/Loading";
+//Toast
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //function App({ Component, pageProps: { session, ...pageProps }}: AppProps) {
 function App({ Component, pageProps: { ...pageProps }}: AppProps) {
@@ -26,6 +29,7 @@ const pathname = usePathname()
     //  <SessionProvider session={session}>
     <QueryClientProvider client = {queryClient}>
     <ThemeProvider theme={theme}> 
+    <ToastContainer />
     <ContextApp>
          {/* {isPublicPage && (<Component {...pageProps} />)}
         {!isPublicPage && <PrivateRoute>{<Component {...pageProps} />}</PrivateRoute>} */}

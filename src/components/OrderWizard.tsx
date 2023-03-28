@@ -85,19 +85,19 @@ ${this} .MuiSvgIcon-root{
 `;
 
 const OrderWizard = ({ status }: { status: number }) => {
-  const statusClass = (index:any) => {
-    if(status >= 3){
-      return classNames('done');
-    }else if(status > 0){
-      if (index - status < 1) return classNames('done');
-    if (index - status === 1) return classNames('inProgress');
-    if ((index - status > 1) && (index - status <= 3)) return classNames('undone');
-    
-    }else if(status === 0) {
-      if (index - status < 1) return classNames('nothing');
-      if (index - status >= 1) return classNames('undone');
+  const statusClass = (index: any) => {
+    if (status >= 3) {
+      return classNames("done");
+    } else if (status > 0) {
+      if (index - status < 1) return classNames("done");
+      if (index - status === 1) return classNames("inProgress");
+      if (index - status > 1 && index - status <= 3) return classNames("undone");
+      return classNames("undone"); // add this line to handle the missing return case
+    } else if (status === 0) {
+      if (index - status < 1) return classNames("nothing");
+      if (index - status >= 1) return classNames("undone");
     }
-    
+    return ""; // add a final return statement to ensure a value is always returned
   };
   return (
     <Body>

@@ -1,25 +1,146 @@
+'use client'
 import React from "react";
-import {Body} from './styles';
-import ModalPage from "ui/pages/components/modal";
-import Button from "components/Button";
+import ReportError from "components/ReportError";
+import styled from 'styled-components';
+
+
+
+const Body = styled.section`
+width: 100%;
+.main{
+  margin-top: 15%;
+}
+
+.st0{fill:#fff};
+.st2{fill:   ${(props) => props.theme.colors.header_text_color}};
+.st3{fill: ${(props) => props.theme.colors.header_text_color}};
+.st4,.st6{
+  fill:#fff;
+  stroke: ${(props) => props.theme.colors.header_text_color};
+  stroke-miterlimit:10
+}
+.st6{
+  stroke: ${(props) => props.theme.colors.header_text_color};
+  stroke-width:2
+}
+.st7,.st8,.st9{
+  stroke: ${(props) => props.theme.colors.header_text_color};
+  stroke-miterlimit:10
+}
+
+.st7{
+  stroke-width:5;
+  stroke-linecap:round;
+  fill:none
+}
+.st8,.st9{
+  fill:#fff
+}
+.st9{
+  fill:none
+}
+.st10{
+  
+}
+
+#cloud1{
+  animation: cloud003 15s linear infinite;
+}
+
+#cloud2{
+  animation: cloud002 25s linear infinite;
+}
+
+#cloud3{
+  animation: cloud003 20s linear infinite;
+}
+
+#cloud4{
+  animation: float 4s linear infinite;
+}
+
+#cloud5{
+  animation: float 8s linear infinite;
+}
+
+#cloud7{
+  animation: float 5s linear infinite;
+}
+
+#tracks{
+  animation: slide 650ms linear infinite;
+}
+
+#bumps{
+  animation: land 10000ms linear infinite;
+}
+
+@keyframes jig {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(1px); }
+    100% { transform: translateY(0px); }
+}
+
+#car-layers{
+  animation: jig 0.35s linear infinite;
+}
+
+@keyframes land {
+    from { transform: translateX(0); }
+    to { transform: translateX(1000px); }
+}
+
+
+@keyframes slide {
+    from { transform: translateX(0px); }
+    to { transform: translateX(100px); }
+}
+
+ @keyframes cloudFloat {
+  0% { transform: translateX(0) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+} 
+
+@keyframes cloud001 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes cloud002 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes cloud003 {
+  0% { transform: translateX(-1000px) translateY(3px); }
+  100% { transform: translateX(1000px) translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0); }
+    50% { transform: translateY(8px) translateX(5px); }
+    100% { transform: translateY(0px) translateX(0); }
+}
+
+#bracefront, #braceback{
+  animation: braces 1s linear infinite;
+}
+
+@keyframes braces {
+    0% { transform: translateX(-2px); }
+  25% { transform: translateX(3px); }
+    50% { transform: translateX(-2px); }
+    75% { transform: translateX(3px); }
+  100% { transform: translateX(-2px); }
+}
+
+`;
 
 const NotFound = () => {
 const [isOpen, setIsOpen] = React.useState(false);
 return(
-  <Body>
-    <ModalPage isOpen={isOpen}>
-    <h2>Hello - I am a modal!</h2>
-        <hr />
-        <p>
-          We maintain that accessibility is a key component of any modern web
-          application. As such, we have created this modal in such a way that it
-          fulfills the accessibility requirements of the modern web. We seek to
-          keep the focus on accessibility while providing a functional, capable
-          modal component for general use.
-        </p>
-    </ModalPage>
-
-   <div className="main">
+  <Body>    
+   <div>
   <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 355">
   <g id="ocean">
@@ -307,8 +428,8 @@ return(
 </svg>
   </div>
 </div>
-<Button onClick={() => setIsOpen(true)}>Relatar um Problema!</Button>
-  </Body>
+<ReportError/>
+ </Body>
   )
   };
   export default NotFound;

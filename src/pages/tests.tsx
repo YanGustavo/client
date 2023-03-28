@@ -1,3 +1,4 @@
+'use client'
 import React, {Suspense} from 'react';
 //error
 import {ErrorBoundary} from 'react-error-boundary';
@@ -10,16 +11,20 @@ import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
 import {Container, ContainerFlush} from 'templates/base/styles';
+import {Categories} from "lib/Categories";
+import MenuCategoryWrapper from 'ui/pages/home/menu-category';
 //components
 import Loading from 'components/Loading';
 import BannerName from "ui/pages/home/banner-name";
 import ShopSection from "ui/pages/home/shop-section";
+import Feature from "ui/pages/home/feature";
 import Pagination from "components/Pagination";
 //import Error from "components/Error";
 import Team from "ui/pages/components/cards-model/team";
 import FeatureOne from "ui/pages/components/cards-model/feature-one";
 import ProductPreview from "ui/pages/components/cards-model/product-preview";
-import MenuDropDown from "ui/pages/home/menu-drop-down";
+//import MenuDropDown from "ui/pages/home/menu-drop-down";
+
 
 
 
@@ -31,18 +36,16 @@ type HomeProps = {
 export default function TestPage({keyword, pagenumber}: HomeProps) { 
   //const [state, actions] = useBaseContext();
   const { loading, error, products, page, pages,} = useHome(keyword, pagenumber);
-  
-  console.log("Products:" + products);
+
   return (
     <Layout title="Test Page">
-     <Base>     
+     <Base>  
+     <Container>
+     <MenuCategoryWrapper Categories={Categories}/>
+    </Container>   
+      
       <Container>
-    <Suspense fallback={<Loading/>}> 
-    <BannerName name="Chefinho" discount={"20"} more={"#"} />
-      </Suspense> 
-      </Container>
-      <Container>
-        <MenuDropDown/>
+        {/* <MenuDropDown/> */}
       </Container>
       <FeatureOne/>
       <Container>
@@ -53,6 +56,7 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
     >     
     {/* start content*/}
       <ShopSection>
+        <ContainerFlush>
       {/* {loading && (<div className="mb-5"><Loading /></div>)}
                 { error && (<Error variant="alert-danger">{error}</Error>)}
                 {!(products === undefined && products === null) ? (
@@ -71,13 +75,26 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
                   page={page}
                   keyword={keyword ? keyword : ""}
                 />
+                </ContainerFlush>
       </ShopSection>
     {/* end content*/}
+
+    <Feature
+      title="My Feature Title"
+      imageUrl="images/6.png"
+    >
+      {/* Insira aqui os itens do carrossel */}
+    </Feature>
+
     
     </ErrorBoundary>  
     </Container> 
     <Container><ContainerFlush><Team/></ContainerFlush></Container>   
-       
+    <Container>
+    <Suspense fallback={<Loading/>}> 
+    <BannerName name="Chefinho" discount={"20"} more={"#"} />
+      </Suspense> 
+      </Container>
      </Base>
     </Layout>
   );

@@ -16,7 +16,9 @@ export const buildActions = (dispatch, getState) => {
 };
 
 const addToCartFn =  async (id, qty, dispatch, getState) =>  {
+  console.log("CHegou aqui"+id+qty);
   try{
+    console.log("entrou no try"+id+qty);
     dispatch({ type: actionTypes.CART_DETAILS_REQUEST });
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_SERVER_URL}/api/products/${id}`);
     console.log(data);
@@ -35,6 +37,7 @@ const addToCartFn =  async (id, qty, dispatch, getState) =>  {
     //Cookies.set('cart', JSON.stringify({ ...state.cart, cartItems }));
     Cookies.set('cart', JSON.stringify(getState().cart.cartItems));
   }catch (error:any){
+    console.log("entrou no catch"+id+qty);
     dispatch({
       type: actionTypes.CART_DETAILS_FAIL,
       payload: 

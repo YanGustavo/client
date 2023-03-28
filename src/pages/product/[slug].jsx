@@ -23,6 +23,8 @@ import Breadcrumbs from "components/Breadcrumbs";
 import Carousel from "ui/pages/product/carousel";
 import Thumbnails from "ui/pages/product/thumbnails";
 import Description from "ui/pages/product/description";
+//Componentes General
+import Rating from "components/Rating";
 //icons
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -38,7 +40,12 @@ import LoginIcon from '@mui/icons-material/Login';
 
 //icons header
 import BarChart from "@mui/icons-material/BarChart";
-
+//Toast
+import Toast from "components/Toast";
+//NotFound
+import NotFound from "components/NotFound";
+//Modal
+import CartToZap from "components/CartToZap"; 
 
 // type PageProps = {
 //   params?: any;
@@ -46,185 +53,177 @@ import BarChart from "@mui/icons-material/BarChart";
 //   product: any;
 // };
 
-const DescriptionProps = `
-<div>
-  <h1>Descrição</h1>
-  <p>O iPhone XR é um dos modelos de smartphones da Apple lançados em 2018.</p>
-  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr__dazdnq0bwz2i_large.svg" alt="iPhone XR" width="500"/>
-  <p>Ele possui uma tela Liquid Retina de 6.1 polegadas com resolução de 1792 x 828 pixels.</p>
-  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_display__c204cj3q8e6y_large.svg" alt="Tela do iPhone XR" width="500"/>
-  <p>O iPhone XR vem com o processador A12 Bionic, que proporciona desempenho rápido e eficiente.</p>
-  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_performance__ey2vwyylfom6_large.svg" alt="Processador do iPhone XR" width="500"/>
-  <p>Ele conta ainda com uma câmera de 12 megapixels com abertura f/1.8 e estabilização óptica de imagem, além de gravação de vídeo em 4K.</p>
-  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_camera__dc5lmnop1kwy_large.svg" alt="Câmera do iPhone XR" width="500"/>
-  <p>O iPhone XR também é resistente à água e poeira, com certificação IP67.</p>
-  <img src="https://www.apple.com/v/iphone/home/ao/images/chapternav/iphonexr_waterresistance__cau6dnj9d4wy_large.svg" alt="Resistência à água e poeira do iPhone XR" width="500"/>
-</div>
-`;
-export default function  ProductPage({ params }) { //: PageProps
+export default function  ProductPage() { //{ params }: PageProps
+  //const params = '63d6ae4fabe21a29359d3a52';
   const router= useRouter();
-  const  pathname = router.pathname;  
-  const ref = React.useRef(null);
-  const [carouselPosition, setCarouselPosition] = React.useState(0);
-  const {data,quantity, carousel,  preview, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(params, ref);
-
-  useProductAnimation();
-  console.log("router"+pathname);
+  const  pathname = router.pathname; 
+  console.log(pathname); 
+  
+  const ref = React.useRef(null);//const ref = useRef<HTMLImageElement>(null);
+  const slug = 'iphone-8-plus';
+  const {isLoading, product,quantity, carousel,  preview, carouselPosition, isModalOpen, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(slug, ref);
  
-  React.useEffect(() => {
-    const imageWidth = ref.current.offsetWidth;
-    setCarouselPosition(imageWidth * preview);
-  }, [preview]);
 
   return (
-    <Layout title={data[0].name}>
+    <Layout title={!isLoading ? product.name: ""}>
      <Base>
+     
       <ErrorBoundary
     fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
       resetErrorBoundary={resetErrorBoundary}/>
     )}
     >     
     {/* start content*/}
+
+    {!isLoading ? (      
     <>
-      {carousel && (
-        <Carousel
-          images={data[0]?.images}
-          page={preview}
-          setCarousel={setCarousel}
-        />
-      )}
-      <Container>
-          <Breadcrumbs data={data[0]} subtitle="Saiba Mais" linkHref="/login"/>
-      </Container>
-          <Container>
-      <SProduct.Body>       
-        <SProduct.Images>
-        <ContainerFlush>
-          <div className="displayed">
-            <div className="desktop-carousel">
-              <div className="overlay" onClick={() => setCarousel(true)}></div>
-              <img
-                src={data[0].images[preview]}
-                alt={data[0].images[0]}
-                className="current-image"
-              />
-            </div>
-            <div className="mobile-carousel">
-              <div
-                className="slider"
-                style={{ transform: `translateX(-${carouselPosition}px)` }}
-              >
-                {data[0].images.map((image, key) => (
-                  <img
-                    src={image}
-                    alt={image}
-                    key={key}
-                    className="current-image"
-                    ref={ref}
-                  />
-                ))}
-              </div>
-
-              <SProduct.Controls>
-                <div className="prev" onClick={prevHandler}>
-                  <ArrowBackIosIcon/>
-                </div>
-                <div className="next" onClick={nextHandler}>
-                  <NavigateNextIcon/>
-                </div>
-              </SProduct.Controls>
-            </div>
-          </div>
-
-          <div className="thumbnails">
-            <Thumbnails
-              data={data[0].images}
-              activeImageHandler={activeImageHandler}
-              preview={preview}
+    <CartToZap setOpen={isModalOpen} title={product.name} srcImg={product.images[0]}  price={product.price}/>
+    {carousel && (
+      <Carousel
+        images={product?.images}
+        page={preview}
+        setCarousel={setCarousel}
+      />
+    )}
+    <Container>
+        <Breadcrumbs data={product} subtitle="Saiba Mais" linkHref="/login"/>
+    </Container>
+    <Toast />
+        <Container>
+    <SProduct.Body>       
+      <SProduct.Images>
+      <ContainerFlush>
+        <div className="displayed">
+          <div className="desktop-carousel">
+            <div className="overlay" onClick={() => setCarousel(true)}></div>
+            <img
+              src={product.images[preview]}
+              alt={product.images[0]}
+              className="current-image"
             />
           </div>
-          </ContainerFlush>
-        </SProduct.Images>      
-        
-        <SProduct.Details id="product_detail" className='content'>
-          <ContainerFlush>
-          <SProduct.Name>
-            <div className="brand">{data[0].brand}</div>
-            <div className="name">{data[0].name}</div>
-            <hr></hr>
-          </SProduct.Name>
-          <SProduct.ProductDetails>
-            <SProduct.Description>{data[0].description}</SProduct.Description>
-            <SProduct.Price>
-              <div className="total-price">
-                <div className="discouted-price">
-                  <p>
-                    R${discountPrice(data[0].price, data[0].discountPercentage)}
-                    .00
-                  </p>
-                </div>
-                <div className="percentage">
-                  <p>{data[0].discountPercentage}%</p>
-                </div>
+          <div className="mobile-carousel">
+            <div
+              className="slider"
+              style={{ transform: `translateX(-${carouselPosition}px)` }}
+            >
+              {product.images.map((image, key) => (
+                <img
+                  src={image}
+                  alt={image}
+                  key={key}
+                  className="current-image"
+                  ref={ref}
+                />
+              ))}
+            </div>
+
+            <SProduct.Controls>
+              <div className="prev" onClick={prevHandler}>
+                <ArrowBackIosIcon/>
               </div>
-              <div className="original-price">R$:{data[0].price}.00</div>
-            </SProduct.Price>
-          </SProduct.ProductDetails>
-          <SProduct.Buttons>
-          {/* <select
-                    value={item.qty}
-                    onChange={(e) =>
-                      dispatch(addToCart(item.product, Number(e.target.value)))
-                    }
-                  >
-                    {[...Array(item.countInStock).keys()].map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </select> */}
-            <div className="quantity">
-              <div
-                className="dec"
-                onClick={() => {
-                  quantityHandler(false);
-                }}
-              >
-                <RemoveIcon/>
+              <div className="next" onClick={nextHandler}>
+                <NavigateNextIcon/>
               </div>
-              <div className="current-quantity">{quantity}</div>
-              <div
-                className="inc"
-                onClick={() => {
-                  quantityHandler(true);
-                }}
-              >
-                <AddIcon/>
+            </SProduct.Controls>
+          </div>
+        </div>
+
+        <div className="thumbnails">
+          <Thumbnails
+            data={product.images}
+            activeImageHandler={activeImageHandler}
+            preview={preview}
+          />
+        </div>
+        </ContainerFlush>
+      </SProduct.Images>      
+      
+      <SProduct.Details id="product_detail" className='content'>
+        <ContainerFlush>
+        <SProduct.Name>
+          <div className="brand">{product.brand}</div>
+          <div className="name">{product.name}</div>
+          <Rating rating={product.rating}/>
+          <hr></hr>
+        </SProduct.Name>
+        <SProduct.ProductDetails>
+          {/* <SProduct.Description>{product.description}</SProduct.Description> */}
+          <SProduct.Price>
+            <div className="total-price">
+              <div className="discouted-price">
+                <p>
+                  R${discountPrice(product.price, product.discountPercentage)}
+                  .00
+                </p>
+              </div>
+              <div className="percentage">
+                <p>{product.discountPercentage}%</p>
               </div>
             </div>
-            <div className="add-to-cart">
-              <button onClick={() => addToCartHandler(data[0]._id, 1)}>
-                <ShoppingCartRounded/> Adicionar ao Carrinho
-              </button>
+            <div className="original-price">R$:{product.price}.00</div>
+          </SProduct.Price>
+        </SProduct.ProductDetails>
+        <SProduct.Buttons>
+        {/* <select
+                  value={item.qty}
+                  onChange={(e) =>
+                    dispatch(addToCart(item.product, Number(e.target.value)))
+                  }
+                >
+                  {[...Array(item.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select> */}
+          <div className="quantity">
+            <div
+              className="dec"
+              onClick={() => {
+                quantityHandler(false);
+              }}
+            >
+              <RemoveIcon/>
             </div>
-          </SProduct.Buttons>
-          </ContainerFlush>
-        </SProduct.Details>
-        
-      </SProduct.Body>
-      </Container>
-     <SProduct.DescriptionContainer>
-<Container>
-        <ContainerFlush> 
-          
-      <Description description={DescriptionProps}/>
-      </ContainerFlush>
-      </Container>
-     </SProduct.DescriptionContainer>
-      
-      
-      
-    </>
+            <div className="current-quantity">{quantity}</div>
+            <div
+              className="inc"
+              onClick={() => {
+                quantityHandler(true);
+              }}
+            >
+              <AddIcon/>
+            </div>
+          </div>
+          <div className="add-to-cart">
+            <button onClick={() => addToCartHandler(product._id, quantity, product.price)}>
+              <ShoppingCartRounded/> Adicionar ao Carrinho
+            </button>
+          </div>
+        </SProduct.Buttons>
+        </ContainerFlush>
+      </SProduct.Details>
+      <SProduct.DescriptionContainer>
+      <ContainerFlush>           
+    <Description description={product.description}/>
+    </ContainerFlush>
+   </SProduct.DescriptionContainer>
+    </SProduct.Body>
+    </Container>
+   
+    
+    
+    
+  </>
+    ) : (
+      <Container>
+        <ContainerFlush>
+        <NotFound/>
+        </ContainerFlush>
+      </Container>    
+    )}
+    
     {/* end content*/}
     
     </ErrorBoundary>        

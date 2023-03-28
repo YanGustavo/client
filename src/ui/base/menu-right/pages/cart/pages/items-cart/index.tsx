@@ -10,101 +10,49 @@ import KeyboardTabIcon from '@mui/icons-material/KeyboardTab';
 //import UndoIcon from '@mui/icons-material/Undo';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 export default function ItemsCartPage({actions}) {
-  const {loading,cart, total,  checkOutHandler,continueToShopping} = useItemsCartPage();
+  const {loading,cartItems, total,  checkOutHandler,continueToShopping} = useItemsCartPage();
   return (
     <>
-        <CreditCard name="Yan Gustavo" />
-     {false? (
-            <AddSomeItem className="active">
-            <img
-            src="img/empty-cart.png"
-            alt="Seu Carrinho está vazio!"
-            />
-          </AddSomeItem> 
-          ) : (
-            <>
-            <Container><Button size="large" onClick={continueToShopping}>Continue Comprando <ShoppingCartCheckoutIcon/></Button></Container>
+        <CreditCard name="Yan Gustavo" />    
+           
+            <Container><Button onClick={continueToShopping}>Continue Comprando <ShoppingCartCheckoutIcon/></Button></Container>
                         <CartCheckOutContianer>
               <CartContainer>
-
-                <CartItems>
-                <CartItem
-                        key={1}
-                        itemId={1}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={2}
-                        itemId={2}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={3}
-                        itemId={4}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={4}
-                        itemId={4}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={5}
-                        itemId={5}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={1}
-                        itemId={1}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                       <CartItem
-                        key={6}
-                        itemId={6}
-                        name="Camisa Polo"
-                        imgSrc="images/1.png"
-                        price={"255.00"}
-                      />
-                  {/* {cart &&
-                    cart.map((data) => (
-                      <CartItem
-                        key={data.id}
-                        itemId={data.id}
-                        name={data.name}
-                        imgSrc={data.imgSrc}
-                        qty={"4"}
-                        price={data.price}
-                      />
-                    ))} */}
-                </CartItems>
-              </CartContainer>              
-            </CartCheckOutContianer>
-            <TotalSection>
-            <h3>Total</h3>
-            <p>
-              <span>R$: </span> {total},00
-            </p>
-          </TotalSection>
-          {/* <CheckOut>Check Out</CheckOut> */}
-          
-    {total > -1 && (
-      <Container><Button size="large" onClick={() => actions.setCartShippingPage()}>Prosseguir Compra <KeyboardTabIcon/></Button></Container>
-      
-       )}
-          
-          </> )}  
+      {cartItems.length === 0 ? (
+        <CartItems>
+        <AddSomeItem className="active">
+        <img
+        src="/img/empty-cart.png"
+        alt="Seu Carrinho está vazio!"
+        />
+      </AddSomeItem> 
+      </CartItems>
+      ) : (
+        <>
+        <CartItems>
+          {cartItems.map(item => (
+            <CartItem
+            key={item.product}
+            itemId={item.product}
+            name={item.name}
+            imgSrc={item.image}
+            price={item.price}
+          />
+          ))}
+           </CartItems>
+               
+               
+             <TotalSection>
+             <h3>Total</h3>
+             <p>
+               <span>R$: </span> {total},00
+             </p>
+           </TotalSection>
+       <Container><Button onClick={() => actions.setCartShippingPage()}>Prosseguir Compra <KeyboardTabIcon/></Button></Container>
+     </>
+      )}
+      </CartContainer>              
+      </CartCheckOutContianer>
      </>
   );
 }

@@ -6,7 +6,8 @@ import ConfigPage from '../pages/config';
 import Loading from "components/Loading";
 import { useBaseContext } from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';
-
+//Products
+import { Products } from "lib/Products";
 interface Order {
 id: number;
 date: string;
@@ -68,86 +69,7 @@ type Post = {
   isRead: boolean;
   date: Date;
 }
-interface Product {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-}
-const products: Product[] = [
-  {
-  id: 1,
-  name: "Product 01",
-  description: "Description of Product 1",
-  price: 10.0,
-  imageUrl: "images/1.png",
-  isFavorite: false,
-  },
-  {
-  id: 2,
-  name: "Product 2",
-  description: "Description of Product 2",
-  price: 15.0,
-  imageUrl: "images/2.png",
-  isFavorite: true,
-  },
-  {
-  id: 3,
-  name: "Product 3",
-  description: "Description of Product 3",
-  price: 20.0,
-  imageUrl: "/images/3.png",
-  isFavorite: false,
-  },
-  {
-  id: 4,
-  name: "Product 4",
-  description: "Description of Product 4",
-  price: 25.0,
-  imageUrl: "images/4.png",
-  isFavorite: true,
-  },
-  {
-  id: 5,
-  name: "Product 5",
-  description: "Description of Product 5",
-  price: 30.0,
-  imageUrl: "/images/5.png",
-  isFavorite: false,
-  },
-  {
-  id: 6,
-  name: "Product 6",
-  description: "Description of Product 6",
-  price: 35.0,
-  imageUrl: "images/6.png",
-  isFavorite: true,
-  },
-  {
-  id: 7,
-  name: "Product 7",
-  description: "Description of Product 7",
-  price: 40.0,
-  imageUrl: "images/7.png",
-  isFavorite: false,
-  },
-  {
-  id: 8,
-  name: "Product 8",
-  description: "Description of Product 8",
-  price: 45.0,
-  imageUrl: "images/8.png",
-  isFavorite: true,
-  },
-  {
-  id: 9,
-  name: "Product 9",
-  description: "Description of Product 9",
-  price: 50.0,
-  imageUrl: "images/9.png",
-  isFavorite: false,
-  },
-  ];
+
 
 
 const useProfile = () => {
@@ -158,7 +80,7 @@ function navigate() {
 if (profile_page === actionTypes.SET_ORDER_PAGE) {
 setContent(<OrderPage orders={orders}/>);
 } else if (profile_page === actionTypes.SET_FAVORITE_PAGE) {
-setContent(<FavoritePage favoriteProducts={products} />);
+setContent(<FavoritePage favoriteProducts={Products} />);
 } else if (profile_page === actionTypes.SET_MESSAGE_PAGE) {
 setContent(<MessagePage posts={Post} />);
 } else if (profile_page === actionTypes.SET_CONFIG_PAGE) {

@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import useProfile from "./hooks/useProfilePage";
 
 export default function ProfilePage() {
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(true);
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible({ initialIsVisible: true });
   const {actions, content} = useProfile(); 
   return (
     <>    

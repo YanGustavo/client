@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/router';
 //error
 import {ErrorBoundary} from 'react-error-boundary';
 import ErrorFallback from 'components/ErrorFallback';
@@ -53,16 +53,15 @@ import CartToZap from "components/CartToZap";
 //   product: any;
 // };
 
-export default function  ProductPage() { //{ params }: PageProps
+export default function  ProductPage({ params }) { //{ params }: PageProps
   //const params = '63d6ae4fabe21a29359d3a52';
-  const router= useRouter();
-  const  pathname = router.pathname; 
-  console.log(pathname); 
+  const {query}= useRouter();
+  const slug = query.slug;
   
   const ref = React.useRef(null);//const ref = useRef<HTMLImageElement>(null);
-  const slug = 'iphone-8-plus';
+
   const {isLoading, product,quantity, carousel,  preview, carouselPosition, isModalOpen, setCarousel, discountPrice, nextHandler, prevHandler, quantityHandler, activeImageHandler,addToCartHandler,} = useProduct(slug, ref);
- 
+
 
   return (
     <Layout title={!isLoading ? product.name: ""}>

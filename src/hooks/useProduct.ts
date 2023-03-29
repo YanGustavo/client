@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 //
 type UseProductProps = {
-  slug?: string;
+  slug: string;
   ref: React.RefObject<HTMLImageElement>;
 }
 type UseProductReturn = {
@@ -28,7 +28,7 @@ type UseProductReturn = {
   addToCartHandler: (id: string, qty: number, price: number) => void;
 }
 
-const useProduct = ({ slug = '', ref }: UseProductProps): UseProductReturn => {
+const useProduct = ({ slug, ref }: UseProductProps): UseProductReturn => {
   const [isLoading, setIsLoading] = useState(true);
   const [product, setProduct] = useState<Product>();
   const { addToCart } = useCartStore();
@@ -43,18 +43,11 @@ const useProduct = ({ slug = '', ref }: UseProductProps): UseProductReturn => {
   
   
   const loadPage = useCallback(() => {
-    console.log(slug + "slug");
-    slug = 'iphone-8-plus';
-    const product = findProductBySlug(Products, slug);
+    if(slug !== undefined){
+     setProduct(findProductBySlug(Products, slug));
+    }
 
-    setProduct(product);
-    setIsLoading(false);
-
-    console.log(product + "product");
-    
-  
-    if (slug && product !== undefined) {
-  
+    if (slug && product !== undefined) {  
       setIsLoading(false);
   
       if (ref?.current) {
@@ -112,7 +105,7 @@ const useProduct = ({ slug = '', ref }: UseProductProps): UseProductReturn => {
 React.useEffect(() => {
     loadPage();  
     console.log("modal is open:"+isModalOpen);
-}, [isModalOpen]);
+}, [isModalOpen, slug]);
 
 return {
   isLoading,

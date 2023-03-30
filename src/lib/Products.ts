@@ -73,8 +73,9 @@ const Products: Product[] = [
   },
 ];
 
-function findProductBySlug(products: Product[], slug: string): Product | undefined {
-  return products.find(product => product.slug === slug);
+function findProductBySlug(products: Product[], slug: string): Product[] {
+  const foundProduct = products.find(product => product.slug === slug);
+  return foundProduct ? [foundProduct] : [];
 }
 export type { Product };
 export { Products, findProductBySlug };

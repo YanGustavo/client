@@ -1,0 +1,163 @@
+ <Layout title={loading ? "Carregando" : product? product.name : "Pagina Não Encontrada"}>
+     <Base>
+     
+    
+    {/* start content*/}
+      <> 
+      {loading && (<Loading/>)} 
+
+      {!(loading && notFound) ? (
+          <ErrorBoundary
+    fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
+      resetErrorBoundary={resetErrorBoundary}/>
+    )}
+    > 
+        <CartToZap setOpen={isModalOpen} title={product.name} srcImg="images/5.png"  price={product.price}/>
+        {carousel && (
+          <Carousel
+            images={product?.images}
+            page={preview}
+            setCarousel={setCarousel}
+          />
+        )}
+        <Container>
+            <Breadcrumbs data={product} subtitle="Saiba Mais" linkHref="/login"/>
+        </Container>
+        <Toast />
+            <Container>
+        <Sdata.Body>       
+          <Sdata.Images>
+          <ContainerFlush>
+            <div className="displayed">
+              <div className="desktop-carousel">
+                <div className="overlay" onClick={() => setCarousel(true)}></div>
+                <img
+                  src={product.images[preview]}
+                  alt={product.images[0]}
+                  className="current-image"
+                />
+              </div>
+              <div className="mobile-carousel">
+                <div
+                  className="slider"
+                  style={{ transform: `translateX(-${carouselPosition}px)` }}
+                >
+                  {product.images.map((image, key) => (
+                    <img
+                      src={image}
+                      alt={image}
+                      key={key}
+                      className="current-image"
+                      ref={ref}
+                    />
+                  ))}
+                </div>
+    
+                <Sdata.Controls>
+                  <div className="prev" onClick={prevHandler}>
+                    <ArrowBackIosIcon/>
+                  </div>
+                  <div className="next" onClick={nextHandler}>
+                    <NavigateNextIcon/>
+                  </div>
+                </Sdata.Controls>
+              </div>
+            </div>
+    
+            <div className="thumbnails">
+              <Thumbnails
+                data={product.images}
+                activeImageHandler={activeImageHandler}
+                preview={preview}
+              />
+            </div>
+            </ContainerFlush>
+          </Sdata.Images>      
+          
+          <Sdata.Details id="data_detail" className='content'>
+            <ContainerFlush>
+            <Sdata.Name>
+              <div className="brand">{product.brand}</div>
+              <div className="name">{product.name}</div>
+              <Rating rating={product.rating}/>
+              <hr></hr>
+            </Sdata.Name>
+            <Sdata.dataDetails>
+              {/* <Sdata.Description>{data.description}</Sdata.Description> */}
+              <Sdata.Price>
+                <div className="total-price">
+                  <div className="discouted-price">
+                    <p>
+                      R${discountPrice(product.price, product.discountPercentage)}
+                      .00
+                    </p>
+                  </div>
+                  <div className="percentage">
+                    <p>{product.discountPercentage}%</p>
+                  </div>
+                </div>
+                <div className="original-price">R$:{product.price}.00</div>
+              </Sdata.Price>
+            </Sdata.dataDetails>
+            <Sdata.Buttons>
+            {/* <select
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(addToCart(item.data, Number(e.target.value)))
+                      }
+                    >
+                      {[...Array(item.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </select> */}
+              <div className="quantity">
+                <div
+                  className="dec"
+                  onClick={() => {
+                    quantityHandler(false);
+                  }}
+                >
+                  <RemoveIcon/>
+                </div>
+                <div className="current-quantity">{quantity}</div>
+                <div
+                  className="inc"
+                  onClick={() => {
+                    quantityHandler(true);
+                  }}
+                >
+                  <AddIcon/>
+                </div>
+              </div>
+              <div className="add-to-cart">
+                <button onClick={() => addToCartHandler(product._id, quantity, product.price)}>
+                  <ShoppingCartRounded/> Adicionar ao Carrinho
+                </button>
+              </div>
+            </Sdata.Buttons>
+            </ContainerFlush>
+          </Sdata.Details>
+          <Sdata.DescriptionContainer>
+          <ContainerFlush>           
+        <Description description={product.description}/>
+        </ContainerFlush>
+       </Sdata.DescriptionContainer>
+        </Sdata.Body>
+        </Container>
+        </ErrorBoundary>
+      ):(
+        <Container>
+      <ContainerFlush>
+      <NotFound/>
+      </ContainerFlush>
+    </Container> 
+    
+      )}       
+  </>
+     {/* end content*/}
+    
+            
+     </Base>
+    </Layout>

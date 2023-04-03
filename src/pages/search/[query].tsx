@@ -2,7 +2,7 @@ import React, {Suspense} from 'react';
 import {useRouter} from 'next/navigation';
 //error
 import {ErrorBoundary} from 'react-error-boundary';
-import ErrorFallback from 'components/ErrorFallback';
+import ErrorFallback from 'components/Error';
 //component head layout
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';

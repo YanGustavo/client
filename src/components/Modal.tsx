@@ -1,81 +1,78 @@
 import React from "react";
-import Modal from "react-modal";
 import styled from 'styled-components';
-import { ReactNode } from 'react';
 
-const ModalOverlay = styled.div`
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-`;
-
-const ModalContent = styled.div`
-  width: 90%;
-  max-width: 500px;
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const CloseButton = styled.button`
-  padding: 5px;
-  font-size: large;
-  cursor: pointer;
-  position: absolute;
-  top: -30px;
-  right: -20px;
-`;
-
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-// https://www.youtube.com/watch?v=ejj6iaTlJcA
-// https://github.com/WilliamDosSantos/react-modal
-Modal.setAppElement('#base_template');
-
-type ModalPageProps = {
-  children: ReactNode;
-  isOpen?: boolean; // adicionando a propriedade isOpen como opcional
+type ModalProps = {
+  open: boolean;
 };
 
-function ModalPage({ children, isOpen = false }: ModalPageProps) {
-  const [modalIsOpen, setIsOpen] = React.useState(isOpen);
+const ModalOverlay = styled.div<ModalProps>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${props => (props.open ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+`;
 
-  const openModal = React.useCallback(() => {
-    setIsOpen(true);
-  }, []);
+const ModalWrapper = styled.div`
+  position: relative;
+  width: 500px;
+  max-width: 90%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+`;
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+const ModalHeader = styled.h3`
+  margin-top: 0;
+`;
 
+const ModalBody = styled.div`
+  margin-top: 20px;
+`;
+
+const ModalFooter = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+type ModalContentProps = {
+  title: string;
+  onClose: () => void;
+  children: React.ReactNode;
+  open: boolean;
+};
+
+const Modal = ({ title, onClose, children, open }: ModalContentProps) => {
   React.useEffect(() => {
-    if (isOpen) openModal();
-  }, [isOpen, openModal]);
+    const handleClickOutside = (event: MouseEvent) => {
+      const modal = document.getElementById('modal-wrapper');
+      if (modal && !modal.contains(event.target as Node)) {
+        onClose();
+      }
+    };
 
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
   return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-      contentLabel="Example Modal"
-      overlayClassName="modal-overlay"
-      className="modal-content"
-    ><CloseButton onClick={closeModal}>Fechar</CloseButton>
-      <ModalOverlay>
-        <ModalContent>{children}</ModalContent>
-        
-      </ModalOverlay>
-    </Modal>
+    <ModalOverlay open={open}>
+    <ModalWrapper id="modal-wrapper">
+      <ModalHeader>{title}</ModalHeader>
+      <ModalBody>{children}</ModalBody>
+      <ModalFooter>
+      </ModalFooter>
+    </ModalWrapper>
+  </ModalOverlay>
   );
-}
+};
 
-export default ModalPage;
+export default Modal;

@@ -54,6 +54,7 @@ export default {
     }
   },
   colors: {
+    placeholder: '#2d4b2a',
   text_color: '#8a9297',
   text_color_rgb: '138, 146, 151',
    heading_color: '#2d4b2a',

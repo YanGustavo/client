@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Ad, Advertiser, getAds } from 'lib/Ads';
+
+type Props = {
+  ad: Ad;
+  intervalTime: number;
+};
+
+type AdvertisementProps = {
+  ad: Ad;
+};
+
+const AdvertisementWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const AdvertisementImage = styled.img`
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+`;
+
+const AdvertisementStoreName = styled.h2`
+  font-size: 1.2rem;
+  margin: 0;
+`;
+
+const AdvertisementAddress = styled.p`
+  font-size: 1rem;
+  margin: 0;
+`;
+
+const AdvertisementWhatsAppLink = styled.a`
+  font-size: 1rem;
+  margin: 0;
+`;
+
+const Advertisement: React.FC<Props> = ({ ad, intervalTime }) => {
+  const [currentAdIndex, setCurrentAdIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentAdIndex((prevIndex) => (prevIndex + 1) % ad.advertiser.length);
+    }, intervalTime);
+
+    return () => clearInterval(intervalId);
+  }, [ad, intervalTime]);
+
+  const handleImageClick = () => {
+    window.open(ad.url, '_blank');
+  };
+
+  return (
+    <AdvertisementWrapper>
+      <AdvertisementImage src={ad.image} alt={ad.headline} onClick={handleImageClick} />
+      <AdvertisementStoreName>{ad.advertiser.name}</AdvertisementStoreName>
+      <AdvertisementAddress>{ad.advertiser.address}</AdvertisementAddress>
+      <AdvertisementWhatsAppLink href={`https://wa.me/${ad.advertiser.whatsapp}`} target="_blank">
+        Clique para entrar em contato pelo WhatsApp
+      </AdvertisementWhatsAppLink>
+    </AdvertisementWrapper>
+  );
+};
+
+const AdvertisementList: React.FC = () => {
+  const ads: Ad[] = getAds();
+
+  return (
+    <div>
+      {ads.map((ad) => (
+        <div key={ad.headline}>
+          <h2>{ad.advertiser.name}</h2>
+          <img src={ad.image} alt={ad.headline} />
+          <p>{ad.headline}</p>
+          <p>{ad.description}</p>
+          <p>{ad.price}</p>
+          <a href={ad.url}>Saiba mais</a>
+          <Advertisement ad={ad} intervalTime={5000} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export { Advertisement, AdvertisementList };

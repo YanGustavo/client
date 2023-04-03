@@ -1,0 +1,23 @@
+{
+  "header": {
+    "home": "Início",
+    "products": "Produtos",
+    "about": "Sobre",
+    "language": "Idioma"
+  },
+  "footer": {
+    "copyright": "Copyright"
+  },
+  "home": {
+    "welcome": "Bem-vindo à nossa loja",
+    "featuredProducts": "Produtos em destaque"
+  },
+  "products": {
+    "allProducts": "Todos os produtos",
+    "viewDetails": "Ver detalhes"
+  },
+  "about": {
+    "title": "Sobre nós",
+    "description": "Somos uma empresa que se dedica a fornecer os melhores produtos para nossos clientes."
+  }
+}

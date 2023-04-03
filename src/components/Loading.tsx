@@ -15,15 +15,15 @@ const pulse = keyframes`
 
 const SkeletonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 `;
 
 const SkeletonItem = styled.div`
-  width: 200px;
+  flex-basis: 200px;
   height: 200px;
-  margin: 10px 0;
+  margin: 10px;
   padding: 10px;
   background-color: ${(props) => props.theme.colors.gray_300};
   border-radius: 5px;
@@ -33,6 +33,9 @@ const SkeletonItem = styled.div`
 const Loading = () => {
   return (
     <SkeletonWrapper>
+      <SkeletonItem />
+      <SkeletonItem />
+      <SkeletonItem />
       <SkeletonItem />
       <SkeletonItem />
       <SkeletonItem />

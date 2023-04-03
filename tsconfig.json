@@ -2,18 +2,22 @@
   "compilerOptions": {
     "baseUrl": "src",
     "target": "es5",
-    "lib": ["dom", "dom.iterable","esnext"],
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "downlevelIteration": true,    
-    "sourceMap": true,    
-    "checkJs": false,  
+    "downlevelIteration": true,
+    "sourceMap": true,
+    "checkJs": false,
     // "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -27,6 +31,8 @@
     "removeComments": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "./node_modules/@types"
     ],
@@ -37,12 +43,20 @@
       }
     ],
     "paths": {
-      "@/ui/*": ["ui/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/styles/*": ["styles/*"]
-    },
+      "@/ui/*": [
+        "ui/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ]
+    }
   },
   "include": [
+    "src/**/*",
+    "node_modules/@types/**/*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
@@ -51,13 +65,51 @@
     "src/ui/LoadingError/Loading.tsx",
     "src/redux/Url/Url.tsx",
     "src/ui/tests/home/pagination.tsx",
-    "src/components/OrderWizard.tsx",
+    "src/ui/OrderWizard.tsx",
     "src/ui/tests/home/shop-section/ShopSection.tsx",
     "src/redux/Url.js",
-    "src/templates/base/Base.tsx",
+    "src/templates/base/ui/Base.tsx",
     "src/utils/translate/i18n.js",
-    "src/app/useHome.jsx"
-, "src/app/product/[id]/useProduct.ts", "src/context/ProductContext/index.jsx", "src/ui/base/menu-right/components/cart-item/index.jsx", "src/ui/tests/item-card/index.jsx", "src/ui/base/header/index.tsx", "src/hooks/useHome.ts", "src/ui/base/home/card/index.jsx", "src/pages/index.tsx", "src/components/Rating.tsx", "src/lib/getCategories.js", "src/ui/base/menu-right/index.tsx", "src/components/free-chat-popupsmart.jsx", "src/ui/base/menu-right/components/menu-bottom/useAnimate.js", "src/hooks/useAbout.tsx", "src/pages/about.tsx", "src/context/base-context/index.jsx", "src/context/base-context/build-actions.ts", "src/ui/base/menu-right/pages/hooks/useIndexPageAnimate.js", "src/ui/base/menu-right/pages/hooks/useIndexPage.js", "src/context/product-context/index.jsx", "src/ui/base/pages/product/index.jsx", "src/pages/blog/index.jsx", "src/ui/all/cards-model/login/index.tsx", "src/ui/all/cards-model/login/styles.js", "src/pages/product/[slug].tsx", "src/hooks/useProduct.ts", "src/ui/pages/components/cards-model/profile/index.jsx", "src/ui/pages/about/components/contact/index.jsx", "src/ui/pages/components/cards-model/product-preview/index.jsx", "src/ui/base/menu-right/pages/cart/hooks/useCartPage.js", "src/ui/base/menu-right/pages/login/pages/useLoginPage.js", "src/pages/search/[query].tsx", "src/ui/base/menu-right/pages/login/hooks/useLoginPage.js", "src/ui/base/menu-right/pages/login/styles.js", "src/ui/base/menu-right/pages/login/pages/register/index.jsx", "src/ui/base/menu-right/pages/login/pages/sing-in/index.jsx", "src/functions/check-click-outside/index.js", "src/ui/pages/components/cards-model/blog/index.jsx"  ],
+    "src/app/useHome.jsx",
+    "src/app/product/[id]/useProduct.ts",
+    "src/context/ProductContext/index.jsx",
+    "src/ui/base/menu-right/components/cart-item/index.jsx",
+    "src/ui/tests/item-card/index.jsx",
+    "src/ui/base/header/index.tsx",
+    "src/hooks/useHome.ts",
+    "src/ui/base/home/card/index.jsx",
+    "src/pages/index.tsx",
+    "src/ui/Rating.tsx",
+    "src/lib/getCategories.js",
+    "src/ui/base/menu-right/index.tsx",
+    "src/components/free-chat-popupsmart.jsx",
+    "src/ui/base/menu-right/components/menu-bottom/useAnimate.js",
+    "src/hooks/useAbout.tsx",
+    "src/pages/about.tsx",
+    "src/context/base-context/index.jsx",
+    "src/context/base-context/build-actions.ts",
+    "src/ui/base/menu-right/pages/hooks/useIndexPageAnimate.js",
+    "src/ui/base/menu-right/pages/hooks/useIndexPage.js",
+    "src/context/product-context/index.jsx",
+    "src/ui/base/pages/product/index.jsx",
+    "src/pages/blog/index.jsx",
+    "src/ui/all/cards-model/login/index.tsx",
+    "src/ui/all/cards-model/login/styles.js",
+    "src/pages/product/[slug].tsx",
+    "src/hooks/useProduct.ts",
+    "src/ui/cards/profile/index.jsx",
+    "src/ui/pages/about/components/contact/index.jsx",
+    "src/ui/cards/product-preview/index.jsx",
+    "src/ui/base/menu-right/pages/cart/hooks/useCartPage.js",
+    "src/ui/base/menu-right/pages/login/pages/useLoginPage.js",
+    "src/pages/search/[query].tsx",
+    "src/ui/base/menu-right/pages/login/hooks/useLoginPage.js",
+    "src/ui/base/menu-right/pages/login/styles.js",
+    "src/ui/base/menu-right/pages/login/pages/register/index.jsx",
+    "src/ui/base/menu-right/pages/login/pages/sing-in/index.jsx",
+    "src/functions/check-click-outside/index.js",
+    "src/ui/cards/blog/index.jsx"
+  ],
   "exclude": [
     "node_modules",
     "cypress",

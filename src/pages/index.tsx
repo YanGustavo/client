@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 //error
 import {ErrorBoundary} from 'react-error-boundary';
-import ErrorFallback from 'components/ErrorFallback';
+import ErrorFallback from 'components/Error';
 //hooks
 import useHome from "hooks/useHome";
 
@@ -9,7 +9,7 @@ import useHome from "hooks/useHome";
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
-import {Container} from 'templates/base/styles';
+import {Container} from 'templates/base/ui/styles';
 interface HomeProps {
   keyword: string;
   pagenumber: string;

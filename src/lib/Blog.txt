@@ -1,0 +1,135 @@
+import { ObjectId } from 'mongodb';
+
+interface Category {
+  name: string;
+  slug: string;
+}
+
+interface Tag {
+  name: string;
+  slug: string;
+}
+
+interface Author {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+interface Comment {
+  name: string;
+  email: string;
+  website: string;
+  content: string;
+  created_at: Date;
+}
+
+class BlogPost {
+  _id: ObjectId;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  published_at: Date;
+  updated_at: Date;
+  featured_image: string;
+  categories: Category[];
+  tags: Tag[];
+  author: Author;
+  comments: Comment[];
+  likes: number;
+  views: number;
+
+  constructor(
+    _id: ObjectId,
+    title: string,
+    slug: string,
+    excerpt: string,
+    content: string,
+    published_at: Date,
+    updated_at: Date,
+    featured_image: string,
+    categories: Category[],
+    tags: Tag[],
+    author: Author,
+    comments: Comment[],
+    likes: number,
+    views: number
+  ) {
+    this._id = _id;
+    this.title = title;
+    this.slug = slug;
+    this.excerpt = excerpt;
+    this.content = content;
+    this.published_at = published_at;
+    this.updated_at = updated_at;
+    this.featured_image = featured_image;
+    this.categories = categories;
+    this.tags = tags;
+    this.author = author;
+    this.comments = comments;
+    this.likes = likes;
+    this.views = views;
+  }
+}
+
+const comment = new Comment({
+  name: "Nome do comentarista",
+  email: "email-do-comentarista@example.com",
+  website: "https://exemplo.com",
+  content: "Este é o comentário.",
+  created_at: new Date("2023-04-01T10:30:00Z"),
+});
+
+const blogPost = new BlogPost(
+  new ObjectId(),
+  "Título do meu post de blog",
+  "titulo-do-meu-post-de-blog",
+  "Este é o resumo do meu post de blog.",
+  "Este é o conteúdo completo do meu post de blog.",
+  new Date("2023-04-01T00:00:00Z"),
+  new Date("2023-04-01T10:30:00Z"),
+  "https://exemplo.com/imagem.jpg",
+  [
+    {
+      name: "Categoria 1",
+      slug: "categoria-1",
+    },
+    {
+      name: "Categoria 2",
+      slug: "categoria-2",
+    },
+  ],
+  [
+    {
+      name: "Tag 1",
+      slug: "tag-1",
+    },
+    {
+      name: "Tag 2",
+      slug: "tag-2",
+    },
+  ],
+  {
+    name: "Nome do autor",
+    email: "email@example.com",
+    avatar: "https://exemplo.com/avatar.jpg",
+  },
+  [comment],
+  10,
+  100
+);
+
+// Função para imprimir o título e as categorias do post
+function printTitleAndCategories(post: BlogPost): void {
+  console.log(`Título: ${post.title}`);
+  console.log("Categorias:");
+  post.categories.forEach((category) => {
+    console.log(`- ${category.name}`);
+  });
+}
+
+// Função para buscar um comentário pelo email do comentarista
+function findCommentByEmail(post: BlogPost, email: string): Comment | undefined {
+  return post.comments.find((comment) => comment.email === email);
+}

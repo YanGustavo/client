@@ -4,7 +4,14 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+  webpack: (config, { isServer }) => {
+    if (config) {
+      if (!isServer) {
+        config.resolve.alias['~slick-carousel'] = 'slick-carousel/slick';
+      }
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
-

@@ -2,7 +2,7 @@
 import React, {Suspense} from 'react';
 //error
 import {ErrorBoundary} from 'react-error-boundary';
-import ErrorFallback from 'components/ErrorFallback';
+import ErrorFallback from 'components/Error';
 //hooks
 import useHome from "hooks/useHome";
 
@@ -10,7 +10,7 @@ import useHome from "hooks/useHome";
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
-import {Container, ContainerFlush} from 'templates/base/styles';
+import {Container, ContainerFlush} from 'templates/base/ui/styles';
 import {Categories} from "lib/Categories";
 import MenuCategoryWrapper from 'ui/pages/home/menu-category';
 //components
@@ -18,11 +18,11 @@ import Loading from 'components/Loading';
 import BannerName from "ui/pages/home/banner-name";
 import ShopSection from "ui/pages/home/shop-section";
 import Feature from "ui/pages/home/feature";
-import Pagination from "components/Pagination";
+//import Pagination from "components/Pagination";
 //import Error from "components/Error";
-import Team from "ui/pages/components/cards-model/team";
-import FeatureOne from "ui/pages/components/cards-model/feature-one";
-import ProductPreview from "ui/pages/components/cards-model/product-preview";
+import Team from "@/ui/cards/team";
+import FeatureOne from "@/ui/pages/product/feature-one/FeatureOne";
+import ProductPreview from "ui/cards/product-preview";
 //import MenuDropDown from "ui/pages/home/menu-drop-down";
 
 
@@ -70,11 +70,11 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
                 )} */}
               <ProductPreview/>
                 {/* Pagination */}
-                <Pagination
+                {/* <Pagination
                   pages={pages}
                   page={page}
                   keyword={keyword ? keyword : ""}
-                />
+                /> */}
                 </ContainerFlush>
       </ShopSection>
     {/* end content*/}

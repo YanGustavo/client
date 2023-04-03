@@ -7,7 +7,7 @@ import ServiceTermsPage from "ui/pages/about/pages/service_terms";
 import ContactPage from "ui/pages/about/pages/contact";
 import FAQPage from "ui/pages/about/pages/faq";
 import AboutUsPage from "ui/pages/about/pages/about_us";
-import NotFound from "components/NotFound";
+import NotFound from "@/ui/NotFound";
 import Loading from "components/Loading";
 const useAbout = (router) => { 
   const [data, setData] = React.useState("Carregando");

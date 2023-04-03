@@ -1,75 +1,92 @@
-import React from "react";
-import Link from "next/link";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-interface PaginationProps {
-  page: number;
-  pages: number;
-  keyword?: string;
-}
+type PaginationProps = {
+  totalPages: number;
+  currentPage: number;
+  onPageChange: (pageNumber: number) => void;
+};
 
-const PaginationContainer = styled.nav`
+const PaginationContainer = styled.ul`
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 `;
 
-const PaginationList = styled.ul`
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-interface PaginationItemProps {
-  active?: boolean;
-}
-
-const PaginationItem = styled.li<PaginationItemProps>`
+const PaginationItem = styled.li`
   margin: 0 5px;
-
-  &.active {
-    background-color: #007bff;
-    border-radius: 50%;
-    color: white;
-    padding: 5px 10px;
-  }
-
-  &.inactive {
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-  }
+  cursor: pointer;
+  user-select: none;
 `;
 
-const PaginationLink = styled.a`
-  color: white;
-  text-decoration: none;
+
+const Ellipsis = styled.span`
+  margin: 0 5px;
 `;
 
-const Pagination: React.FC<PaginationProps> = ({ page, pages, keyword = "" }) => {
-  return pages > 1 ? (
+const Pagination: React.FC<PaginationProps> = ({
+  totalPages,
+  currentPage,
+  onPageChange,
+}) => {
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const handlePageChange = (pageNumber: number) => {
+    onPageChange(pageNumber);
+  };
+
+  return (
     <PaginationContainer>
-      <PaginationList>
-        {[...Array(pages).keys()].map((x) => (
-          <PaginationItem
-            key={x + 1}
-            className={x + 1 === page ? "active" : "inactive"}
-          >
-            <Link
-              href={
-                keyword ? `/search/${keyword}/page/${x + 1}` : `/page/${x + 1}`
-              }
-              passHref
+      {currentPage > 1 && (
+        <PaginationItem onClick={() => handlePageChange(currentPage - 1)}>
+          &#60;
+        </PaginationItem>
+      )}
+
+      {currentPage > 3 && (
+        <>
+          <PaginationItem onClick={() => handlePageChange(1)}>1</PaginationItem>
+          {currentPage > 4 && <Ellipsis key="start-ellipsis">...</Ellipsis>}
+        </>
+      )}
+
+      {pageNumbers.map((pageNumber) => {
+        if (
+          pageNumber === 1 ||
+          pageNumber === totalPages ||
+          (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)
+        ) {
+          return (
+            <PaginationItem
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className={pageNumber === currentPage ? 'active' : ''}
             >
-              <PaginationLink>{x + 1}</PaginationLink>
-            </Link>
+              {pageNumber}
+            </PaginationItem>
+          );
+        }
+
+        return null;
+      })}
+
+      {currentPage < totalPages - 2 && (
+        <>
+          {currentPage < totalPages - 3 && <Ellipsis key="end-ellipsis">...</Ellipsis>}
+          <PaginationItem onClick={() => handlePageChange(totalPages)}>
+            {totalPages}
           </PaginationItem>
-        ))}
-      </PaginationList>
+        </>
+      )}
+
+      {currentPage < totalPages && (
+        <PaginationItem onClick={() => handlePageChange(currentPage + 1)}>
+          &#62;
+        </PaginationItem>
+      )}
     </PaginationContainer>
-  ) : null;
+  );
 };
 
 export default Pagination;

@@ -6,6 +6,7 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
   onClick?: () => void;
+  contained?: boolean; // Nova propriedade
 };
 
 const Button = styled(motion.button)<ButtonProps>`
@@ -47,48 +48,64 @@ const Button = styled(motion.button)<ButtonProps>`
   overflow: hidden;
   transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: ${(props) =>
+  ${(props) =>
+    props.contained &&
+    `
+    background-color: ${
       props.variant === 'secondary'
         ? props.theme.colors.secondary_button_background_hover
-        : props.theme.colors.primary_button_background_hover};
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    background-color: ${(props) =>
+        : props.theme.colors.primary_button_background_hover
+    };
+    color: ${
       props.variant === 'secondary'
-        ? props.theme.colors.secondary_button_background_hover
-        : props.theme.colors.primary_button_background_hover};
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.2s ease;
-  }
+        ? props.theme.colors.secondary_button_text_color
+        : props.theme.colors.primary_button_text_color
+    };
+    &:hover {
+      background-color: ${
+        props.variant === 'secondary'
+          ? props.theme.colors.secondary_button_background_hover
+          : props.theme.colors.primary_button_background_hover
+      };
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      background-color: ${
+        props.variant === 'secondary'
+          ? props.theme.colors.secondary_button_background_hover
+          : props.theme.colors.primary_button_background_hover
+      };
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
 
-  &:active:before {
-    transform: scale(0);
-    opacity: 0.2;
-    transition: 0s;
-  }
+    &:active:before {
+      transform: scale(0);
+      opacity: 0.2;
+      transition: 0s;
+    }
 
-  &:hover:before {
-    transform: scale(1.2);
-    opacity: 0.1;
-  }
+    &:hover:before {
+      transform: scale(1.2);
+      opacity: 0.1;
+    }
 
-  &:focus:before {
-    box-shadow: 0 0 0 2px ${(props) => props.theme.box.shadow};
-  }
+    &:focus:before {
+      box-shadow: 0 0 0 2px ${props.theme.box.shadow};
+    }
+  `}
 `;
 
 Button.defaultProps = {
   variant: 'primary',
   size: 'medium',
+  contained: false, // Valor padrão
 };
 
 export default Button;

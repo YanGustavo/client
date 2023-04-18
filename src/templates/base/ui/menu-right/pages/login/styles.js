@@ -119,26 +119,7 @@ export const CardOptionsNote = styled.small`
   text-align: center;
   text-transform: uppercase;
 `;
-export const Hr = styled.div`
- text-align:center;  
-${this} h1 {
-    position:relative;
-    display:inline-block;
-}
-${this}h1::before, h1::after {
-    content:' ';
-    display:block;
-    position:absolute; top:50%; left:-120px;
-    width:100px; /* 100px line on either side */
-    border-bottom:1px solid #FFF;
-}
-${this} h1::after {
-    left:auto; right:-120px; /* make the "after" position on the right side of the h1 */
-}
-${this} p .MuiSvgIcon-root {
-  color: ${theme.colors.secondary_button_background};
-}
-`;
+
 
 export const CardOptions = styled.ul`
   padding: 0;

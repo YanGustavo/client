@@ -1,0 +1,81 @@
+//import axios from "axios";
+import Cookies from 'js-cookie';
+import * as actionTypes from './action-types';
+import {Products, findProductBySku} from 'lib/Products';
+
+export const initialState = {
+  cartItems: Cookies.get('cartItems') ? JSON.parse(Cookies.get('cartItems')) : [],
+  shippingAdress: Cookies.get('shippingAdress') ? JSON.parse(Cookies.get('shippingAdress')) : [],
+  paymentMethod: Cookies.get('paymentMethod') ? JSON.parse(Cookies.get('paymentMethod')) : '',
+};
+
+export const buildActions = (dispatch, getState) => {
+  console.log("rodou no build actions");
+  return {
+
+      addToCart: (sku:string, qty:number) => addToCartFn(sku, qty, dispatch),
+      removeFromCart: (id:number) => removeFromCartFn(id, dispatch, getState),
+      saveShippingAddress:(data:any) => saveShippingAddressFn(data, dispatch),
+      savePaymentMethod: (data:any) => savePaymentMethodFn(data, dispatch),
+      cartClearItems: () => dispatch({ type: actionTypes.CART_CLEAR_ITEMS }),
+      
+  };
+};
+
+const addToCartFn = async (sku:string, qty:number, dispatch,) => {
+  console.log('entrou no add to cart');
+  try {
+    dispatch({ type: actionTypes.CART_DETAILS_REQUEST });
+    const product = findProductBySku(Products, sku);
+    console.log("Valor de Product no car antes do dispathc"+product);
+    if (product.length === 0) {
+      dispatch({
+        type: actionTypes.CART_DETAILS_FAIL,
+        payload: "Product not found.",
+      });
+      return;
+    }
+    console.log("Valor de Product no car antes do dispathc"+product);
+    dispatch({
+      type: actionTypes.CART_ADD_SUCCESS,
+      payload: {
+        sku: product[0].variations[0].sku,
+        name: product[0].name,
+        image: product[0].variations[0].image[0].link,
+        price: product[0].variations[0].price,
+        stock: product[0].variations[0].stock,
+        quantity: qty,
+      }      
+    });
+  } catch (error: any) {
+    dispatch({
+      type: actionTypes.CART_ADD_FAIL,
+      payload:
+      error.response && error.response.data.message
+              ? error.response.data.message
+         : error.message,
+    });
+  }
+};
+
+const removeFromCartFn =  async (id, dispatch, getState) =>  {
+  dispatch({
+    type: actionTypes.CART_REMOVE_ITEM,
+    payload: id,
+  });
+  Cookies.set('cart', JSON.stringify(getState().cart.cartItems));
+};
+const saveShippingAddressFn =  async (data, dispatch) => {
+  dispatch({
+    type: actionTypes.CART_SAVE_SHIPPING_ADDRESS,
+    payload: data,
+  });
+  Cookies.set('shippingAddress', JSON.stringify(data));
+};
+const savePaymentMethodFn =  async (data, dispatch) => {
+  dispatch({
+    type: actionTypes.CART_SAVE_PAYMENT_METHOD,
+    payload: data,
+  }); 
+  Cookies.set('paymentMethod', JSON.stringify(data));   
+};

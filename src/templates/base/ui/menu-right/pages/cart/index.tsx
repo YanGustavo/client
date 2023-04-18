@@ -1,18 +1,8 @@
 'use client'
-//import Loading from "components/Loading";
-
-//hooks
 import useCartPage from "./hooks/useCartPage";
+import { CartProvider } from './CartContext';
 
 export default function CartPage() {
   const {content} = useCartPage(); 
-
-  return (
-    <>    
-      
-          
-          
-        {content}    
-            </>
-  );
+  return  <CartProvider>{content}</CartProvider>;
 }

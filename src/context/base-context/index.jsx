@@ -14,9 +14,10 @@ export const initialState = {
   menu_right_visible: false,
   toggle_menu_visible: true,
   loading: false,
-  count_cart: 0,
+  count_cart_items: 0,
   count_order: 0,
   count_message: 0,
+  isCartToZapOpen: false,
 };
 const Context = React.createContext([initialState]);
 

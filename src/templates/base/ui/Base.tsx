@@ -39,7 +39,7 @@ return (
         </div>
         ) : (
         <div className="noCartItem"> 
-        <p>1</p>  
+        <p></p>  
         </div>
         )}  
         </ShopCart>     

@@ -21,9 +21,9 @@ const DrawerOverlay = styled.div<{ open: boolean }>`
 
 const DrawerContainer = styled.div<{ open: boolean }>`
   position: fixed;
-  top: 0;
+  top: 105px;
   left: 0;
-  height: 100%;
+  height: calc(100% - 105px);
   width: 300px;
   background-color: #fff;
   box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);

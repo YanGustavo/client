@@ -1,86 +1,107 @@
 export interface Product {
-  codigo: string;
+  _id: string;
+  code: string;
   slug: string;
-  tipo: string;
-  descricao: string;
-  unidade: string;
-  preco: string;
-  precoCusto: string;
-  pesoLiq: string;
-  pesoBruto: string;
-  estoqueMinimo: string;
-  estoqueMaximo: string | null;
+  type: string;
+  name: string;
+  unit: string;
+  price: string;
+  costPrice: string;
+  netWeight: string;
+  grossWeight: string;
+  minimumStock: string;
+  maximumStock: string | null;
   gtin: string;
-  gtinEmbalagem: string;
-  descricaoCurta: string;
-  descricaoComplementar: string;
-  larguraProduto: string;
-  alturaProduto: string;
-  profundidadeProduto: string;
-  unidadeMedida: string;
-  dataInclusao: string;
-  dataAlteracao: string;
+  gtinPackaging: string;
+  shortDescription: string;
+  complementaryDescription: string;
+  productWidth: string;
+  productHeight: string;
+  productDepth: string;
+  unitMeasure: string;
+  inclusionDate: string;
+  alterationDate: string;
   imageThumbnail: string | null;
-  nomeFornecedor: string;
-  marca: string;
-  class_fiscal: string;
+  supplierName: string;
+  brand: string;
+  fiscalClassification: string;
   cest: string;
-  origem: string;
-  idGrupoProduto: string;
-  linkExterno: string;
-  observacoes: string;
-  grupoProduto: string;
-  itensPorCaixa: number;
+  origin: string;
+  productGroupId: string;
+  externalLink: string;
+  observations: string;
+  productGroup: string;
+  itemsPerBox: number;
   volumes: number;
-  urlVideo: string;
-  localizacao: string;
-  crossdocking: string;
-  garantia: number;
-  condicao: string;
-  freteGratis: string;
-  producao: string;
-  dataValidade: string;
-  descricaoFornecedor: string;
+  videoUrl: string;
+  location: string;
+  crossDocking: string;
+  warranty: number;
+  condition: string;
+  freeShipping: string;
+  production: string;
+  expirationDate: string;
+  supplierDescription: string;
   variations: {
-    tipo: string;
-    valor: string;
-    sku: string;
-    imagem: string;
-    estoque: number;
+  value: string;
+  image: { link: string }[];
+  sku: string;
+  stock: number;
+  price: string;
+  capacity: string;
   }[];
-  imagem: {
-    link: string;
-    validade: string;
-    tipoArmazenamento: string;
+  image: {
+  link: string;
+  validity: string;
+  storageType: string;
   }[];
-  produtoLoja: {
-    preco: {
-      preco: number;
-      precoPromocional: number;
-    };
-    categoria: {
-      id: string;
-      descricao: string;
-      idCategoriaPai: string;
-    }[];
+  storeProduct: {
+  price: {
+  price: number;
+  promotionalPrice: number;
   };
-  codigopai: string;
-  estoqueAtual: number;
-  depositos: {
-    deposito: {
-      id: string;
-      nome: string;
-      saldo: string;
-    };
+  category: {
+  id: string;
+  description: string;
+  parentId: string;
   }[];
-}
+  };
+  parentCode: string;
+  currentStock: number;
+  deposits: {
+  deposit: {
+  id: string;
+  name: string;
+  balance: string;
+  };
+  }[];
+  }
 
-export interface Return {
+  export type Variant = {
+  value: string;
+  image: { link: string }[];
+  sku: string;
+  stock: number;
+  price: string;
+  capacity: string;
+  }
+  export interface Cart {
+    sku: string;
+    name: string;    
+    image: { link: string }[];
+    price: string;
+    stock: number;
+    value: string;
+    capacity: string;
+  }
+
+  
+  export interface Return {
   products: {
-    product: Product;
+  product: Product;
   }[];
-}
-
-export interface ApiResponse {
-  retorno: Return;
-}
+  }
+  
+  export interface ApiResponse {
+  response: Return;
+  }

@@ -43,13 +43,21 @@ const ModalFooter = styled.div`
 `;
 
 type ModalContentProps = {
-  title: string;
+  title?: string;
   onClose: () => void;
   children: React.ReactNode;
   open: boolean;
 };
 
-const Modal = ({ title, onClose, children, open }: ModalContentProps) => {
+const defaultProps: ModalContentProps = {
+  title: '',
+  onClose: () => {},
+  children: null,
+  open: false,
+};
+
+const Modal = (props: ModalContentProps = defaultProps) => {
+  const { title, onClose, children, open } = props;
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const modal = document.getElementById('modal-wrapper');
@@ -65,13 +73,14 @@ const Modal = ({ title, onClose, children, open }: ModalContentProps) => {
   }, [onClose]);
   return (
     <ModalOverlay open={open}>
-    <ModalWrapper id="modal-wrapper">
-      <ModalHeader>{title}</ModalHeader>
-      <ModalBody>{children}</ModalBody>
-      <ModalFooter>
-      </ModalFooter>
-    </ModalWrapper>
-  </ModalOverlay>
+      <ModalWrapper id="modal-wrapper">
+        {title && <ModalHeader>{title}</ModalHeader>}
+        <ModalBody>{children}</ModalBody>
+        <ModalFooter>
+          {/* colocar aqui os componentes para o footer */}
+        </ModalFooter>
+      </ModalWrapper>
+    </ModalOverlay>
   );
 };
 

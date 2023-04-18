@@ -26,6 +26,8 @@ export const buildActions = (dispatch) => {
       setSize: (size:string) => dispatch({ type: actionTypes.SET_SIZE, payload: size, }),
       //Counters State
       setCountCartItems: (payload) => dispatch({ type: actionTypes.SET_COUNT_CART_ITEMS, payload: payload}),
+      //Modal
+      SetIsCartToZapOpen: (payload) => dispatch({ type: actionTypes.SET_IS_CART_TO_ZAP_OPEN, payload: payload}),
       //Reset
       reset: () => dispatch({ type: actionTypes.SET_RESET }),
   };

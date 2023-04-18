@@ -25,4 +25,5 @@ export const SET_MENU_RIGHT_VISIBLE = `${prefix}/SET_MENU_RIGHT_VISIBLE`;
 export const SET_MENU_RIGHT_HIDDEN = `${prefix}/SET_MENU_RIGHT_HIDDEN`;
 
 export const SET_COUNT_CART_ITEMS = `${prefix}/SET_COUNT_CART_ITEMS`;
+export const SET_IS_CART_TO_ZAP_OPEN = `${prefix}/SET_IS_CART_TO_ZAP_OPEN`;
 export const LOADING = `${prefix}/LOADING`;

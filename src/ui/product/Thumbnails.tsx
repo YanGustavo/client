@@ -49,6 +49,7 @@ export const Body = styled.div`
 `;
 
 function Thumbnails({ data, activeImageHandler, preview }) {
+  console.log(data);
   return (
     <Body>
       {data.map((image, key) => (
@@ -57,7 +58,7 @@ function Thumbnails({ data, activeImageHandler, preview }) {
           className={key === preview ? "thumb-item active" : "thumb-item"}
           onClick={() => activeImageHandler(key)}
         >
-          <img src={image} alt={image} />
+          <img src={image.link} alt={image} />
         </div>
       ))}
     </Body>

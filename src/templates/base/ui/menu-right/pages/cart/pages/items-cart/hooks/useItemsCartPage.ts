@@ -2,51 +2,33 @@ import React from "react";
 import { useCartStore } from "context/cart-context";
 import { useBaseContext } from "context/base-context";
 
-type Item = {
-id: number;
-name: string;
-image: string;
-price: number;
-qty: number;
-};
+const useItemsCartPage = () => {
+  const [loading, setLoading] = React.useState(true);
+  const [subTotal, setSubTotal] = React.useState(0);
+  const { cart } = useCartStore();
+  console.log("cart:"+cart.items);
+  const [, baseActions] = useBaseContext();
 
-//type UseItemsCartPageProps = {};
+  const HandlerCheckOut = () => {};
 
-const useItemsCartPage = () => {//{ history }: UseItemsCartPageProps
-const [loading, setLoading] = React.useState<boolean>(true);
-const [total, setTotal] = React.useState<number>(0);
-const { cartItems } = useCartStore();
-const [baseState, baseActions] = useBaseContext();
+  const continueToShopping = () => {
+    baseActions.setMenuRightHidden();
+  };
+  React.useEffect(() => {
+    if (cart) { // adiciona verificação para evitar loop infinito
+      baseActions.setCountCartItems(cart.totalItems);
+      setSubTotal(cart.subtotal);
+      setLoading(false);
+    }
+  }, [cart]);
 
-const checkOutHandler = () => {
-// history.push("/login?redirect=shipping");
-};
-
-const continueToShopping = () => {
-baseActions.setMenuRightHidden();
-};
-
-const getCartItems = () => {
-baseActions.setCountCartItems(cartItems.length);
-setTotal(
-cartItems.reduce((a, i) => {
-return a + i.qty * i.price;
-}, 0).toFixed(2)
-);
-setLoading(false);
-};
-
-React.useEffect(() => {
-getCartItems();
-}, [cartItems]);
-
-return {
-loading,
-cartItems,
-total,
-checkOutHandler,
-continueToShopping,
-};
+  return {
+    loading,
+    cartItems: cart?.items || [], // adiciona verificação para evitar erro caso cart seja nulo
+    subTotal,
+    HandlerCheckOut,
+    continueToShopping,
+  };
 };
 
 export default useItemsCartPage;

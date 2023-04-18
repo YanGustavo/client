@@ -16,6 +16,21 @@ background: #FFFFFF;
   padding: 1rem;
   width: 100%;
 `;
+const ContainerDrawable = styled.div`
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ // cursor: grab;
+//cursor: -webkit-grab;
+cursor: move;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 const Main = styled.main`
   margin-top: 105px;
   width: 100vw;
@@ -72,4 +87,4 @@ const Template = styled.div`
 }
 }
 `;
-export {Container, ContainerFlush, Main, Template, }
+export {Container, ContainerFlush, ContainerDrawable, Main, Template, }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import {  Product } from "lib/Products";
+import {  Product } from "lib/types/Product";
 
 type Props = {
   favoriteProducts: Product[];
@@ -21,9 +21,9 @@ const FavoritePage: React.FC<Props> = ({ favoriteProducts }) => {
         <List>
           {favorites.map((product) => (
             <ListItem key={product._id}>
-              <Image src={product.images[0]} alt={product.name} />
+              <Image src={product.image[0].link} alt={product.name} />
               <Name>{product.name}</Name>
-              <Price>R$ {product.price.toFixed(2)}</Price>
+              <Price>R$ {parseFloat(product.price)}</Price>
             </ListItem>
           ))}
         </List>

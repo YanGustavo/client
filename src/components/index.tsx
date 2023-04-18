@@ -1,16 +1,16 @@
 export { default as Accordion } from './Accordion';
-export { default as AdressBar } from './AdressBar';
 export { default as Alert } from './Alert';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as Button } from './Button';
 // export { default as Carousel } from './Carousel';
-export { default as CartToZap } from '../ui/CartToZap';
+export { default as CartToZap } from '../ui/product/CartToZap';
 export { default as CheckBox } from './CheckBox';
 export { default as DataPicker } from './DataPicker';
 export { default as Dialog } from './Dialog';
 export { default as Drawer } from './Drawer';
 export { default as CheckoutWizard } from '../ui/CheckoutWizard';
 export { default as ErrorFallback } from './Error';
+export { default as Gallery } from './Gallery';
 export { default as Input } from './Input';
 export { default as LanguageSwitcher} from '../ui/LanguageSwitcher';
 export { default as Layout } from './Layout';

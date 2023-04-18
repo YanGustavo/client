@@ -10,19 +10,18 @@ import useHome from "hooks/useHome";
 import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
-import {Container, ContainerFlush} from 'templates/base/ui/styles';
+import {Container, ContainerFlush, ContainerDrawable,} from 'templates/base/ui/styles';
 import {Categories} from "lib/Categories";
-import MenuCategoryWrapper from 'ui/pages/home/menu-category';
+import MenuCategoryWrapper from '@/ui/MenuCategory';
 //components
 import Loading from 'components/Loading';
 import BannerName from "ui/pages/home/banner-name";
 import ShopSection from "ui/pages/home/shop-section";
-import Feature from "ui/pages/home/feature";
+import Feature from "@/ui/Feature";
 //import Pagination from "components/Pagination";
 //import Error from "components/Error";
-import Team from "@/ui/cards/team";
-import FeatureOne from "@/ui/pages/product/feature-one/FeatureOne";
-import ProductPreview from "ui/cards/product-preview";
+import Team from "@/ui/Team";
+//import FeatureOne from "@/ui/pages/product/";
 //import MenuDropDown from "ui/pages/home/menu-drop-down";
 
 
@@ -41,14 +40,17 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
     <Layout title="Test Page">
      <Base>  
      <Container>
-     <MenuCategoryWrapper Categories={Categories}/>
+      <ContainerDrawable>
+        <MenuCategoryWrapper Categories={Categories}/>
+      </ContainerDrawable>
+     
     </Container>   
       
       <Container>
         {/* <MenuDropDown/> */}
-      </Container>
+      {/* </Container>
       <FeatureOne/>
-      <Container>
+      <Container> */}
       <ErrorBoundary
     fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
       resetErrorBoundary={resetErrorBoundary}/>
@@ -68,7 +70,6 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
                 ): (
                   <div> Nada Encontrado, Erro no servidor</div>
                 )} */}
-              <ProductPreview/>
                 {/* Pagination */}
                 {/* <Pagination
                   pages={pages}
@@ -83,13 +84,13 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
       title="My Feature Title"
       imageUrl="images/6.png"
     >
-      {/* Insira aqui os itens do carrossel */}
+     <ContainerDrawable><Team/></ContainerDrawable>
     </Feature>
 
     
     </ErrorBoundary>  
     </Container> 
-    <Container><ContainerFlush><Team/></ContainerFlush></Container>   
+    <Container><ContainerFlush><ContainerDrawable><Team/></ContainerDrawable></ContainerFlush></Container>  
     <Container>
     <Suspense fallback={<Loading/>}> 
     <BannerName name="Chefinho" discount={"20"} more={"#"} />

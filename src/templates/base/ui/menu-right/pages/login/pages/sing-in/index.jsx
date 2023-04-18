@@ -1,7 +1,8 @@
 //import {CheckOut,} from '../../styles';
 import Button from "components/Button";
 import {Container} from "templates/base/ui/menu-right/styles";
-import {CardWrapper, CardHeader, CardHeading, CardBody, CardFieldset, CardInput, CardInputPassWord, CardOptionsNote, Hr, CardOptions, CardIcon, CardOptionsItem, CardButton, CardLink} from '../../styles';
+import {CardWrapper, CardHeader, CardHeading, CardBody, CardFieldset, CardInput, CardInputPassWord, CardOptionsNote,  CardOptions, CardIcon, CardOptionsItem, CardButton, CardLink} from '../../styles';
+import {P, Hr,} from "components/Typography";
 
 //hooks
 import useLoginPage from "../../hooks/useLoginPage";

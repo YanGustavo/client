@@ -99,7 +99,7 @@
     "src/hooks/useProduct.ts",
     "src/ui/cards/profile/index.jsx",
     "src/ui/pages/about/components/contact/index.jsx",
-    "src/ui/cards/product-preview/index.jsx",
+    "src/ui/cards/product-preview/Card.tsx",
     "src/ui/base/menu-right/pages/cart/hooks/useCartPage.js",
     "src/ui/base/menu-right/pages/login/pages/useLoginPage.js",
     "src/pages/search/[query].tsx",

@@ -6,10 +6,11 @@ const glow = keyframes`
   from {
     color: #FFA500;
     text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FFA500, 0 0 40px #FFA500, 0 0 50px #FFA500, 0 0 60px #FFA500, 0 0 70px #FFA500;
+    box-shadow: 0 10px 20px #FFA500;
   }
   to {
-    color: #FFF;
     text-shadow: none;
+    box-shadow: none;
   }
 `;
 
@@ -19,14 +20,14 @@ const OnlineUsersContainer = styled.div`
 `;
 
 const OnlineUsersCount = styled.p`
-  margin: 0 10px;
-  font-size: 18px;
+  margin: 0 5px;
+  font-size: 0.6rem;
 `;
 
 const OnlineUsersIcon = styled(LightbulbIcon)`
-  font-size: 20px;
+  font-size: 2.5rem;
   color: #FFA500;
-  animation: ${glow} 1s ease-in-out infinite alternate;
+  animation: ${glow} 0.5s ease-in-out infinite alternate;
 `;
 
 type Props = {
@@ -36,8 +37,12 @@ type Props = {
 const OnlineUsers: React.FC<Props> = ({ onlineUsers }) => {
   return (
     <OnlineUsersContainer>
+      {onlineUsers > 0 && (
+        <>
       <OnlineUsersIcon />
       <OnlineUsersCount>{onlineUsers} usuários online</OnlineUsersCount>
+      </>
+      )}   
     </OnlineUsersContainer>
   );
 };

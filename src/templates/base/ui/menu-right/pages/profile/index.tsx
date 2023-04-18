@@ -20,7 +20,7 @@ export default function ProfilePage() {
 <Nav ref={ref} className={isComponentVisible === true ? `active `: ``}>	 
 
   <Avatar>
-		<img src="img/profile_yan.png" />
+		<img src="/img/profile_yan.png" />
     <h2>Yan Gustavo</h2>
   </Avatar> 
  

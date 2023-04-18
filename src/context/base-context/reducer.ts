@@ -44,6 +44,8 @@ export const reducer = (state, action) => {
         //Counters State
         case actionTypes.SET_COUNT_CART_ITEMS:
         return { ...state, count_cart_items: action.payload};
+        case actionTypes.SET_IS_CART_TO_ZAP_OPEN:
+      return {...state, isCartToZapOpen: action.payload,};
         //Reset
         case actionTypes.SET_RESET:
             return { ...initialState };

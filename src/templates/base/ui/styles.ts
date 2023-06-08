@@ -1,4 +1,108 @@
 import styled from 'styled-components';
+import theme from 'styles/styled-components/theme';
+const ShopCart = styled.div`
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+${this} .cart {
+  font-size: 30px;
+  color: #373848;
+}
+${this} .cart_content {
+  width: 20px;
+  height: 20px;
+  background: ${theme.colors.heading_color};
+  border-radius: 100%;
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: -8px;
+}
+${this} .cart_content p {
+  font-weight: 500;
+  color: #faf9fb;
+}
+${this} .noCartItem {
+  display: none;
+}
+`;
+const ToggleMenu = styled.main`
+transform: rotate(90deg);
+@keyframes toggleMenuAnimation {
+	0% { opacity: 0; transform: translateY(-2px); color: indigo;  }
+  25% { opacity: 0; transform: translateY(-2px); color: green;  }
+	50% { opacity: 1; transform: translateY(0); color: greenyellow;}
+	100% { opacity: 0; transform: translateY(2px); color: green;}
+}
+${this} .hidden {
+  display:none;
+}
+
+${this} .toggleIcon {
+  color: #373848;
+  font-size: 30px !important;
+  transition: all 0.5s ease; 
+  animation: toggleMenuAnimation 1.5s infinite; 
+  
+}
+${this}::after  {
+  transform: rotate(-90deg);
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  right: -0.7rem;
+  width: 18px;
+  height: auto;
+  font-size: 0.7rem;
+  color: ${theme.colors.heading_color};
+}
+ /* ${this}.isLoaded .toggleIcon  { 
+  animation: bounce-down 1.5s infinite; 
+} */
+`;
+const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${this} .imgBox {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+${this} .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+${this} .userName {
+  font-size: 16px;
+  margin-left: 8px;
+  font-weight: 500;
+  display: none;
+}
+@media screen and (min-width: 950px) {  
+  ${this} .userName {
+    display: block;
+  }
+  
+  ${ToggleMenu}{
+    display: none;
+  }
+}
+`;
 
 const Container = styled.section`
   margin-left: 2.5%;
@@ -87,4 +191,4 @@ const Template = styled.div`
 }
 }
 `;
-export {Container, ContainerFlush, ContainerDrawable, Main, Template, }
+export {Container, ContainerFlush, ContainerDrawable, Main, Template, ShopCart, ToggleMenu, ProfileContainer,}

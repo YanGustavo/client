@@ -1,11 +1,9 @@
 import React from "react";
-import useLocation from "./useLocation";
-import useLocationAnimation from "./useLocationAnimation";
+import useLocation from "hooks/useLocation";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default function Location() {
   const { regiao } = useLocation();
-  useLocationAnimation();
   return (
     <div className="mx-auto max-w-screen-md h-10">    
   <p className="container mx-auto px-4 text-zinc-50 md:text-center py-2 px-4 text-xs">

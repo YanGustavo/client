@@ -197,7 +197,7 @@ export default function ComponentsPage() {
             <CheckBox label="Teste de checkbox" />
             <DataPicker />
             <CheckoutWizard activeStep={1} />
-            <OrderWizard status={4} />
+            <OrderWizard status={3} />
             <Stepper steps={steps} currentStep={currentStep} />
             {/* <Pagination currentPage={3} totalPages={10} onPageChange={(page) => console.log(`Mudando para página ${page}`)} /> */}
             {/* <ErrorFallback onRetry={() => console.log('Tentando novamente...')}>

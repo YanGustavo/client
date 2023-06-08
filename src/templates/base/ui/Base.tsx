@@ -1,10 +1,9 @@
 'use client'
 import Link from 'next/link';
-import { Main, Template,} from './styles';
+import { Main, Template, ShopCart, ToggleMenu, ProfileContainer} from './styles';
 import useBase from '../hooks/useBase';
 import useMenuRight from "templates/base/ui/menu-right/hooks/useMenuRight";
 import HeaderPage from "templates/base/ui/header";
-import {ShopCart, ToggleMenu, ProfileContainer} from "templates/base/ui/header/styles";
 import Footer from "templates/base/ui/footer";
 import MenuRight from "templates/base/ui/menu-right";
 import MenuBottomItem from "templates/base/ui/menu-right/components/menu-bottom-item";
@@ -18,10 +17,10 @@ import Tooltip from '@mui/material/Tooltip';
 import LoginIcon from '@mui/icons-material/Login';
 import CloseIcon from '@mui/icons-material/Close';
 //hooks
-import useHeader from "templates/base/ui/header/useHeader";
+import useHeader from "hooks/useHeader";
 //componets
 import { Menu } from '@headlessui/react';
-import DropdownLink from 'templates/base/ui/header/components/drop-down-link';
+import DropdownLink from 'components/drop-down-link';
 import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
 
 const Base = ({children}: { children: React.ReactNode }) => {

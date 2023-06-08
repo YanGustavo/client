@@ -111,8 +111,10 @@ const RightBox = styled.div`
   float: right;
   width: 70%;
   height: 95%;
-  position: relative;  
-  ${this} h1 {
+  position: relative;
+  overflow-y: auto;
+
+  h1 {
     width: 100%;
     display: flex;
     align-items: center;
@@ -133,7 +135,7 @@ ${this}:hover {
 }
 `;
 const Body = styled.div`
-  background: ${theme.colors.white};
+    background: ${theme.colors.white};
   width: 90%;
   min-height: 90vh;
   height: auto;
@@ -143,6 +145,7 @@ const Body = styled.div`
   margin-left: 5%;
   position: relative;
   box-shadow: 2px 5px 20px rgba(${theme.colors.gray_300}, .5);
+  overflow: hidden; /* Adicionado overflow: hidden */
   ${this} h1 {
   font-family: ${theme.font.family};
   color: ${theme.colors.gray_300};

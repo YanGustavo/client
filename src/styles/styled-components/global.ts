@@ -11,58 +11,81 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ${({ theme }) => css`
-html {
+    html {
       --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE;
+      --thumbBG: #90A4AE;
       font-size: 100%;
     }
-    body::-webkit-scrollbar {
-  width: 11px;
-}
-    body {      
-    scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-      font-size: ${theme.font.sizes.xxxsmall};
-      background: ${theme.colors.background};      
-    min-width: 300px;
-}
-body::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-}
-body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
-}
 
-    body,
-    input,
-    textarea,
-    button {
-      font-family: ${theme.font.family};
+    body{
+      background: ${theme.colors.background};  
     }
+    body,
+    .baseScrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+      font-size: ${theme.font.sizes.xxxsmall};          
+      //min-width: 300px;
+    }
+
+    .baseScrollbar::-webkit-scrollbar {
+      width: 11px;
+    }
+
+    .baseScrollbar::-webkit-scrollbar-track {
+      background: var(--scrollbarBG);
+    }
+
+    .baseScrollbar::-webkit-scrollbar-thumb {
+      background-color: var(--thumbBG) ;
+      border-radius: 6px;
+      border: 3px solid var(--scrollbarBG);
+    }    
   `}
-  code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-a {
-color: inherit;
-    text-decoration: none; 
-}
-ul {
-  list-style: none;
-}
-img {
-  max-width: 100%;
-}
-.lineGradientTop {
+  @keyframes invertLineGradientTop {  
+  from,  
+      to {  
+           animation-timing-function: ease-in;  
+           box-shadow:  
+                0 0 0 hsl(0,0%,80%),  
+                0.1rem 0 0 hsl(0,0%,100%),  
+                -0.2rem 0 0.75rem 0 hsla(0,0%,0%,0.3);  
+           transform: rotateY(-10deg);  
+      }  
+      25%,  
+      75% {  
+           animation-timing-function: ease-out;  
+           box-shadow:  
+                0 0 0 hsl(0,0%,80%),  
+                0 0 0 hsl(0,0%,100%),  
+                -0.25rem -0.05rem 1rem 0.15rem hsla(0,0%,0%,0.3);  
+           transform: rotateY(0deg);  
+      }  
+      50% {  
+           animation-timing-function: ease-in;  
+           box-shadow:  
+                -0.1rem 0 0 hsl(0,0%,80%),  
+                0 0 0 hsl(0,0%,100%),  
+                -0.3rem -0.1rem 1.5rem 0.3rem hsla(0,0%,0%,0.3);  
+           transform: rotateY(10deg);  
+      }   
+ } 
+ //  background-image: linear-gradient(to right, rgb(255, 255, 74), rgb(252, 208, 0), rgb(255, 193, 18), rgb(255, 193, 18), rgb(255, 138, 0), rgb(255, 95, 95), rgb(255, 37, 58), rgb(255, 55, 168), rgb(199, 57, 255), rgb(164, 0, 225), rgb(46, 206, 255), rgb(0, 134, 255), rgb(114, 247, 114), rgb(0, 214, 4));
+//   background: linear-gradient(to right, rgb(0, 214, 4) , rgb(114, 247, 114), rgb(0, 134, 255),rgb(46, 206, 255),rgb(164, 0, 225),rgb(199, 57, 255),rgb(255, 55, 168),rgb(255, 37, 58),rgb(255, 95, 95),rgb(255, 138, 0),rgb(255, 193, 18) ,rgb(255, 193, 18), rgb(252, 208, 0) ,rgb(255, 255, 74));
+
+  .lineGradient {
   height: 5px;
   width: 100vw;
-  background: linear-gradient(to left, rgb(0, 214, 4) , rgb(114, 247, 114), rgb(0, 134, 255),rgb(46, 206, 255),rgb(164, 0, 225),rgb(199, 57, 255),rgb(255, 55, 168),rgb(255, 37, 58),rgb(255, 95, 95),rgb(255, 138, 0),rgb(255, 193, 18) ,rgb(255, 193, 18), rgb(252, 208, 0) ,rgb(255, 255, 74));
+  background: linear-gradient(to right, rgb(0, 214, 4) , rgb(114, 247, 114), rgb(0, 134, 255),rgb(46, 206, 255),rgb(164, 0, 225),rgb(199, 57, 255),rgb(255, 55, 168),rgb(255, 37, 58),rgb(255, 95, 95),rgb(255, 138, 0),rgb(255, 193, 18) ,rgb(255, 193, 18), rgb(252, 208, 0) ,rgb(255, 255, 74));
   z-index:108;
   animation-name: invertLineGradientTop;
 }
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+  /* Rest of the code... */
 `;
 
 export default GlobalStyles;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from 'styles/styled-components/theme';
+
 const ShopCart = styled.div`
   position: relative;
   width: 30px;

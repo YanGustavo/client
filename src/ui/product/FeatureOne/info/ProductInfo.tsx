@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 const Info = styled.div`
 padding: 0.8em 0;
-max-width: 500px;
+width: 400px;
+position: relative;
 `;
 
 export type Props = {

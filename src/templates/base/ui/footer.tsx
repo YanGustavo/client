@@ -87,7 +87,7 @@ export default function Footer() {
 
 return(
   <FooterStyle>
-    <div className="lineGradientTop"></div>
+    <div className="lineGradient"></div>
         <div className="container-footer">
             <div className="row-footer">
                {/* footer col */}

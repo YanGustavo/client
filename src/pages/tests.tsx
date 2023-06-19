@@ -15,7 +15,7 @@ import {Categories} from "lib/Categories";
 import MenuCategoryWrapper from '@/ui/MenuCategory';
 //components
 import Loading from 'components/Loading';
-import BannerName from "ui/pages/home/banner-name";
+import BannerName from "@/ui/pages/home/banner-name/BannerName";
 import ShopSection from "ui/pages/home/shop-section";
 import Feature from "@/ui/Feature";
 //import Pagination from "components/Pagination";

@@ -9,12 +9,14 @@ const Quantity = styled.div`
     justify-content: space-around;
     align-items: center;
     background-color: ${theme.colors.header_background};
-    width: fit-content;
-    height: 55px;
+    //width: fit-content;
+    height: 40px;
     width: 50%;
+    max-width: 200px;
     border-radius: 10px;
     user-select: none;
     margin-right: 0;
+    //float: left;
 `;
 type Props = {
   children: ReactNode;

@@ -1,13 +1,7 @@
 import React from 'react';
 import {PRIVACY_POLICY, EXCHANGE_AND_REFUND_POLICY, SHIPPING_POLICY, SERVICE_TERMS, CONTACT, FAQ, ABOUT_US, NOT_FOUND, LOADING, ERROR } from "constants/about-constants";
-import PrivacyPolicyPage from "ui/pages/about/pages/privacy_policy";
-import ExchangeAndRefundPage from "ui/pages/about/pages/exchange_and_refund_policy";
-import ShippingPolicyPage from "ui/pages/about/pages/shipping_policy";
-import ServiceTermsPage from "ui/pages/about/pages/service_terms";
-import ContactPage from "ui/pages/about/pages/contact";
-import FAQPage from "ui/pages/about/pages/faq";
-import AboutUsPage from "ui/pages/about/pages/about_us";
-import NotFound from "@/ui/NotFound";
+import {PrivacyPolicyPage, ExchangeAndRefundPage, ShippingPolicyPage, ServiceTermsPage, ContactPage,FAQPage, AboutUsPage }from "lib/about";
+import NotFound from "ui/NotFound";
 import Loading from "components/Loading";
 const useAbout = (router) => { 
   const [data, setData] = React.useState("Carregando");

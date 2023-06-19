@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import * as z from 'zod';
+import {P, I} from "components/Typography";
+import Space from 'components/Space';
 
 const Form = styled.form`
   display: flex;
@@ -69,8 +71,9 @@ const ShippingCalculator = ({ onCalculateShipping }: ShippingCalculatorProps) =>
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Label>
-        CEP:
+      <P>
+        <I>
+        CEP:  <Space size={5} />       
         <Input
           type="text"
           name="cep"
@@ -79,11 +82,12 @@ const ShippingCalculator = ({ onCalculateShipping }: ShippingCalculatorProps) =>
           maxLength={8}
           minLength={8}
         />
+        </I><Space size={10} /> 
         {formErrors.cep && <ErrorMessage>{formErrors.cep}</ErrorMessage>}
-      </Label>
-      <Button type="submit" disabled={!isFormValid}>
-        Calcular frete
+        <Button type="submit" disabled={!isFormValid}>
+        <I color='white' fontWeight='700'>Calcular frete</I>        
       </Button>
+      </P>      
     </Form>
   );
 };

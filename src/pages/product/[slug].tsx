@@ -1,22 +1,11 @@
-'use client'
-import React from 'react';
-import { useRouter } from 'next/router';
-//error
-import {ErrorBoundary} from 'react-error-boundary';
+'use client';
+import Carousel from '@/ui/product/FeatureOne/image/Carousel';
+// import Thumbnails from "@/ui/product/Thumbnails";
+import Description from '@/ui/product/ProductDescription';
+import Breadcrumbs from 'components/Breadcrumbs';
 import ErrorFallback from 'components/Error';
 //component head layout
 import Layout from 'components/Layout';
-import {Base} from 'templates/base';
-//styles
-import {Container, ContainerFlush,} from 'templates/base/ui/styles';
-//hooks
-import useProduct from "hooks/useProduct";
-//components datas
-import FeatureOne from 'ui/product/FeatureOne';
-import Breadcrumbs from "components/Breadcrumbs";
-import Carousel from "@/ui/product/FeatureOne/image/Carousel";
-// import Thumbnails from "@/ui/product/Thumbnails";
-import Description from "@/ui/product/ProductDescription";
 // //Componentes General
 // import Rating from "@/ui/Rating";
 //icons
@@ -24,29 +13,39 @@ import Description from "@/ui/product/ProductDescription";
 // import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 // import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 //loading
-import Loading from "components/Loading";
+import Loading from 'components/Loading';
 //Toast
-import Toast from "components/Toast";
-//NotFound
-import NotFound from "ui/NotFound";
-
-//Typography
-import { H1, P,} from 'components/Typography';
+import Toast from 'components/Toast';
+//hooks
+import useProduct from 'hooks/useProduct';
 //Products
-import {Products, findProductBySlug} from 'lib/Products';
-import {Product} from 'lib/types/Product';
+import { findProductBySlug, Products } from 'lib/Products';
+import { Product } from 'lib/types/Product';
+import { useRouter } from 'next/router';
+import React from 'react';
+//error
+import { ErrorBoundary } from 'react-error-boundary';
 import styled from 'styled-components';
+import { Base } from 'templates/base';
+//styles
+import { Container, ContainerFlush } from 'templates/base/ui/styles';
+//NotFound
+import NotFound from 'ui/NotFound';
+//components datas
+import FeatureOne from 'ui/product/FeatureOne';
+import {P} from 'components/Typography';
+import Space from 'components/Space';
 //import theme from 'styles/styled-components/theme';
-
-
-
-
-
+export const BreadcrumbsContainer = styled.div`
+  position: relative;
+  grid-row: 1; /* ocupa a segunda linha */
+  grid-column: 3 / 6; /* ocupa da segunda coluna até a quarta coluna */
+`;
 export const FeatureOneContainer = styled.div`
- grid-column-start: first;
- grid-row: 1;
- grid-column: 1 / 6;
- margin-bottom: 1rem;
+  grid-column-start: first;
+  grid-row: 2;
+  grid-column: 1 / 6;
+  margin-bottom: 1rem;
   .displayed {
     position: relative;
     .overlay {
@@ -107,51 +106,46 @@ export const ProductContainer = styled.div`
   max-width: 100%;
   display: grid;
   //grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
-  grid-template-columns: [first] 10% [line2] 30% [line3] auto [col4-start] 30%  [five] 10% [end];
+  grid-template-columns: [first] 10% [line2] 30% [line3] auto [col4-start] 30% [five] 10% [end];
   grid-template-rows: auto auto auto;
   column-gap: 1rem;
   position: relative;
   hr {
-   padding: 0;
-   border: none;
-   border-top: medium double #333;
-   color: #333;
-   text-align: center;
- }
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+  }
   img {
     cursor: pointer;
     user-select: none;
   }
-  @media screen and (min-width: 541px) {}
-@media screen and (min-width: 650px) {
-  grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 35%  [five] 5% [end];
-  ${FeatureOneContainer}{
-    grid-column: 2 / 5;
+  @media screen and (min-width: 541px) {
   }
-}
-@media screen and (min-width: 950px) {
-  grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 20%  [five] 20% [end];
-  ${FeatureOneContainer}{
-    grid-column: 2 / 6;
+  @media screen and (min-width: 650px) {
+    grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 35% [five] 5% [end];
+    ${FeatureOneContainer} {
+      grid-column: 2 / 5;
+    }
   }
-  ${DescriptionContainer} {
-    grid-row: 3; /* ocupa a segunda linha */
-  grid-column: 2 / 4; /* ocupa da segunda coluna até a quarta coluna */
+  @media screen and (min-width: 950px) {
+    grid-template-columns: [first] 5% [line2] 35% [line3] auto [col4-start] 20% [five] 20% [end];
+    ${FeatureOneContainer} {
+      grid-column: 2 / 6;
+    }
+    ${DescriptionContainer} {
+      grid-row: 3; /* ocupa a segunda linha */
+      grid-column: 2 / 4; /* ocupa da segunda coluna até a quarta coluna */
+    }
   }
-  
-}
-@media screen and (min-width: 1100px) {
-  grid-template-columns: [first] 1% [line2] 39% [line3] auto [col4-start] 20%  [five] 20% [end];
-  ${FeatureOneContainer}{
-    grid-column: 2 / 6;
+  @media screen and (min-width: 1100px) {
+    grid-template-columns: [first] 1% [line2] 39% [line3] auto [col4-start] 20% [five] 20% [end];
+    ${FeatureOneContainer} {
+      grid-column: 2 / 6;
+    }
   }
-}
 `;
-
-
-
-
-
 export const Controls = styled.div`
   position: absolute;
   top: 50%;
@@ -176,7 +170,6 @@ export const Controls = styled.div`
 `;
 interface Query {
   slug?: string;
-  
 }
 interface Props {
   ref: React.RefObject<HTMLImageElement>;
@@ -192,9 +185,10 @@ export default function ProductPage({}: Props): JSX.Element {
   const slugValue = slug ?? '';
   const ref = React.useRef<HTMLImageElement>(null);
   const product: Product[] = findProductBySlug(Products, slugValue);
-/* Verifique se existem elementos filhos */
-  const { onlineUsers, discountPrice,  handleSubmitCalculate, getOnlineUsers,} = useProduct({ product: product[0] });
- 
+  /* Verifique se existem elementos filhos */
+  const { onlineUsers, discountPrice, handleSubmitCalculate, getOnlineUsers } =
+    useProduct({ product: product[0] });
+
   React.useEffect(() => {
     if (!product) {
       setLoading(true);
@@ -204,83 +198,103 @@ export default function ProductPage({}: Props): JSX.Element {
       // fazer algo com o produto
       setLoading(false);
       console.log(product);
-    };
-  },[product]);
- 
+    }
+  }, [product]);
+
   function handleImageWidthChange(width) {
     // setImageWidth(width);
     // if(imageWidth !== null){
     //   setCarouselPosition(imageWidth * preview);
-    // }    
+    // }
   }
-  
 
-  return (   
-    <Layout title={loading ? "Carregando" : product[0] ? product[0].name: ""}>
-     <Base>
-    
-    {/* start content*/}
-   
-      
-      {loading && (<Loading/>)} 
-      {nothingFound && (<NotFound/>)} 
-
-      {(!loading && product[0] !== undefined) && (
-         <Container>    
-         
-        <ProductContainer> 
-          <ErrorBoundary
-    fallbackRender={({error, resetErrorBoundary}) => (<ErrorFallback error={error}
-      resetErrorBoundary={resetErrorBoundary}/>
-    )}
-    > 
-        
-       
-        <Toast />
-        <FeatureOneContainer>
-        <Breadcrumbs data={product[0]} subtitle="Saiba Mais" linkHref="/login"/>
-        {carousel && (
-          <Carousel isOpen={carousel} />
-        )}
-        <FeatureOne
-      product={product[0]}
-      image={<FeatureOne.Image onChange={handleImageWidthChange} click={() => setCarousel(true)} />}
-      info={
-        <FeatureOne.Info>
-          <FeatureOne.Brand />
-          <FeatureOne.Title />
-          <FeatureOne.Rating />                         
-          <FeatureOne.Variant />
-          <FeatureOne.Price />
-          <FeatureOne.Quantity>
-          <FeatureOne.QuantityDesc/>
-                <FeatureOne.QuantityCurrent/>
-                <FeatureOne.QuantityInc/>
-            </FeatureOne.Quantity> 
-          <FeatureOne.ShippingCalculator onCalculateShipping={handleSubmitCalculate}/>  
-          <FeatureOne.OnlineUsers onlineUsers={onlineUsers}/>      
-        </FeatureOne.Info>
-      }
-      action={
-        <FeatureOne.BuyButton>Adicionar ao Carrinho</FeatureOne.BuyButton>
-      }
-    />
-        </FeatureOneContainer>
-        <DescriptionContainer>
-        <ContainerFlush>           
-        <Description title="Descrição do Produto" description={product[0].complementaryDescription}/>
-        </ContainerFlush>
-          </DescriptionContainer>
-          </ErrorBoundary>
-          </ProductContainer>
+  return (
+    <Layout title={loading ? 'Carregando' : product[0] ? product[0].name : ''}>
+      <Base>
+        {/* start content*/}
+        {loading && <Loading />}
+        {nothingFound && <NotFound />}
+        {!loading && product[0] !== undefined && (
+          <Container>
+            <ProductContainer>
+              <ErrorBoundary
+                fallbackRender={({ error, resetErrorBoundary }) => (
+                  <ErrorFallback
+                    error={error}
+                    resetErrorBoundary={resetErrorBoundary}
+                  />
+                )}
+              >
+                <Toast />
+                 {/*Start Breadcrumbs*/}
+                 <BreadcrumbsContainer>
+                 <Breadcrumbs
+                    data={product[0]}
+                    subtitle="Saiba Mais"
+                    linkHref="/login"
+                  />
+                  </BreadcrumbsContainer>
+                  {/*End Breadcrumbs*/}
+                <FeatureOneContainer>
+                  
+                  {/*Start Carousel*/}
+                  {carousel && <Carousel isOpen={carousel} />}
+                  {/*End Carousel*/}
+                  {/*Start FeatureOne*/}
+                  <FeatureOne
+                    product={product[0]}
+                    image={
+                      <FeatureOne.Image
+                        onChange={handleImageWidthChange}
+                        click={() => setCarousel(true)}
+                      />
+                    }
+                    info={
+                      <FeatureOne.Info>
+                        <FeatureOne.Rating />                        
+                       <FeatureOne.Brand />
+                       <FeatureOne.Price />
+                        <FeatureOne.Title />  
+                       {/* <FeatureOne.Hr>---</FeatureOne.Hr> */}   
+                       <hr/>               
+                        <FeatureOne.Variant />
+                        <hr/>     
+                        <FeatureOne.Quantity>
+                          <FeatureOne.QuantityDesc />
+                          <FeatureOne.QuantityCurrent />
+                          <FeatureOne.QuantityInc />
+                        </FeatureOne.Quantity><Space size={5} /><FeatureOne.SubTotal />
+                        <hr/>   
+                        <FeatureOne.ShippingCalculator
+                          onCalculateShipping={handleSubmitCalculate}
+                        />
+                        <FeatureOne.Total />
+                        <FeatureOne.OnlineUsers onlineUsers={onlineUsers} />
+                      </FeatureOne.Info>
+                    }
+                    action={
+                      <FeatureOne.BuyButton>
+                        Adicionar ao Carrinho
+                      </FeatureOne.BuyButton>
+                    }
+                  />
+                  {/*End FeatureOne*/}
+                </FeatureOneContainer>
+                <DescriptionContainer>
+                  <ContainerFlush>
+                    <Description
+                      title="Descrição do Produto"
+                      description={product[0].complementaryDescription}
+                    />
+                  </ContainerFlush>
+                </DescriptionContainer>
+              </ErrorBoundary>
+            </ProductContainer>
           </Container>
-      )}       
-  
- 
-     {/* end content*/}
-    
-            
-     </Base>
+        )}
+
+        {/* end content*/}
+      </Base>
     </Layout>
   );
 }

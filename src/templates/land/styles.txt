@@ -13,6 +13,9 @@ export const BaseStyle = styled.div`
 .BaseTemplate::-webkit-scrollbar {
   display: none;
 }
+.BaseScrollbar::-webkit-scrollbar{
+  display: none;
+}
 main {
   width: 100vw;
   /* height: calc(100% - 60px); */

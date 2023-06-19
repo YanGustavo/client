@@ -100,7 +100,7 @@ function ProductImage({ onChange, click }) {
             </i>
           </Controls>
           {selectedVariant !== undefined && ( 
-             <img onClick={() => click()}
+             <img onClick={click}
             key={selectedVariant.sku}
             src={selectedImage}
             alt={product.name}

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 //Styles
 import theme from 'styles/styled-components/theme';
 import { useProductContext } from '../../ProductContext';
-import {Variant} from "lib/types/Product";
+// import {Variantion} from "lib/types/Product";
 /* ----- Photo Section ----- */
 const ProductPhoto = styled.div`
   position: relative;
@@ -75,13 +75,13 @@ function ProductImage({ onChange, click }) {
   const { product, selectedVariant,} = useProductContext();
   const [selectedImage, setSelectedImage] = React.useState('');
   const handleVariationClick = (index) => {
-    setSelectedImage(selectedVariant.image[index].link);
+    setSelectedImage(selectedVariant.images[index].link);
   };
   React.useEffect(() => {
     if (ref.current) {
       onChange(ref.current.offsetWidth);
     }
-    setSelectedImage(selectedVariant.image[0].link);
+    setSelectedImage(selectedVariant.images[0].link);
   }, [ref, onChange,selectedVariant]);
   return (
     <ProductPhoto>
@@ -110,7 +110,7 @@ function ProductImage({ onChange, click }) {
         </PhotoMain>
         <PhotoAlbum>
           <ul>
-            {selectedVariant.image.map((image, index) => (
+            {selectedVariant.images.map((image, index) => (
               <li key={index}>
                 <img src={image.link} onClick={() =>  handleVariationClick(index)}  alt={product.name} />
               </li>

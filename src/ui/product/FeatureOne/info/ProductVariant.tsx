@@ -79,7 +79,7 @@ export default function ProductVariant() {
                   : ''
               }
             >
-              <img src={variation.image[0].link} alt={variation.value} />
+              <img src={variation.images[0].link} alt={variation.value} />
               <button>
                 {variation.value} - {variation.capacity}
               </button>

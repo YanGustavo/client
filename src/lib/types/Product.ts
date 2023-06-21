@@ -1,3 +1,18 @@
+export interface ProductCart extends Omit<Product, "variations" | "image"> {
+  variations: {
+    value: string;
+    image: { link: string }[];
+    sku: string;
+    stock: number;
+    price: string;
+    capacity: string;
+  };
+  image: {
+    link: string;
+    validity: string;
+    storageType: string;
+  }[];
+}
 export interface Product {
   _id: string;
   code: string;
@@ -5,23 +20,23 @@ export interface Product {
   type: string;
   name: string;
   unit: string;
-  price: string;
-  costPrice: string;
-  netWeight: string;
-  grossWeight: string;
-  minimumStock: string;
-  maximumStock: string | null;
+  price: number;
+  costPrice: number;
+  netWeight: number;
+  grossWeight: number;
+  minimumStock: number;
+  maximumStock: number;
   gtin: string;
   gtinPackaging: string;
   shortDescription: string;
   complementaryDescription: string;
-  productWidth: string;
-  productHeight: string;
-  productDepth: string;
+  productWidth: number;
+  productHeight: number;
+  productDepth: number;
   unitMeasure: string;
   inclusionDate: string;
   alterationDate: string;
-  imageThumbnail: string | null;
+  imageThumbnail: string;
   supplierName: string;
   brand: string;
   fiscalClassification: string;
@@ -42,49 +57,50 @@ export interface Product {
   production: string;
   expirationDate: string;
   supplierDescription: string;
-  variations: {
+  variations: Variation[];
+  image: ProductImage[];
+  storeProduct: StoreProduct;
+  parentCode: string;
+  currentStock: number;
+  deposits: Deposit[];
+}
+
+interface Variation {
   value: string;
-  image: { link: string }[];
+  images: { link: string }[]; // Alterado de 'image' para 'images'
   sku: string;
   stock: number;
   price: string;
   capacity: string;
-  }[];
-  image: {
+}
+
+interface ProductImage {
   link: string;
   validity: string;
   storageType: string;
-  }[];
-  storeProduct: {
+}
+
+interface StoreProduct {
   price: {
-  price: number;
-  promotionalPrice: number;
+    price: number;
+    promotionalPrice: number;
   };
-  category: {
+  category: string;
+}
+
+interface Category {
   id: string;
   description: string;
   parentId: string;
-  }[];
-  };
-  parentCode: string;
-  currentStock: number;
-  deposits: {
-  deposit: {
-  id: string;
-  name: string;
-  balance: string;
-  };
-  }[];
-  }
+}
 
-  export type Variant = {
-  value: string;
-  image: { link: string }[];
-  sku: string;
-  stock: number;
-  price: string;
-  capacity: string;
-  }
+interface Deposit {
+  deposit: {
+    id: string;
+    name: string;
+    balance: string;
+  };
+}
   export interface Cart {
     sku: string;
     name: string;    

@@ -19,6 +19,6 @@ const RandomImage: React.FC<Props> = ({ images, alt }) => {
     return () => clearInterval(intervalId);
   }, [images]);
 
-  return <img src={images.map((image) => image.link)[imageIndex]} alt={alt} />;
+  return <img src={images.map((images) => images.link)[imageIndex]} alt={alt} />;
 };
 export default RandomImage;

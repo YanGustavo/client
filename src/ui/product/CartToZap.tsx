@@ -43,7 +43,7 @@ interface CartToZapProps {
   };
   selectedVariant: {
     price: string;
-    image: {
+    images: {
       link: string;
     }[];
   };
@@ -80,7 +80,7 @@ const handleModalClose = () => {
     <>
       <Modal title={product.name} onClose={handleModalClose} open={isModalOpen}>
         <ProductWrapper>
-          <img src={selectedVariant.image[0].link} />
+          <img src={selectedVariant.images[0].link} />
           <ProductDetails>
             <ProductTitle><H1>{product.name}</H1></ProductTitle>
             <ProductPrice><P>{selectedVariant.price}</P></ProductPrice>

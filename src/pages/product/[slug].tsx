@@ -19,8 +19,6 @@ import Toast from 'components/Toast';
 //hooks
 import useProduct from 'hooks/useProduct';
 //Products
-import { findProductBySlug, Products } from 'lib/Products';
-import { Product } from 'lib/types/Product';
 import { useRouter } from 'next/router';
 import React from 'react';
 //error
@@ -184,12 +182,11 @@ export default function ProductPage({}: Props): JSX.Element {
   const { slug } = router.query as Query;
   const slugValue = slug ?? '';
   const ref = React.useRef<HTMLImageElement>(null);
-  const product: Product[] = findProductBySlug(Products, slugValue);
   /* Verifique se existem elementos filhos */
-  const { onlineUsers, discountPrice, handleSubmitCalculate, getOnlineUsers } =
-    useProduct({ product: product[0] });
-
+  const { onlineUsers, discountPrice, handleSubmitCalculate, getOnlineUsers, findProductBySlug} = useProduct();
+  const product = findProductBySlug(slugValue);
   React.useEffect(() => {
+    console.log("resultado de product"+product);
     if (!product) {
       setLoading(true);
       setNothingFound(true);
@@ -197,7 +194,7 @@ export default function ProductPage({}: Props): JSX.Element {
     } else {
       // fazer algo com o produto
       setLoading(false);
-      console.log(product);
+      
     }
   }, [product]);
 

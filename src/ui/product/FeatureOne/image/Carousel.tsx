@@ -166,7 +166,7 @@ interface Props {
 
 function Carousel({isOpen}: Props): JSX.Element{
   const ref = React.useRef<HTMLImageElement>(null);
-  const { product, selectedVariant, handleSelectVariant,} = useProductContext();
+  const { product, selectedVariation, handleSelectVariation,} = useProductContext();
   const {carousel, preview, carouselPosition, setCarousel,  nextHandler, prevHandler, activeImageHandler,setCarouselPosition,} = useCarousel({ product: product[0] , ref: ref});
   //States
   const [active, setActive] = React.useState(preview);
@@ -180,11 +180,11 @@ function Carousel({isOpen}: Props): JSX.Element{
                   className="slider"
                   style={{ transform: `translateX(-${carouselPosition}px)` }}
                 >
-                  {selectedVariant.image.map((image, key) => (
+                  {selectedVariation.images.map((image, key) => (
                     <img
-                      src={selectedVariant[active].link}
+                      src={selectedVariation[active].link}
                       alt={product.name}
-                      key={selectedVariant[active].sku}
+                      key={selectedVariation[active].sku}
                       className="current-image"
                       ref={ref}
                     />
@@ -208,15 +208,15 @@ function Carousel({isOpen}: Props): JSX.Element{
             </div>
           </Controls>
           <img
-            src={selectedVariant[active].link}
-            alt={selectedVariant[active].link}
+            src={selectedVariation[active].link}
+            alt={selectedVariation[active].link}
             className="active-image"
           />
         </div>
 
         <div className="thumbnails">
           <Thumbnails
-            data={selectedVariant.image}
+            data={selectedVariation.images}
             activeImageHandler={activeImageHandler}
             preview={active}
           />

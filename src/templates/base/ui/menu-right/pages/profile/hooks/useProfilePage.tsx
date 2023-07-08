@@ -7,7 +7,7 @@ import Loading from "components/Loading";
 import { useBaseContext } from "context/base-context";
 import * as actionTypes from 'context/base-context/action-types';
 //Products
-import { Products } from "lib/Products";
+//import { Products } from "lib/Products";
 interface Order {
 id: number;
 date: string;
@@ -79,8 +79,8 @@ const [{ profile_page, loading }, actions] = useBaseContext();
 function navigate() {
 if (profile_page === actionTypes.SET_ORDER_PAGE) {
 setContent(<OrderPage orders={orders}/>);
-} else if (profile_page === actionTypes.SET_FAVORITE_PAGE) {
-setContent(<FavoritePage favoriteProducts={Products} />);
+// } else if (profile_page === actionTypes.SET_FAVORITE_PAGE) {
+// setContent(<FavoritePage favoriteProducts={Products} />);
 } else if (profile_page === actionTypes.SET_MESSAGE_PAGE) {
 setContent(<MessagePage posts={Post} />);
 } else if (profile_page === actionTypes.SET_CONFIG_PAGE) {

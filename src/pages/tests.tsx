@@ -11,8 +11,7 @@ import Layout from 'components/Layout';
 import {Base} from 'templates/base';
 //styles
 import {Container, ContainerFlush, ContainerDrawable,} from 'templates/base/ui/styles';
-import {Categories} from "lib/Categories";
-import MenuCategoryWrapper from '@/ui/MenuCategory';
+//import MenuCategoryWrapper from 'ui/MenuCategory';
 //components
 import Loading from 'components/Loading';
 import BannerName from "ui/BannerName";
@@ -41,7 +40,7 @@ export default function TestPage({keyword, pagenumber}: HomeProps) {
      <Base>  
      <Container>
       <ContainerDrawable>
-        <MenuCategoryWrapper Categories={Categories}/>
+        {/* <MenuCategoryWrapper Categories={Categories}/> */}
       </ContainerDrawable>
      
     </Container>   

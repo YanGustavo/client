@@ -23,7 +23,7 @@ const FavoritePage: React.FC<Props> = ({ favoriteProducts }) => {
             <ListItem key={product._id}>
               <Image src={product.image[0].link} alt={product.name} />
               <Name>{product.name}</Name>
-              <Price>R$ {parseFloat(product.price)}</Price>
+              <Price>R$ {product.price}</Price>
             </ListItem>
           ))}
         </List>

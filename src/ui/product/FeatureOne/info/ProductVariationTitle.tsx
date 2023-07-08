@@ -4,8 +4,8 @@ import { useProductContext } from '../../ProductContext';
 import {P} from 'components/Typography';
 
 function ProductVariantTitle() {  
-	const { selectedVariant } = useProductContext();
-	return <P>{selectedVariant.value} - {selectedVariant.capacity}</P>;
+	const { selectedVariation } = useProductContext();
+	return <P>{selectedVariation.value} - {selectedVariation.capacity}</P>;
 }
 
 export default ProductVariantTitle;

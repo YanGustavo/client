@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import type { Product } from "lib/types/Product";
 import { useProductContext } from '../ProductContext';
 
 //import Button from 'components/Button';

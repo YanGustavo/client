@@ -2,7 +2,7 @@ import React from 'react';
 import { useBaseContext } from 'context/base-context';
 import { useCartStore } from 'context/cart-context';
 import { createContext, useContext, useState } from 'react';
-import type { Product, Variant} from "lib/types/Product";
+import type { Product, Variation} from "lib/types/Product";
 //Toast
 import { toast } from 'react-toastify';
 const ProductContext = createContext<ProductContextType | null>(null);
@@ -22,10 +22,10 @@ export function useProductContext() {
   product: Product;
   isOnCart: boolean;
   isModalOpen: boolean;
-  selectedVariant: Variant;
+  selectedVariation: Variation;
   selectedQuantity: number;
   setIsModalOpen: (increment: boolean) => void;
-  handleSelectVariant: (variant: Variant) => void;
+  handleSelectVariation: (Variation: Variation) => void;
   handleSelectQuantity: (increment: boolean) => void;
   handlerAddToCart: () => void;
   handlerRemoveFromCart: () => void;
@@ -39,12 +39,12 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
   const [, baseActions] = useBaseContext();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOnCart, setIsOnCart] = useState<boolean>(false);
-  const [selectedVariant, setSelectedVariant] = useState(product.variations[0]);
+  const [selectedVariation, setSelectedVariation] = useState(product.variations[0]);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { cart } = useCartStore();
-  const isComponentOnCart = (cart, selectedVariant) => {
+  const isComponentOnCart = (cart, selectedVariation) => {
     if (cart && cart.items) {
-      const itemsWithSelectedSku = cart.items.filter(item => item.sku === selectedVariant?.sku);
+      const itemsWithSelectedSku = cart.items.filter(item => item.sku === selectedVariation?.sku);
       return itemsWithSelectedSku.length > 0;
     } else {
       return false;
@@ -53,30 +53,30 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
   
   React.useEffect(() => {
     if(cart){
-      const componentOnCart = isComponentOnCart(cart, selectedVariant);
+      const componentOnCart = isComponentOnCart(cart, selectedVariation);
     setIsOnCart(componentOnCart);
     }    
-  }, [selectedVariant]);
-  const handleSelectVariant = (variant: Variant) => {
+  }, [selectedVariation]);
+  const handleSelectVariation = (Variation: Variation) => {
     setSelectedQuantity(1);
-    setSelectedVariant(variant);
-    console.log("variant" +variant.price);
+    setSelectedVariation(Variation);
+    console.log("Variation" +Variation.price);
   };
   const handleSelectQuantity = React.useCallback((increment: boolean) => {
     if (increment) {
-      setSelectedQuantity((prev) => Math.min(prev + 1, selectedVariant.stock));
+      setSelectedQuantity((prev) => Math.min(prev + 1, selectedVariation.stock));
     } else {
       setSelectedQuantity((prev) => Math.max(prev - 1, 1));
     }
-  }, [selectedVariant.stock]);
+  }, [selectedVariation.stock]);
   // Adicionar ao Carrinho
   const handlerAddToCart = React.useCallback(
     () => {
-      if (parseInt(selectedVariant.price) > 1000) {
+      if (parseInt(selectedVariation.price) > 1000) {
         setIsModalOpen(true);
       } else {
         try {
-          addToCart(selectedVariant.sku, selectedQuantity);
+          addToCart(selectedVariation.sku, selectedQuantity);
           baseActions.setMenuRightVisible();          
           setIsOnCart(true);
         } catch {
@@ -85,7 +85,7 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
        }
       }
     },
-    [addToCart, selectedVariant, selectedQuantity, isComponentOnCart]
+    [addToCart, selectedVariation, selectedQuantity, isComponentOnCart]
   );
   const handlerRemoveFromCart = React.useCallback(
     () => {
@@ -98,14 +98,14 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
     product,
     // product: {
     //   ...product,
-    //   variations: colorVariants,
+    //   variations: colorVariations,
     // },
     isOnCart,
     isModalOpen,
-    selectedVariant,
+    selectedVariation,
     selectedQuantity,
     setIsModalOpen,
-    handleSelectVariant,
+    handleSelectVariation,
     handleSelectQuantity,
     handlerAddToCart,
     handlerRemoveFromCart,
@@ -117,7 +117,7 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
       {isModalOpen && (
         <CartToZap
           product={product}
-          selectedVariant={selectedVariant}
+          selectedVariation={selectedVariation}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />

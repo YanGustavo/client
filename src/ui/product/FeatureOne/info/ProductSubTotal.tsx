@@ -9,13 +9,13 @@ type Props = {
 };
 
 function ProductSubTotal({ currency = 'BRL' }: Props) {
-  const { selectedQuantity, selectedVariant} = useProductContext();
+  const { selectedQuantity, selectedVariation} = useProductContext();
 
   return (
     <P>
     <I>SubTotal: <Space size={5} /></I>  
-    <P color={theme.colors.secondary_button_background} fontWeight='600'>
-      {new Intl.NumberFormat('en-US', {style: 'currency', currency,}).format(typeof selectedVariant?.price === 'string' ? parseFloat(selectedVariant?.price) * parseInt(selectedQuantity): 0)}
+    <P color={theme.colors.secondary_button_background} fontWeight={600}>
+      {new Intl.NumberFormat('en-US', {style: 'currency', currency,}).format(typeof selectedVariation?.price === 'string' ? parseFloat(selectedVariation?.price) * selectedQuantity: 0)}
     </P>
     </P>
    

@@ -72,17 +72,17 @@ const PhotoAlbum = styled.div`
 
 function ProductImage({ onChange, click }) {
   const ref = React.useRef<HTMLImageElement>(null);  
-  const { product, selectedVariant,} = useProductContext();
+  const { product, selectedVariation,} = useProductContext();
   const [selectedImage, setSelectedImage] = React.useState('');
   const handleVariationClick = (index) => {
-    setSelectedImage(selectedVariant.images[index].link);
+    setSelectedImage(selectedVariation.images[index].link);
   };
   React.useEffect(() => {
     if (ref.current) {
       onChange(ref.current.offsetWidth);
     }
-    setSelectedImage(selectedVariant.images[0].link);
-  }, [ref, onChange,selectedVariant]);
+    setSelectedImage(selectedVariation.images[0].link);
+  }, [ref, onChange,selectedVariation]);
   return (
     <ProductPhoto>
       <PhotoContainer>
@@ -99,9 +99,9 @@ function ProductImage({ onChange, click }) {
               </Tooltip>
             </i>
           </Controls>
-          {selectedVariant !== undefined && ( 
+          {selectedVariation !== undefined && ( 
              <img onClick={click}
-            key={selectedVariant.sku}
+            key={selectedVariation.sku}
             src={selectedImage}
             alt={product.name}
           />
@@ -110,7 +110,7 @@ function ProductImage({ onChange, click }) {
         </PhotoMain>
         <PhotoAlbum>
           <ul>
-            {selectedVariant.images.map((image, index) => (
+            {selectedVariation.images.map((image, index) => (
               <li key={index}>
                 <img src={image.link} onClick={() =>  handleVariationClick(index)}  alt={product.name} />
               </li>

@@ -41,7 +41,7 @@ interface CartToZapProps {
   product: {
     name: string;
   };
-  selectedVariant: {
+  selectedVariation: {
     price: string;
     images: {
       link: string;
@@ -53,7 +53,7 @@ interface CartToZapProps {
 
 const CartToZap: React.FC<CartToZapProps> = ({
   product,
-  selectedVariant,
+  selectedVariation,
   isModalOpen,
   setIsModalOpen,
 }) => {
@@ -68,7 +68,7 @@ const handleModalClose = () => {
   const handleSendWhatsApp = () => {
     // cria a mensagem formatada para enviar pelo WhatsApp
     const title = "Eai Chefinho, achei esse produto interessante e desejo comprar";
-    const message = `${title}:\n\n${product.name}\n${selectedVariant.price}`;
+    const message = `${title}:\n\n${product.name}\n${selectedVariation.price}`;
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
     );
@@ -80,10 +80,10 @@ const handleModalClose = () => {
     <>
       <Modal title={product.name} onClose={handleModalClose} open={isModalOpen}>
         <ProductWrapper>
-          <img src={selectedVariant.images[0].link} />
+          <img src={selectedVariation.images[0].link} />
           <ProductDetails>
             <ProductTitle><H1>{product.name}</H1></ProductTitle>
-            <ProductPrice><P>{selectedVariant.price}</P></ProductPrice>
+            <ProductPrice><P>{selectedVariation.price}</P></ProductPrice>
           </ProductDetails>
         </ProductWrapper>
         <Button onClick={handleSendWhatsApp}>Quero esse produto</Button>

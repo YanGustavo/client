@@ -9,11 +9,11 @@ type Props = {
 };
 
 function ProductPrice({ currency = 'BRL' }: Props) {
-  const { selectedVariant} = useProductContext();
+  const { selectedVariation} = useProductContext();
 
   return (
-    <H5 color={theme.colors.secondary_button_background} fontWeight='600'>
-      {new Intl.NumberFormat('en-US', {style: 'currency', currency,}).format(typeof selectedVariant?.price === 'string' ? parseFloat(selectedVariant?.price) : 0)}
+    <H5 color={theme.colors.secondary_button_background} fontWeight={600}>
+      {new Intl.NumberFormat('en-US', {style: 'currency', currency,}).format(typeof selectedVariation?.price === 'string' ? parseFloat(selectedVariation?.price) : 0)}
     </H5>
   );
 }

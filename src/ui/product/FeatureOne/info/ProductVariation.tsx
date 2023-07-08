@@ -63,7 +63,7 @@ const VariantWrapper = styled.div`
 `;
 
 export default function ProductVariant() {
-  const { product, selectedVariant, handleSelectVariant } = useProductContext();
+  const { product, selectedVariation, handleSelectVariation} = useProductContext();
 
   return (
     <>
@@ -72,9 +72,9 @@ export default function ProductVariant() {
           {product.variations.map((variation) => (
             <li
               key={variation.sku}
-              onClick={() => handleSelectVariant(variation)}
+              onClick={() => handleSelectVariation(variation)}
               className={
-                selectedVariant && selectedVariant.sku === variation.sku
+                selectedVariation && selectedVariation.sku === variation.sku
                   ? 'active'
                   : ''
               }

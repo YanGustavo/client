@@ -57,7 +57,7 @@ function ProductBuyButton({ children }: Props) {
   const { handlerAddToCart } = useProductContext();
   return (
     <BuyButton onClick={() => handlerAddToCart()}>
-      <I color={theme.colors.tertiary_button_text_color} fontWeight="900" fontSize="1.2rem">
+      <I color={theme.colors.tertiary_button_text_color} fontWeight={900} fontSize="1.2">
         {children}
       </I>
     </BuyButton>

@@ -19,9 +19,9 @@ import ProductTop from './ProductTop';
 import ProductPrice from '../FeatureOne/info/ProductPrice';
 import ProductShortDescription from '../FeatureOne/info/ProductShortDescription';
 import ProductTitle from '../FeatureOne/info/ProductTitle';
-import ProductVariantTitle from '../FeatureOne/info/ProductVariantTitle';
+import ProductVariantTitle from '../FeatureOne/info/ProductVariationTitle';
 //Feature one components
-import ProductVariant from '../FeatureOne/info/ProductVariant';
+import ProductVariant from '../FeatureOne/info/ProductVariation';
 //
 import { ProductProvider } from '../ProductContext';
 

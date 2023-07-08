@@ -85,7 +85,7 @@ const ShippingCalculator = ({ onCalculateShipping }: ShippingCalculatorProps) =>
         </I><Space size={10} /> 
         {formErrors.cep && <ErrorMessage>{formErrors.cep}</ErrorMessage>}
         <Button type="submit" disabled={!isFormValid}>
-        <I color='white' fontWeight='700'>Calcular frete</I>        
+        <I color='white' fontWeight={700}>Calcular frete</I>        
       </Button>
       </P>      
     </Form>

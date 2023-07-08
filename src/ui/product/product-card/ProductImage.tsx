@@ -3,7 +3,7 @@ import { useProductContext } from '../ProductContext';
 import RandomImage from 'ui/RandomImage';
 
 function ProductImage() {
-  const { product, selectedVariant } = useProductContext();
-  return   <><RandomImage images={selectedVariant.image} alt={product.name} /></>;
+  const { product, selectedVariation} = useProductContext();
+  return   <><RandomImage images={selectedVariation.images} alt={product.name} /></>;
 }
 export default ProductImage;

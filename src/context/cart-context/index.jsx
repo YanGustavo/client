@@ -1,9 +1,9 @@
-import create from "zustand";
+import { create } from 'zustand';
 import { v4 as uuidv4 } from "uuid";
 import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
-import { Products, findProductBySku } from 'lib/Products';
-
+//hooks
+import useProduct from 'hooks/useProduct';
 const initialCartState = {
   items: [],
   subtotal: 0,
@@ -32,7 +32,8 @@ const useCartStore = create((set) => ({
   addToCart: async (sku, qty) => {
     console.log("sku"+sku+"qty"+qty);
     try {
-      const [productName, productVariation] =  findProductBySku(Products, sku);
+      const {findProductBySKU} = useProduct();
+      const [productName, productVariation] =   findProductBySKU( sku );
       if (productName === undefined || productName.length === 0) {
         toast.error('Não foi possível inserir seu produto ao carrinho!, produto não encontrado!'+"Codigo do Produto"+sku+"Quantidade:"+qty);
         return;

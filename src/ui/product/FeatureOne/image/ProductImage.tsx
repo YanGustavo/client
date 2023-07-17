@@ -6,9 +6,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 //Styles
 import theme from 'styles/styled-components/theme';
+import CloudinaryImage from 'ui/CloudinaryImage';
 import { useProductContext } from '../../ProductContext';
-// import {Variantion} from "lib/types/Product";
-/* ----- Photo Section ----- */
 const ProductPhoto = styled.div`
   position: relative;
 `;
@@ -26,8 +25,8 @@ const PhotoContainer = styled.div`
 const PhotoMain = styled.div`
   position: relative;
   border-radius: 6px 6px 0 0;
-  background-color: ${theme.colors.background_light};
-  background: ${theme.colors.background_light_radial};
+  background-color: ${theme.colors.background.light};
+  background: ${theme.colors.background.lightRadial};
 
   img {
     left: -3.5em;
@@ -35,7 +34,8 @@ const PhotoMain = styled.div`
     width: 110%;
     max-width: none;
     height: auto;
-    filter: saturate(150%) contrast(120%) hue-rotate(10deg) drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
+    filter: saturate(150%) contrast(120%) hue-rotate(10deg)
+      drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
     max-width: 100%;
   }
 `;
@@ -71,8 +71,8 @@ const PhotoAlbum = styled.div`
 `;
 
 function ProductImage({ onChange, click }) {
-  const ref = React.useRef<HTMLImageElement>(null);  
-  const { product, selectedVariation,} = useProductContext();
+  const ref = React.useRef<HTMLImageElement>(null);
+  const { product, selectedVariation } = useProductContext();
   const [selectedImage, setSelectedImage] = React.useState('');
   const handleVariationClick = (index) => {
     setSelectedImage(selectedVariation.images[index].link);
@@ -82,7 +82,7 @@ function ProductImage({ onChange, click }) {
       onChange(ref.current.offsetWidth);
     }
     setSelectedImage(selectedVariation.images[0].link);
-  }, [ref, onChange,selectedVariation]);
+  }, [ref, onChange, selectedVariation]);
   return (
     <ProductPhoto>
       <PhotoContainer>
@@ -99,20 +99,27 @@ function ProductImage({ onChange, click }) {
               </Tooltip>
             </i>
           </Controls>
-          {selectedVariation !== undefined && ( 
-             <img onClick={click}
+          {selectedVariation !== undefined && (  
+            <CloudinaryImage
             key={selectedVariation.sku}
-            src={selectedImage}
+            onClick={click}
+            publicId={selectedImage}
             alt={product.name}
-          />
+            width={400}
+            height={300}
+          />          
           )}
-        
         </PhotoMain>
         <PhotoAlbum>
           <ul>
             {selectedVariation.images.map((image, index) => (
-              <li key={index}>
-                <img src={image.link} onClick={() =>  handleVariationClick(index)}  alt={product.name} />
+              <li >
+                <CloudinaryImage
+              imageKey={index}
+              onClick={() => handleVariationClick(index)}
+              publicId={image.link}
+              alt={product.name}
+            />
               </li>
             ))}
           </ul>

@@ -18,13 +18,13 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body{
-      background: ${theme.colors.background};  
+      background: ${theme.desing.colors.background};  
     }
     body,
     .baseScrollbar {
       scrollbar-width: thin;
       scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-      font-size: ${theme.font.sizes.xxxsmall};          
+      font-size: ${theme.desing.font.sizes.xxxsmall};          
       //min-width: 300px;
     }
 

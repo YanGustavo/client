@@ -18,9 +18,9 @@ export type AccordionContentProps = {
 };
 
 const AccordionContainer = styled.div`
-  border: 1px solid ${theme.colors.border_color};
+  border: 1px solid ${theme.desing.border.color};
   border-radius: 5px;
-  box-shadow: 0 0 0 2px ${theme.box.shadow};
+  box-shadow: 0 0 0 2px ${theme.desing.box.shadow};
 `;
 
 export const AccordionTitle = styled.div<AccordionTitleProps>`

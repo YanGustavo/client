@@ -3,16 +3,15 @@ import { Product } from 'lib/types/Product';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-type UseProductProps = {
-};
+type UseProductProps = {};
 
 type UseProductReturn = {
   discountPrice: (price: number, percentage: number) => number;
-  handleSubmitCalculate: (cep: string) => Promise<number | null>; // Alterado o tipo de retorno para incluir 'null'
+  handleSubmitCalculate: (cep: string) => Promise<number | null>;
   onlineUsers: number;
   getOnlineUsers: () => Promise<number>;
-  findProductBySlug: (slugValue: string) => Promise<Product[]>; // Adicionado o tipo de retorno
-  findProductBySKU: (skuValue: string) => Promise<Product[]>; // Adicionado o tipo de retorno
+  findProductBySlug: (slugValue: string) => Promise<Product[]>;
+  findProductBySKU: (skuValue: string) => Promise<Product[]>;
 };
 
 const useProduct = (): UseProductReturn => {
@@ -29,18 +28,18 @@ const useProduct = (): UseProductReturn => {
     }
 
     try {
-      const response = await axios.get(`https://localhost:5000/api/functions/shipping/${cep}`);
+      const response = await axios.get(`https://localhost:5000/functions/shipping/${cep}`);
       const shippingCost = response.data.cost;
       return shippingCost;
     } catch (error) {
-      toast.error('Ocorreu um erro ao calcular o frete. Por favor, tente novamente mais tarde.' + cep);
+      toast.error('Ocorreu um erro ao calcular o frete. Por favor, tente novamente mais tarde.');
       return null;
     }
   };
 
   const getOnlineUsers = async (): Promise<number> => {
     try {
-      const response = await axios.get('https://localhost:5000/api/functions/onlineUsers');
+      const response = await axios.get('http://localhost:5000/functions/onlineUsers');
       const onlineUsers = response.data.onlineUsers;
       setOnlineUsers(onlineUsers);
       return onlineUsers;
@@ -52,18 +51,19 @@ const useProduct = (): UseProductReturn => {
 
   const findProductBySlug = async (slugValue: string): Promise<Product[]> => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/products/slug/${slugValue}`);// /slug/${slugValue}
-      const product = response.data.products;
-      console.log("product d"+product);
+      const response = await axios.get('http://localhost:5000/products/slug/iphone-8-plus');
+      const product = response.data;
+      console.log('Product data:', product);
       return product ? [product] : [];
     } catch (error) {
       console.error('Error retrieving product:', error);
       return [];
     }
   };
+
   const findProductBySKU = async (skuValue: string): Promise<Product[]> => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/products/sku/${skuValue}`);
+      const response = await axios.get(`http://localhost:5000/products/sku/${skuValue}`);
       const product = response.data;
       return product ? [product] : [];
     } catch (error) {

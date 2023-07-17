@@ -12,6 +12,8 @@ import Layout from 'components/Layout';
 // import ShoppingCartRounded from "@mui/icons-material/ShoppingCartRounded";
 // import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 // import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+//Lib
+import { Product } from 'lib/types/Product';
 //loading
 import Loading from 'components/Loading';
 //Toast
@@ -29,6 +31,8 @@ import { Base } from 'templates/base';
 import { Container, ContainerFlush } from 'templates/base/ui/styles';
 //NotFound
 import NotFound from 'ui/NotFound';
+//TryAgain
+import TryAgain from 'ui/TryAgain';
 //components datas
 import FeatureOne from 'ui/product/FeatureOne';
 import {P} from 'components/Typography';
@@ -184,19 +188,24 @@ export default function ProductPage({}: Props): JSX.Element {
   const ref = React.useRef<HTMLImageElement>(null);
   /* Verifique se existem elementos filhos */
   const { onlineUsers, discountPrice, handleSubmitCalculate, getOnlineUsers, findProductBySlug} = useProduct();
-  const product = findProductBySlug(slugValue);
+  const [data, setData] = React.useState<Product | null>(null);
   React.useEffect(() => {
-    console.log("resultado de product"+product);
-    if (!product) {
-      setLoading(true);
-      setNothingFound(true);
-      // tratamento para o caso de produto não encontrado
-    } else {
-      // fazer algo com o produto
-      setLoading(false);
-      
-    }
-  }, [product]);
+    const fetchData = async () => {
+      const result: Product[] = await findProductBySlug(slugValue);
+      setData(result[0]);
+      console.log("resultado de product", result);
+      if (!result) {
+        setLoading(true);
+        setNothingFound(true);
+        // tratamento para o caso de produto não encontrado
+      } else {
+        // fazer algo com o produto
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function handleImageWidthChange(width) {
     // setImageWidth(width);
@@ -204,14 +213,17 @@ export default function ProductPage({}: Props): JSX.Element {
     //   setCarouselPosition(imageWidth * preview);
     // }
   }
-
+  const handleRetry = () => {
+    alert("voce tentou de novo");
+  };
   return (
-    <Layout title={loading ? 'Carregando' : product[0] ? product[0].name : ''}>
+    <Layout title={loading ? 'Carregando' : data ? data.name : ''}>
       <Base>
+      <TryAgain onRetry={handleRetry} />
         {/* start content*/}
         {loading && <Loading />}
         {nothingFound && <NotFound />}
-        {!loading && product[0] !== undefined && (
+        {!loading && data !== null && (
           <Container>
             <ProductContainer>
               <ErrorBoundary
@@ -225,11 +237,11 @@ export default function ProductPage({}: Props): JSX.Element {
                 <Toast />
                  {/*Start Breadcrumbs*/}
                  <BreadcrumbsContainer>
-                 <Breadcrumbs
-                    data={product[0]}
+                 {/* <Breadcrumbs
+                    data={data}
                     subtitle="Saiba Mais"
                     linkHref="/login"
-                  />
+                  /> */}
                   </BreadcrumbsContainer>
                   {/*End Breadcrumbs*/}
                 <FeatureOneContainer>
@@ -239,7 +251,7 @@ export default function ProductPage({}: Props): JSX.Element {
                   {/*End Carousel*/}
                   {/*Start FeatureOne*/}
                   <FeatureOne
-                    product={product[0]}
+                    product={data}
                     image={
                       <FeatureOne.Image
                         onChange={handleImageWidthChange}
@@ -279,10 +291,10 @@ export default function ProductPage({}: Props): JSX.Element {
                 </FeatureOneContainer>
                 <DescriptionContainer>
                   <ContainerFlush>
-                    <Description
+                    {/* <Description
                       title="Descrição do Produto"
-                      description={product[0].complementaryDescription}
-                    />
+                      description={data.complementaryDescription}
+                    /> */}
                   </ContainerFlush>
                 </DescriptionContainer>
               </ErrorBoundary>

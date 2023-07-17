@@ -2,7 +2,7 @@ import AddRounded from '@mui/icons-material/AddRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRounded from '@mui/icons-material/RemoveRounded';
 import { useCartStore } from 'context/cart-context';
-// import RandomImage from 'ui/RandomImage';
+import RandomImage from 'ui/RandomImage';
 import React from 'react';
 import {
   CartItemBody,
@@ -56,8 +56,7 @@ const  CartItem =({
   return (
     <CartItemBody id={sku}>
       <ImageBox>
-      {/* <RandomImage images={image} alt={name}/> */}
-      {/* [{ link: image }] */}
+      <RandomImage images={image} alt={name}/> 
       </ImageBox>
       <ItemSection>
         <ItemName>{name}</ItemName>

@@ -98,7 +98,7 @@ export const Slide = styled.div`
     .MuiSvgIcon-root {
       background-color: transparent;
     border-radius: 50%;
-    border: 1px solid ${theme.colors.border_color};
+    border: 1px solid ${theme.desing.border.color};
     display: flex;
     align-items: center;
     justify-content: center;

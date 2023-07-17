@@ -85,6 +85,7 @@ const TotalSection = styled.div`
 export default function ItemsCartPage({ actions }) {
   const { loading, cartItems, subTotal, HandlerCheckOut ,continueToShopping } =
     useItemsCartPage();
+    console.log("cartItems: ", cartItems);
   return (
     <>
       {/* <CreditCard name="Yan Gustavo" />

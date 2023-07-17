@@ -1,9 +1,10 @@
+const NEXT_PUBLIC_NODE_ENV = "development"; 
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { NODE_ENV, uri } from 'constants/environment-variables';
+import { uri } from 'constants/environment-variables';
 
 const axiosiInstance = axios.create({
-  baseURL: uri[NODE_ENV]
+  baseURL: uri[NEXT_PUBLIC_NODE_ENV]
 });
 
 const api = (axios: AxiosInstance) => {

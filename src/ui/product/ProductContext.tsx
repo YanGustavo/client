@@ -1,67 +1,75 @@
+import CartToZap from "@/ui/product/CartToZap"; 
 import React from 'react';
 import { useBaseContext } from 'context/base-context';
 import { useCartStore } from 'context/cart-context';
 import { createContext, useContext, useState } from 'react';
-import type { Product, Variation} from "lib/types/Product";
-//Toast
+import type { Product, VariationOption } from "lib/types/Product";
+// Toast
 import { toast } from 'react-toastify';
+//Hook
+import useProduct from 'hooks/useProduct';
+
 const ProductContext = createContext<ProductContextType | null>(null);
-//Modal
-import CartToZap from "@/ui/product/CartToZap"; 
 
 export function useProductContext() {
   const context = useContext(ProductContext);
   if (!context) {
     throw new Error(
-      'ProductCard.* component must be rendered as child of ProductCard component'
+      'ProductCard.* component must be rendered as a child of ProductCard component'
     );
   }
   return context;
 }
-  export type ProductContextType = {
+
+export type ProductContextType = {
   product: Product;
   isOnCart: boolean;
   isModalOpen: boolean;
-  selectedVariation: Variation;
+  selectedVariation: VariationOption;
   selectedQuantity: number;
   setIsModalOpen: (increment: boolean) => void;
-  handleSelectVariation: (Variation: Variation) => void;
+  handleSelectVariation: (variation: VariationOption) => void;
   handleSelectQuantity: (increment: boolean) => void;
   handlerAddToCart: () => void;
   handlerRemoveFromCart: () => void;
-  }
+};
+
 type ProductProviderProps = {
   product: Product;
   children: React.ReactNode;
 };
+
 export function ProductProvider({ product, children }: ProductProviderProps) {
-  const {addToCart, removeFromCart} = useCartStore();
+  const { addToCart, removeFromCart } = useCartStore();
   const [, baseActions] = useBaseContext();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOnCart, setIsOnCart] = useState<boolean>(false);
-  const [selectedVariation, setSelectedVariation] = useState(product.variations[0]);
+  const [selectedVariation, setSelectedVariation] = useState<VariationOption>(product.variations[0].options[0]);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { cart } = useCartStore();
-  const isComponentOnCart = (cart, selectedVariation) => {
+  const { findProductBySKU } = useProduct();
+
+  const isComponentOnCart = (cart: any, selectedVariation: VariationOption) => {
     if (cart && cart.items) {
-      const itemsWithSelectedSku = cart.items.filter(item => item.sku === selectedVariation?.sku);
+      const itemsWithSelectedSku = cart.items.filter((item: any) => item.sku === selectedVariation?.sku);
       return itemsWithSelectedSku.length > 0;
     } else {
       return false;
     }
   };
-  
+
   React.useEffect(() => {
-    if(cart){
+    if (cart) {
       const componentOnCart = isComponentOnCart(cart, selectedVariation);
-    setIsOnCart(componentOnCart);
-    }    
+      setIsOnCart(componentOnCart);
+    }
   }, [selectedVariation]);
-  const handleSelectVariation = (Variation: Variation) => {
+
+  const handleSelectVariation = (variation: VariationOption) => {
     setSelectedQuantity(1);
-    setSelectedVariation(Variation);
-    console.log("Variation" +Variation.price);
+    setSelectedVariation(variation);
   };
+
   const handleSelectQuantity = React.useCallback((increment: boolean) => {
     if (increment) {
       setSelectedQuantity((prev) => Math.min(prev + 1, selectedVariation.stock));
@@ -69,37 +77,29 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
       setSelectedQuantity((prev) => Math.max(prev - 1, 1));
     }
   }, [selectedVariation.stock]);
-  // Adicionar ao Carrinho
-  const handlerAddToCart = React.useCallback(
-    () => {
-      if (parseInt(selectedVariation.price) > 1000) {
-        setIsModalOpen(true);
-      } else {
-        try {
-          addToCart(selectedVariation.sku, selectedQuantity);
-          baseActions.setMenuRightVisible();          
-          setIsOnCart(true);
-        } catch {
-         toast.error('Não Conseguimos adicionar seu produto ao carrinho! Tente novamente ou entre em contato diretamente pelo chat!');
-          setIsOnCart(false);
-       }
+
+  const handlerAddToCart = React.useCallback(() => {
+    if (parseInt(selectedVariation.price) > 1000) {
+      setIsModalOpen(true);
+    } else {
+      try {
+        addToCart(selectedVariation.sku, selectedQuantity, findProductBySKU);
+        baseActions.setMenuRightVisible();
+        setIsOnCart(true);
+      } catch {
+        toast.error('Não conseguimos adicionar seu produto ao carrinho! Tente novamente ou entre em contato diretamente pelo chat!');
+        setIsOnCart(false);
       }
-    },
-    [addToCart, selectedVariation, selectedQuantity, isComponentOnCart]
-  );
-  const handlerRemoveFromCart = React.useCallback(
-    () => {
-          removeFromCart();
-          setIsOnCart(false);
-    },
-    [isComponentOnCart]
-  );
+    }
+  }, [addToCart, selectedVariation, selectedQuantity, isComponentOnCart]);
+
+  const handlerRemoveFromCart = React.useCallback(() => {
+    removeFromCart();
+    setIsOnCart(false);
+  }, [isComponentOnCart]);
+
   const value = {
     product,
-    // product: {
-    //   ...product,
-    //   variations: colorVariations,
-    // },
     isOnCart,
     isModalOpen,
     selectedVariation,
@@ -124,7 +124,6 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
       )}
     </ProductContext.Provider>
   );
-  
 }
 
 export default ProductContext;

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 export const CardWrapper = styled.div`
-  background-color: ${theme.colors.right_menu_background_child_rgb};
+  background-color: ${(props) => props.theme.desing.colors.rightMenu.backgroundRGB};
   overflow: hidden;
   padding: 0 0 32px;
   margin: 48px auto 0;
@@ -19,7 +19,7 @@ export const CardHeading = styled.h1`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  color: ${(props) => props.desing.theme.colors.header.textColor};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 `;
 
 export const CardBody = styled.div`
@@ -58,7 +58,7 @@ export const CardInput = styled.input`
   transition: border-bottom-color 0.25s ease-in;
 
   &:focus {
-    border-bottom-color: ${theme.colors.header_accent_color};
+    border-bottom-color: ${(props) => props.theme.desing.colors.background};
     outline: 0;
   }
 `;

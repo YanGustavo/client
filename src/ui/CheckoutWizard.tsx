@@ -44,7 +44,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: ${props => props.theme.colors.heading_color};
+  background-color: ${props => props.theme.desing.colors.heading};
   padding: 0.5rem;
 `;
 
@@ -53,9 +53,9 @@ const StyledStep = styled.div<StepProps>`
   text-align: center;
   border-bottom: 5px solid;
   border-color: ${({ active, theme }) =>
-    active ? theme.colors.primary_button_text_color : 'gray'};
+    active ? theme.desing.border.color : 'gray'};
   color: ${({ active, theme }) =>
-    active ? theme.colors.primary_button_text_color : 'gray'};
+    active ? theme.desing.border.color : 'gray'};
   margin: 0 0.2rem;
 
   button {
@@ -64,7 +64,7 @@ const StyledStep = styled.div<StepProps>`
     cursor: pointer;
     text-decoration: none;
     color: ${({ active, theme }) =>
-      active ? theme.colors.primary_button_text_color : 'gray'};
+      active ? theme.desing.buttons.primary.color : 'gray'};
     outline: none;
     display: flex;
     flex-direction: column;

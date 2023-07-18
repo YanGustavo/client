@@ -7,7 +7,7 @@ const Details = styled.div`
           float: left;
           width: calc(80% - 40px);
           height: 100%;
-          color: ${(props) => props.theme.colors.secondary_button_text_color};
+          color: ${(props) => props.theme.desing.buttons.secondary.color};
           position: relative;
           ${this} h1{
             font-size: 1.2rem;

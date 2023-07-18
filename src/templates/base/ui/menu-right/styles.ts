@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-
-
-import theme from 'styles/styled-components/theme';
 const ButtonsFullAlign = styled.div`
   width: 100%;
   display: flex;
@@ -39,11 +36,11 @@ const Layout = styled.div`
 `;
 
 const ContainerFlush = styled.div`
-background: ${theme.colors.right_menu_background_child_rgb};
+background: ${(props) => props.theme.desing.colors.rightMenu.backgroundChildRGB};
   border-radius: 0.2rem;
   padding: 1rem;
   width: 100%;
-  border: 1px solid ${theme.colors.border_color};
+  border: 1px solid ${(props) => props.theme.desing.border.color};
 `;
 const Container = styled.div`
 margin-left: 10%;
@@ -106,7 +103,7 @@ overflow-y: auto;
 overflow-x: hidden;
 scrollbar-width: thin;
 padding-bottom: 2rem;
-  scrollbar-color: ${props => props.theme.colors.header_text_color} ${props => props.theme.colors.header_text_color};
+  scrollbar-color: ${props => props.theme.desing.colors.heading} ${props => props.theme.desing.colors.heading};
   ${this}::-webkit-scrollbar {
   width: 0.4rem;  
   border-radius: 3rem;             /* width of the entire scrollbar */
@@ -115,9 +112,9 @@ padding-bottom: 2rem;
   background: transparent;
 }
 ${this}::-webkit-scrollbar-thumb {
-  background-color: ${props => props.theme.colors.header_text_color} ;
+  background-color: ${props => props.theme.desing.colors.header.textColor} ;
   border-radius: 6px;
-  border: 3px solid ${props => props.theme.colors.header_text_color};
+  border: 3px solid ${props => props.theme.desing.colors.header.textColor};
 }
 `;
 const DebitCardContainer = styled.div`
@@ -131,14 +128,14 @@ const MenuRightBottom = styled.div`
   left: 0; 
   width: 100%;
   height: 3rem;
-  background: ${theme.colors.right_menu_background_child_rgb};
+  background: ${(props) => props.theme.desing.colors.rightMenu.backgroundChildRGB};
   z-index: 106;
   padding-top: 0;
 `;
 
 //right_menu_background_childrens_rgb
 const MenuRightChild = styled.div`
-background: ${theme.colors.right_menu_background_child_rgb};
+background: ${(props) => props.theme.desing.colors.rightMenu.backgroundChildRGB};
 
 `;
 const Body = styled.div`
@@ -147,7 +144,7 @@ const Body = styled.div`
   right: 0;
   width: 100vw;
   height: calc(100vh - 105px);
-  background: ${theme.colors.right_menu_background_rgb};
+  background: ${(props) => props.theme.desing.colors.rightMenu.backgroundChildRGB};
   z-index: 105;
   display: flex;
   flex-direction: column;
@@ -155,7 +152,7 @@ const Body = styled.div`
   transform: translateX(200%);  
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
-  border-left: 1px solid ${theme.colors.header_text_color};
+  border-left: 1px solid ${props => props.theme.desing.colors.header.textColor};;
   padding-bottom: 2rem;
   &.active {
   transform: translateX(0%);  

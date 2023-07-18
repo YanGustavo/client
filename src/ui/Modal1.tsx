@@ -20,7 +20,7 @@ const ModalOverlay = styled.div`
 const ModalContent = styled.div`
   width: 90%;
   max-width: 500px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.desing.colors.header.background};
   padding: 10px;
   border-radius: 5px;
   display: flex;

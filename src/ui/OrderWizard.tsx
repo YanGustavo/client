@@ -16,7 +16,7 @@ const Body = styled.section`
   gap: 0.2rem;
   padding: 0.2rem;  
   position: relative;
-  color: #FFF;
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   width: 100%;
   background-color: rgba(45, 75, 42, 0.03);
 `;
@@ -24,18 +24,18 @@ const Body = styled.section`
 const Elements = styled.div`
 &.nothing {
 background-color: red;
-  color: #FFF;
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 &.done {
   background-color: green;
-  color: #FFF;
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 
 &.inProgress {
   @keyframes inProgress {
   from {
     opacity: 0.3;
-    border : 0.5px solid #FFF;
+    border : 0.5px solid ${(props) => props.theme.desing.colors.header.textColor};
   }
   
   to {
@@ -45,7 +45,7 @@ background-color: red;
 }
   animation: inProgress 0.5s ease infinite alternate;
   background-color: orange;
-  color: #FFF;
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 &.undone {
   opacity: 0.4;
@@ -80,7 +80,7 @@ const Title = styled.span`
 `;
 const Icon = styled.i`
 ${this} .MuiSvgIcon-root{
-  font-size: ${(props) => props.theme.font.sizes.xxxsmall};
+  font-size: ${(props) => props.theme.desing.font.sizes.xxxsmall};
 
 }
 `;

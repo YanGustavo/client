@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import theme from 'styles/styled-components/theme';
 export const CardWrapper = styled.div`
   background-color: ${theme.colors.right_menu_background_child_rgb};
   overflow: hidden;
@@ -20,7 +19,7 @@ export const CardHeading = styled.h1`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  color: ${theme.colors.header_text_color};
+  color: ${(props) => props.desing.theme.colors.header.textColor};
 `;
 
 export const CardBody = styled.div`
@@ -75,7 +74,7 @@ export const CardInputPassWord = styled.input`
   transition: border-bottom-color 0.25s ease-in;
 
   &:focus {
-    border-bottom-color: ${theme.colors.header_accent_color};
+    border-bottom-color: ${(props) => props.theme.desing.colors.background};
     outline: 0;
   }
 `;
@@ -147,7 +146,7 @@ export const CardButton = styled.button`
   font-size: 14px;
   font-weight: 700;
   color: #fff;
-  background-color: ${theme.colors.secondary_button_background};
+  background-color: ${(props) => props.theme.desing.buttons.secondary.background};
   border: 0;
   border-radius: 35px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.08);

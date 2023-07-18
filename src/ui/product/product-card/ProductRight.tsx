@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const Right = styled.div`
   width: 50%;
-  background: ${(props) => props.theme.colors.success_color};
-  color: white;
+  background: ${(props) => props.theme.desing.colors.success.color};
+  color: ${(props) => props.theme.desing.colors.header.color};
   float: right;
   height: 200%;
   overflow: hidden;

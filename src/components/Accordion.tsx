@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 //Typography
 import { H4, P,} from 'components/Typography';
 export type AccordionProps = {
@@ -18,9 +17,9 @@ export type AccordionContentProps = {
 };
 
 const AccordionContainer = styled.div`
-  border: 1px solid ${theme.desing.border.color};
+  border: 1px solid ${(props) => props.theme.desing.border.color};
   border-radius: 5px;
-  box-shadow: 0 0 0 2px ${theme.desing.box.shadow};
+  box-shadow: 0 0 0 2px ${(props) => props.theme.desing.box.shadow};
 `;
 
 export const AccordionTitle = styled.div<AccordionTitleProps>`

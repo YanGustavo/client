@@ -26,8 +26,8 @@ padding: 5%;
 `;
 const Inside = styled.div`
     z-index: 9;
-    background-color: ${(props) => props.theme.colors.background_light};
-    background: ${(props) => props.theme.colors.background_light_radial};
+    background-color: ${(props) => props.theme.desing.colors.background.light};
+    background: ${(props) => props.theme.desing.colors.background.lightRadial};
     width: 140px;
     height: 140px;
     position: absolute;
@@ -38,7 +38,7 @@ const Inside = styled.div`
     overflow: hidden;
     
     ${this}:hover{
-     background: ${(props) => props.theme.colors.background_light};
+     background: ${(props) => props.theme.desing.colors.background.light};
       width:100%;
       right:0;
       top:0;

@@ -71,7 +71,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
     left: 0;
     z-index: 1;
     padding: 16px;
-    background-color: ${({ theme }) => theme.desing.secondaryBackground.default};
+    background-color: ${({ theme }) => theme.desing.colors.secondaryBackground.default};
     box-shadow: ${({ theme }) => theme.desing.box.shadow};
     border-radius: ${({ theme }) => theme.desing.border.radius};
     display: ${isOpen ? 'block' : 'none'};

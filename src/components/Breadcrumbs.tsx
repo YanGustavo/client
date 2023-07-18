@@ -5,7 +5,6 @@ import { I, P } from 'components/Typography';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 import { Container } from 'templates/base/ui/styles';
 
 const Body = styled.div`
@@ -19,7 +18,7 @@ const Body = styled.div`
 const Left = styled.div`
   font-size: 16px;
   font-weight: 500;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.color};
 `;
 const Right = styled.div`
   padding: 0;

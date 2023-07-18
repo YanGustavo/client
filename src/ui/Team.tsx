@@ -37,7 +37,7 @@ gap: 1rem;
   width: 100%;
   height: 0;
   border-radius: 50%;
-  background-color: ${theme.colors.header_text_color};
+  background-color: ${theme.desing.colors.heading};
   position: absolute;
   bottom: 135%;
   right: 0;
@@ -56,7 +56,7 @@ gap: 1rem;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: ${theme.colors.accent_background};
+  background-color: ${theme.desing.colors.background.default};
   position: absolute;
   top: 0;
   left: 0;
@@ -72,14 +72,14 @@ gap: 1rem;
 }
 
 .our-team:hover .picture img {
-  box-shadow: 0 0 0 14px ${theme.colors.footer_accent_color};
+  box-shadow: 0 0 0 14px ${theme.desing.colors.footer.accentColor};
   transform: scale(0.7);
 }
 
 .our-team .title {
   display: block;
   font-size: 15px;
-  color: ${theme.colors.header_text_color};
+  color: ${theme.desing.colors.heading};
   text-transform: capitalize;
 }
 
@@ -87,7 +87,7 @@ gap: 1rem;
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: ${theme.colors.secondary_button_background};
+  background-color: ${theme.desing.buttons.primary.backgroundColor};
   position: absolute;
   bottom: -100px;
   left: 0;
@@ -112,7 +112,7 @@ gap: 1rem;
 }
 
 .our-team .social li a:hover {
-  color: ${theme.colors.header_text_color};
+  color: ${theme.desing.colors.heading};
   background-color: #f7f5ec;
 }
 `;

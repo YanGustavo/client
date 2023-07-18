@@ -21,21 +21,21 @@ const Label = styled.label`
 const StyledInput = styled.input`
   padding: 12px 16px;
   font-size: 16px;
-  border: 1px solid ${({ theme }) => theme.colors.border_color};
-  border-radius: ${({ theme }) => theme.border.radius};
-  color: ${({ theme }) => theme.colors.primary_button_text_color};
-  background-color: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.desing.border.color};
+  border-radius: ${({ theme }) => theme.desing.border.radius};
+  color: ${({ theme }) => theme.desing.buttons.primary.color};
+  background-color: ${({ theme }) => theme.desing.buttons.primary.backgroundColor};
   transition: border-color 0.2s ease-in-out;
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.accent_background};
+    border-color: ${({ theme }) => theme.desing.border.color};
   }
 `;
 
 const Error = styled.span`
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.error_background};
+  color: ${({ theme }) => theme.desing.colors.error.background};
 `;
 
 const Input = ({ label, error, ...rest }: InputProps) => {

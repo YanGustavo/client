@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const Images = styled.div`
  grid-column-start: first;
  grid-column: 1 / 6;
@@ -121,7 +119,7 @@ export const Body = styled.div`
 export const Name = styled.div`
   .brand {
     text-transform: uppercase;
-    color: ${theme.colors.header_text_color};
+    color: ${(props) => props.theme.desing.colors.header.textColor};
     font-weight: 500;
     font-size: 0.8rem;
     letter-spacing: 0.3rem;
@@ -144,7 +142,7 @@ export const Name = styled.div`
 export const ProductDetails = styled.div``;
 
 export const Description = styled.div`
-  color: ${theme.colors.text_color};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   margin-bottom: 2rem;
   line-height: 1.6;
 `;
@@ -164,14 +162,14 @@ export const Price = styled.div`
     margin-top: 10px;
     font-weight: 700;
     text-decoration: line-through;
-    color: ${theme.colors.text_color}
+    color: ${(props) => props.theme.desing.colors.header.textColor};
   }
   .percentage {
     padding: 3px 7px;
     font-weight: 600;
     border-radius: 6px;
-    background-color: ${theme.colors.product_price_percentage};
-    color: ${theme.colors.heading_color};
+    background-color: $${(props) => props.theme.desing.colors.productPricePercentage};
+    color:${(props) => props.theme.desing.colors.header.textColor};
   }
   @media (max-width: 768px) {
     display: flex;
@@ -190,7 +188,7 @@ export const Buttons = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: ${theme.colors.header_background};
+    background-color: ${(props) => props.theme.desing.colors.header.background};
     width: fit-content;
     height: 55px;
     width: 50%;
@@ -236,7 +234,7 @@ export const Buttons = styled.div`
     button {
       width: 100%;
       height: 55px;
-      background-color: ${theme.colors.secondary_button_background};
+      background-color: ${(props) => props.theme.desing.buttons.secondary.backgroundColor};
       border: none;
       border-radius: 10px;
       align-items: center;

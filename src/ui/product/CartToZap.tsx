@@ -1,5 +1,5 @@
 import Button from 'components/Button';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Modal from '../../components/Modal';
 import {H1,P} from "components/Typography";

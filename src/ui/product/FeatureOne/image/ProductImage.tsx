@@ -4,8 +4,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 import styled from 'styled-components';
-//Styles
-import theme from 'styles/styled-components/theme';
 import CloudinaryImage from 'ui/CloudinaryImage';
 import { useProductContext } from '../../ProductContext';
 const ProductPhoto = styled.div`
@@ -25,8 +23,8 @@ const PhotoContainer = styled.div`
 const PhotoMain = styled.div`
   position: relative;
   border-radius: 6px 6px 0 0;
-  background-color: ${theme.colors.background.light};
-  background: ${theme.colors.background.lightRadial};
+  background-color: ${(props) => props.theme.desing.colors.background.light};
+  background: ${(props) => props.theme.desing.colors.background.lightRadial};
 
   img {
     left: -3.5em;

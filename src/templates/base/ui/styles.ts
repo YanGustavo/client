@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 
 const ShopCart = styled.div`
   position: relative;
@@ -15,7 +14,7 @@ ${this} .cart {
 ${this} .cart_content {
   width: 20px;
   height: 20px;
-  background: ${theme.colors.heading_color};
+  background: ${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 100%;
   min-width: 20px;
   min-height: 20px;
@@ -62,7 +61,7 @@ ${this}::after  {
   width: 18px;
   height: auto;
   font-size: 0.7rem;
-  color: ${theme.colors.heading_color};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
  /* ${this}.isLoaded .toggleIcon  { 
   animation: bounce-down 1.5s infinite; 

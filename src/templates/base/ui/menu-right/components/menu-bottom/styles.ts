@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 export const MenuBottomStyle = styled.div`
 .menuBottom {
   display: flex;
@@ -8,7 +7,7 @@ export const MenuBottomStyle = styled.div`
   position: relative;
   width: 100%;
   height: 3.2rem;
-  background: ${theme.colors.heading_color};  
+  background: ${props => props.theme.desing.colors.header.background};  
 }
 
 .menuBottom ul {
@@ -38,8 +37,8 @@ export const MenuBottomStyle = styled.div`
   position: absolute;
   top: 4.2rem;
   right: -2.38rem;
-  color: ${theme.colors.heading_color};  
-  background-color: #daa520;
+  color: ${props => props.theme.desing.colors.heading};  
+  background-color: ${props => props.theme.desing.buttons.secondary.backgroundColor};
   border-radius: 50%;
   width: 1rem;
   height: 1rem;
@@ -52,7 +51,7 @@ export const MenuBottomStyle = styled.div`
     position: absolute;
     top: 0;
     right: 0.3rem;
-  color: ${theme.colors.white};
+  color: ${props => props.theme.desing.colors.header.textColor};
   font-weight: 900;
 }
 }
@@ -64,7 +63,7 @@ export const MenuBottomStyle = styled.div`
   position: absolute;
   top: 5.5rem;
   left: 0;
-  color: ${theme.colors.white};
+  color: ${props => props.theme.desing.colors.header.textColor};
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -86,7 +85,7 @@ export const MenuBottomStyle = styled.div`
 
 .menuBottom ul li a .icon .MuiSvgIcon-root  {
   font-size: 1rem;
-  color: #FFFFFF;
+  color: ${props => props.theme.desing.colors.header.textColor};
 }
 
 .menuBottom ul li.active a .icon {
@@ -94,7 +93,7 @@ export const MenuBottomStyle = styled.div`
 }
 .menuBottom ul li.active a .icon .MuiSvgIcon-root {
   font-size: 1.6rem;
-  color: #FFFFFF;
+  color:${props => props.theme.desing.colors.header.textColor};
   transition: 0.5s;
 }
 
@@ -102,10 +101,10 @@ export const MenuBottomStyle = styled.div`
   position: absolute;
   height: 3.2rem;
   width: 3.2rem;
-  background: ${theme.colors.heading_color};
+  background: ${props => props.theme.desing.colors.background.default};
   top: -1.45rem;
   border-radius: 50%;
-  border: 6px solid ${theme.colors.right_menu_background_child_rgb};
+  border: 6px solid ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
   transition: 0.5s;
 }
 .indicator::before {
@@ -117,7 +116,7 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-right-radius: 18px;
-  //box-shadow: 0px -10px 0 0 ${theme.colors.right_menu_background_child_rgb};
+  //box-shadow: 0px -10px 0 0 ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
 }
 
 .indicator::after {
@@ -129,7 +128,7 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-left-radius: 1rem;
-  //box-shadow: 0px -10px 0 0 ${theme.colors.right_menu_background_child_rgb};
+  //box-shadow: 0px -10px 0 0 ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
 }
 
 .menuBottom ul li:nth-child(1).active ~ .indicator {

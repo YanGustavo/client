@@ -1,8 +1,6 @@
 
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 const CartItemBody = styled.div`
 display: flex;
   align-items: center;
@@ -19,8 +17,8 @@ width: 60px;
   min-width: 60px;
   height: 60px;
   min-height: 60px;
-  background: ${theme.colors.cart_img_box};
-  border: 4px solid ${theme.colors.secondary_button_background};
+  background: ${(props) => props.theme.desing.colors.cartImgBox};
+  border: 4px solid ${(props) => props.theme.desing.border.color};
   box-shadow: 0 0 0 1px rgba(0,255,255,0.2);
   animation: imageBoxAnimation 2.5s infinite; 
   border-radius: 10px;
@@ -49,7 +47,7 @@ font-size: 16px;
   justify-content: space-between;
   width: 150px;
   ${this} span {
-  color: ${theme.colors.heading_color};
+  color: ${(props) => props.theme.desing.colors.heading};
 }
 `;
 const Quantity = styled.div`
@@ -76,7 +74,7 @@ font-size: 16px;
 `;
 const DolorSign = styled.span`
 font-size: 12px;
-  color: ${theme.colors.heading_color};
+  color: ${(props) => props.theme.desing.colors.heading};
 `;
 const ItemPriceValue = styled.span`
 font-size: 16px;

@@ -4,7 +4,6 @@ import type { Product } from "lib/types/Product";
 import { useProductContext } from '../../ProductContext';
 //import Button from 'components/Button';
 //Styles
-import theme from 'styles/styled-components/theme';
 import styled from 'styled-components';
 const Button = styled.button`
 padding: 1.5em 3.1em;
@@ -13,9 +12,9 @@ padding: 1.5em 3.1em;
 	font-size: 0.8em;
 	font-weight: 700;
 	letter-spacing: 1.3px;
-	color: ${theme.colors.tertiary_button_text_color};
-	background-color: ${theme.colors.tertiary_button_background};
-	box-shadow: 2px 2px 25px -7px ${theme.colors.border_color};
+	color: ${(props) => props.theme.desing.buttons.tertiary.color};
+	background-color: ${(props) => props.theme.desing.buttons.tertiary.backgroundColor};
+	box-shadow: 2px 2px 25px -7px ${(props) => props.theme.desing.border.color};
 	cursor: pointer;
 	&:active {
 		transform: scale(0.97);

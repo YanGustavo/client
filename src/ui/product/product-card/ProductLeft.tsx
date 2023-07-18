@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Left = styled.div`
         height:100%;
         width: 50%;
-        background: ${(props) => props.theme.colors.text_color};
+        background: ${(props) => props.theme.desing.colors.header.textColor};
         position: relative;
         float: left;        
 `;

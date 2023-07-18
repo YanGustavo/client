@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 
 type TypographyProps = {
   color?: string;
@@ -13,11 +12,11 @@ type TypographyProps = {
 interface HrProps {
   primary?: boolean;
   secondary?: boolean;
-  hasChildren?: boolean; // Adicione essa propriedade como opcional
+  hasChildren?: boolean;
 }
 const H1 = styled.h1<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.accent_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.huge};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.huge};
   font-weight: ${(props) => props.fontWeight || 700};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -26,8 +25,8 @@ const H1 = styled.h1<TypographyProps>`
 `;
 
 const H2 = styled.h2<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.accent_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.xxxlarge};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.xxxlarge};
   font-weight: ${(props) => props.fontWeight || 600};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -36,8 +35,8 @@ const H2 = styled.h2<TypographyProps>`
 `;
 
 const H3 = styled.h3<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.accent_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.xxlarge};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.xxlarge};
   font-weight: ${(props) => props.fontWeight || 500};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -46,8 +45,8 @@ const H3 = styled.h3<TypographyProps>`
 `;
 
 const H4 = styled.h4<TypographyProps>`
-  color: ${(props) => props.color || 'inherit'};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.xlarge};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.xlarge};
   font-weight: ${(props) => props.fontWeight || 400};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -55,8 +54,8 @@ const H4 = styled.h4<TypographyProps>`
   text-transform: ${(props) => props.textTransform || 'none'};
 `;
 const H5 = styled.h6<TypographyProps>`
-  color: ${(props) => props.color || 'inherit'};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.large};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.large};
   font-weight: ${(props) => props.fontWeight || 300};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -64,8 +63,8 @@ const H5 = styled.h6<TypographyProps>`
   text-transform: ${(props) => props.textTransform || 'none'};
 `;
 const H6 = styled.h6<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.accent_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.large};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.large};
   font-weight: ${(props) => props.fontWeight || 200};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -74,8 +73,8 @@ const H6 = styled.h6<TypographyProps>`
 `;
 
 const Strong = styled.strong<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.accent_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.medium};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.medium};
   font-weight: ${(props) => props.fontWeight || 400};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -84,8 +83,8 @@ const Strong = styled.strong<TypographyProps>`
 `;
 
 const P = styled.p<TypographyProps>`
-  color: ${(props) => props.color || theme.colors.header_text_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.small};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.small};
   font-weight: ${(props) => props.fontWeight || 300};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -93,9 +92,8 @@ const P = styled.p<TypographyProps>`
   text-transform: ${(props) => props.textTransform || 'none'};
 `;
 const Span = styled.span<TypographyProps>`
-  /* Styles for the <span> tag */
-  color: ${(props) => props.color || theme.colors.header_text_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.xsmall};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.xsmall};
   font-weight: ${(props) => props.fontWeight || 400};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -103,9 +101,8 @@ const Span = styled.span<TypographyProps>`
   text-transform: ${(props) => props.textTransform || 'none'};
 `;
 const I = styled.i<TypographyProps>`
-  /* Styles for the <i> tag */
-  color: ${(props) => props.color || theme.colors.header_text_color};
-  font-size: ${(props) => props.fontSize || theme.font.sizes.xxsmall};
+  color: ${(props) => props.theme.desing.colors.heading};
+  font-size: ${(props) => props.theme.desing.font.sizes.xxsmall};
   font-weight: ${(props) => props.fontWeight || 400};
   font-style: ${(props) => props.fontStyle || 'normal'};
   text-align: ${(props) => props.textAlign || 'left'};
@@ -121,8 +118,7 @@ const Hr = styled.div<HrProps>`
   h1 {
     position: relative;
     display: inline-block;
-   // color: ${(props) => (props.primary ? props.theme.colors.primary_button_text_color : props.theme.colors.accent_color)};
-  }
+}
 
   h1::before,
   h1::after {
@@ -132,37 +128,12 @@ const Hr = styled.div<HrProps>`
     top: 50%;
     left: -120px;
     width: 100px;
-    border-bottom: 1px solid ${(props) => (props.primary ? props.theme.colors.primary_button_text_color : props.theme.colors.accent_color)};
+    border-bottom: 1px solid ${(props) => (props.primary ? props.theme.desing.border.color : props.theme.desing.border.color)};
   }
 
   h1::after {
     left: auto;
     right: -120px;
   }
-
-  /* p {
-    color: ${(props) => (props.primary ? props.theme.colors.primary_button_text_color : props.theme.colors.accent_color)};
-  }
-
-  .MuiSvgIcon-root {
-    color: ${(props) => props.theme.colors.accent_color};
-  } */
-  /* Estilos do seu componente */
-
-  /* Adicione a propriedade display para controlar a exibição do hr */
-  /* hr {
-    display: ${(props) => (props.hasChildren ? 'none' : 'block')};
-    /* Adicione os estilos da linha horizontal /
-    border: 0;
-    border-top: 1px solid ${(props) =>
-      props.primary
-        ? props.theme.colors.primary_button_text_color
-        : props.theme.colors.secondary_button_text_color};
-    margin: 20px 0;
-  } */
 `;
-
-
-
-
 export { H1, H2, H3, H4, H5, H6, P, Hr,Span, I};

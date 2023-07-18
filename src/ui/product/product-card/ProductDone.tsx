@@ -4,15 +4,13 @@ import { useProductContext } from '../ProductContext';
 import Tooltip from '@mui/material/Tooltip';
 import DoneIcon from '@mui/icons-material/Done';
 //import Button from 'components/Button';
-//Styles
-import theme from 'styles/styled-components/theme';
 import styled from 'styled-components';
 
 const Done = styled.div`
 width: calc(30% - 2px);
           float: left;
           transition: transform 0.5s;
-          border-right: solid thin ${theme.colors.header_border_color};
+          border-right: solid thin ${(props) => props.theme.desing.border.color};
           height:50%;
           display: flex;
           align-items: center;
@@ -21,7 +19,7 @@ width: calc(30% - 2px);
             transform: translateY(-5px) scale(1.5);
             font-size:30px;
             padding:30px;
-            color: white;
+            color: ${(props) => props.theme.desing.colors.header.color};
           }
 `;
 function ProductDone(props: React.HTMLAttributes<HTMLDivElement>) {

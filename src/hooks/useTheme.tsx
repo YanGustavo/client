@@ -11,6 +11,7 @@ interface UseThemeProps {
 const useTheme = (): UseThemeProps => {
   const [theme, setTheme] = useState<ThemeLib>(defaultTheme);
 
+
   const getThemeDataFromDatabase = async (): Promise<ThemeLib | null> => {
     try {
       const response = await axios.get<ThemeLib>('http://localhost:5000/themes/slug/eaichefinho');

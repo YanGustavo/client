@@ -5,7 +5,8 @@ import {P} from 'components/Typography';
 
 function ProductVariantTitle() {  
 	const { selectedVariation } = useProductContext();
-	return <P>{selectedVariation.value} - {selectedVariation.capacity}</P>;
+	return <P>{selectedVariation.value} </P>; 
+  // - {selectedVariation.key}
 }
 
 export default ProductVariantTitle;

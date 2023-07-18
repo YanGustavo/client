@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const Body = styled.section`
 display: flex;
 direction: horizontal;
@@ -9,7 +7,7 @@ gap: 3rem;
   .our-team {
   padding: 30px 0 40px;
   margin-bottom: 30px;
-  background-color: #f7f5ec;
+  background-color: ${(props) => props.theme.desing.colors.header.background};
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -30,7 +28,7 @@ gap: 3rem;
   width: 100%;
   height: 0;
   border-radius: 50%;
-  background-color: ${theme.colors.header_text_color};
+  background-color: ${(props) => props.theme.desing.colors.header.textColor};
   position: absolute;
   bottom: 135%;
   right: 0;
@@ -49,7 +47,7 @@ gap: 3rem;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: ${theme.colors.accent_background};
+  background-color: ${(props) => props.theme.desing.colors.background};
   position: absolute;
   top: 0;
   left: 0;
@@ -72,7 +70,7 @@ gap: 3rem;
 .our-team .title {
   display: block;
   font-size: 15px;
-  color: ${theme.colors.header_text_color};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   text-transform: capitalize;
 }
 
@@ -80,7 +78,7 @@ gap: 3rem;
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: ${theme.colors.secondary_button_background};
+  background-color: ${(props) => props.theme.desing.buttons.secondary.backgroundColor};
   position: absolute;
   bottom: -100px;
   left: 0;
@@ -105,7 +103,7 @@ gap: 3rem;
 }
 
 .our-team .social li a:hover {
-  color: ${theme.colors.header_text_color};
-  background-color: #f7f5ec;
+  color: ${(props) => props.theme.desing.colors.heading};
+  background-color: ${(props) => props.theme.desing.colors.header.background};
 }
 `;

@@ -22,9 +22,8 @@ import PolicyIcon from '@mui/icons-material/Policy';
 import QuizIcon from '@mui/icons-material/Quiz';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 import {H2, I} from 'components/Typography';
-import Tooltip from 'components/Tooltip';
+//import Tooltip from 'components/Tooltip';
 
 const RightBox = styled.div`
   float: right;
@@ -43,12 +42,12 @@ const LeftBox = styled.div`
   width: 10%;
   max-width: 15%;
   height: calc(100% + 10px);
-  background: ${theme.colors.heading_color};
-  box-shadow: 3px 3px 10px rgba($gray, .5);
-  border: 1px dotted ${theme.colors.white};
+  background: ${(props) => props.theme.desing.colors.header.background};
+  box-shadow: ${(props) => props.theme.desing.box.shadow};
+  border: 1px dotted ${(props) => props.theme.desing.colors.header.color};
   @media screen and (min-width: 950px) {
   ${this}{
-    border: 4px dotted ${theme.colors.white};
+    border: 4px dotted ${(props) => props.theme.desing.border.color};
 }
 }
 `;
@@ -56,7 +55,7 @@ const Nav = styled.div`
 ${this} a {
   list-style: none;
   padding: 1rem 0.2rem 1rem 0.2rem;  
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.color};
   display: flex;
   justify-content: center;
   align-items: center;  
@@ -76,11 +75,11 @@ ${this} a .MuiSvgIcon-root {
   transition: all .3s ease-in-out;
 }
 ${this} a.active {
-  background-color: ${theme.colors.secondary_button_background};
+  background-color: ${(props) => props.theme.desing.buttons.secondary.backgroundColor};
 }
 /* ${this} a:hover .MuiSvgIcon-root,
 ${this} a.active .MuiSvgIcon-root {
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   opacity: 1;
   transition: 1s;
   transform: scale(1.5) translateY(0.1rem);

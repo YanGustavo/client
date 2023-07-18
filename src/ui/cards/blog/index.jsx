@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 const StyledContainer = styled.div`
-  border: ${(props) => `1px solid ${props.theme.colors.border_color}`};
+  border: ${(props) => `1px solid ${props.theme.desing.border_color}`};
   padding: 25px 12px 18px;
   background: ${(props) => `linear-gradient(
-    45deg, ${props.theme.colors.header_background}, ${props.theme.colors.accent_color}
+    45deg, ${props.theme.desing.colors.header.background}, ${props.theme.desing.colors.header.background}
   )`};
 `
 const Title = styled.h2`
-  color: #fff;
+  color: ${props.theme.desing.colors.header.textColor};
   font-weight: 300;
   @media (max-width: 500px) {
     font-size: 1rem;
   }
 `
 const Date = styled.div`
-  color: #ccc;
+  color: ${props.theme.desing.colors.header.background};
   font-weight: 300;
   margin: 6px 0;
   @media (max-width: 500px) {
@@ -23,7 +23,7 @@ const Date = styled.div`
   }
 `
 const Description = styled.p`
-  color: #fff;
+  color: ${props.theme.desing.colors.header.background};
   font-weight: 300;
   @media (max-width: 500px) {
     font-size: 0.75rem;
@@ -50,7 +50,7 @@ const Action = styled.button`
   margin: 0 5px;
   padding: 8px 14px;
   background: rgba(155, 155, 155, 0.2);
-  color: #fff;
+  color: ${props.theme.desing.colors.header.background};
   cursor: pointer;
   border: 1px solid #fff;
   outline: 0;

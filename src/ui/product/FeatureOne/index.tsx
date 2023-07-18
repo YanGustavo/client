@@ -25,8 +25,6 @@ import ShippingCalculator from '../../ShippingCalculator';
 import OnlineUsers from '../../OnlineUsers';
 import styled from 'styled-components';
 import {ContainerFlush} from 'templates/base/ui/styles';
-//Styles
-import theme from 'styles/styled-components/theme';
 /* ----- Product Section ----- */
 const FeatureOneWrapper = styled.section`
 	display: grid;
@@ -46,7 +44,7 @@ const FeatureOneWrapper = styled.section`
 
 	img {
 		max-width: 100%;
-		filter: drop-shadow(1px 1px 3px ${theme.colors.background_light});
+		filter: drop-shadow(1px 1px 3px ${(props) => props.theme.desing.colors.background.light});
 	}
 
 	@media screen and (max-width: 768px) {

@@ -12,22 +12,22 @@ type ButtonProps = {
 const Button = styled(motion.button)<ButtonProps>`
   background-color: ${(props) =>
     props.variant === 'secondary'
-      ? props.theme.colors.secondary_button_background
-      : props.theme.colors.primary_button_background};
-  color: ${(props) => props.theme.colors.primary_button_text_color};
+      ? props.theme.desing.buttons.secondary.backgroundColor
+      : props.theme.desing.buttons.primary.backgroundColor};
+  color: ${(props) => props.theme.desing.buttons.primary.color};
   border: none;
-  font-family: ${(props) => props.theme.font.family};
-  border-radius: ${(props) => props.theme.border.radius};
+  font-family: ${(props) => props.theme.desing.font.family};
+  border-radius: ${(props) => props.theme.desing.border.radius};
   font-size: ${(props) => {
     switch (props.size) {
       case 'small':
-        return props.theme.font.sizes.xxxxsmall;
+        return props.theme.desing.font.sizes.xxxsmall;
       case 'medium':
-        return props.theme.font.sizes.medium;
+        return props.theme.desing.font.sizes.medium;
       case 'large':
-        return props.theme.font.sizes.large;
+        return props.theme.desing.font.sizes.large;
       default:
-        return props.theme.font.sizes.medium;
+        return props.theme.desing.font.sizes.medium;
     }
   }};
   padding: ${(props) => {
@@ -53,19 +53,19 @@ const Button = styled(motion.button)<ButtonProps>`
     `
     background-color: ${
       props.variant === 'secondary'
-        ? props.theme.colors.secondary_button_background_hover
-        : props.theme.colors.primary_button_background_hover
+        ? props.theme.desing.buttons.secondary.backgroundColor //_hover
+        : props.theme.desing.buttons.primary.backgroundColor //_hover// faltou criar o background hover nos buttons
     };
     color: ${
       props.variant === 'secondary'
-        ? props.theme.colors.secondary_button_text_color
-        : props.theme.colors.primary_button_text_color
+        ? props.theme.desing.buttons.secondary.color
+        : props.theme.desing.buttons.primary.color
     };
     &:hover {
       background-color: ${
         props.variant === 'secondary'
-          ? props.theme.colors.secondary_button_background_hover
-          : props.theme.colors.primary_button_background_hover
+          ? props.theme.desing.buttons.secondary.backgroundColor //_hover
+          : props.theme.desing.buttons.primary.backgroundColor //_hover
       };
     }
     &:before {
@@ -73,8 +73,8 @@ const Button = styled(motion.button)<ButtonProps>`
       position: absolute;
       background-color: ${
         props.variant === 'secondary'
-          ? props.theme.colors.secondary_button_background_hover
-          : props.theme.colors.primary_button_background_hover
+        ? props.theme.desing.buttons.secondary.backgroundColor //_hover
+          : props.theme.desing.buttons.primary.backgroundColor //_hover
       };
       left: 0;
       top: 0;
@@ -97,7 +97,7 @@ const Button = styled(motion.button)<ButtonProps>`
     }
 
     &:focus:before {
-      box-shadow: 0 0 0 2px ${props.theme.box.shadow};
+      box-shadow: 0 0 0 2px ${props.theme.desing.box.shadow};
     }
   `}
 `;

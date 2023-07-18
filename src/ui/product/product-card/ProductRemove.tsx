@@ -6,22 +6,20 @@ import { useProductContext } from '../ProductContext';
 import Tooltip from '@mui/material/Tooltip';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 //import Button from 'components/Button';
-//Styles
-import theme from 'styles/styled-components/theme';
 import styled from 'styled-components';
 
 const Remove = styled.div`
   width: calc(30% - 1px);
           clear: both;
-          border-right: solid thin ${theme.colors.header_border_color};
+          border-right: solid thin ${(props) => props.theme.desing.border.color};
           height: 50%;
-          background: ${theme.colors.tertiary_button_background};
+          background: ${(props) => props.theme.desing.buttons.tertiary.backgroundColor};
           transition: transform 0.5s, background 0.5s;
           display: flex;
           align-items: center;
           align-content: center;
           ${this}:hover{
-            background: ${theme.colors.tertiary_button_background};
+            background: ${(props) => props.theme.desing.buttons.tertiary.backgroundColor};
           }
           ${this} i{
             transition: transform 0.5s;

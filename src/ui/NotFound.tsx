@@ -11,20 +11,20 @@ width: 100%;
   margin-top: 15%;
 }
 
-.st0{fill:#fff};
-.st2{fill:   ${(props) => props.theme.colors.header_text_color}};
-.st3{fill: ${(props) => props.theme.colors.header_text_color}};
+.st0{fill:${(props) => props.theme.desing.colors.header.textColor}};
+.st2{fill:   ${(props) => props.theme.desing.colors.header.textColor}};
+.st3{fill: ${(props) => props.theme.desing.colors.header.textColor}};
 .st4,.st6{
-  fill:#fff;
-  stroke: ${(props) => props.theme.colors.header_text_color};
+  fill: ${(props) => props.theme.desing.colors.header.textColor};
+  stroke: ${(props) => props.theme.desing.colors.header.textColor};
   stroke-miterlimit:10
 }
 .st6{
-  stroke: ${(props) => props.theme.colors.header_text_color};
+  stroke: ${(props) => props.theme.desing.colors.header.textColor};
   stroke-width:2
 }
 .st7,.st8,.st9{
-  stroke: ${(props) => props.theme.colors.header_text_color};
+  stroke: ${(props) => props.theme.desing.colors.header.textColor};
   stroke-miterlimit:10
 }
 
@@ -34,7 +34,7 @@ width: 100%;
   fill:none
 }
 .st8,.st9{
-  fill:#fff
+  fill: ${(props) => props.theme.desing.colors.header.textColor};
 }
 .st9{
   fill:none

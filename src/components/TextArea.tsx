@@ -34,29 +34,29 @@ interface StyledTextAreaProps {
 const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   padding: 8px;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.border_color};
+  border: 1px solid ${({ theme }) => theme.desing.border.color};
   font-size: 16px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.desing.colors.heading};
 
   ${({ hasError, theme }) =>
     hasError &&
     css`
-      border-color: ${theme.colors.error_color};
+      border-color: ${theme.desing.colors.error.color};
     `};
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.border_color};
+    border-color: ${({ theme }) => theme.desing.border.color};
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.placeholder};
+    color: ${({ theme }) => theme.desing.colors.placeholder};
   }
 `;
 
 const ErrorMessage = styled.span`
-  color: ${({ theme }) => theme.colors.error_color};
+  color: ${({ theme }) => theme.desing.colors.error.color};
   font-size: 14px;
   margin-top: 4px;
 `;

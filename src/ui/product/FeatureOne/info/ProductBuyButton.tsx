@@ -2,7 +2,6 @@ import React from 'react';
 import { ReactNode } from 'react';
 import type { Product } from "lib/types/Product";
 import { useProductContext } from '../../ProductContext';
-import theme from 'styles/styled-components/theme';
 import styled, { keyframes } from 'styled-components';
 import { I } from 'components/Typography';
 
@@ -39,8 +38,8 @@ const BuyButton = styled.button`
   border: none;
   border-radius: 7px;
   letter-spacing: 1.3px;
-  background-color: ${theme.colors.tertiary_button_background};
-  box-shadow: 2px 2px 25px -7px ${theme.colors.border_color};
+  background-color: ${(props) => props.theme.desing.buttons.tertiary.backgroundColor};
+  box-shadow: 2px 2px 25px -7px ${(props) => props.theme.desing.border.color};
   cursor: pointer;
   width: 100%;
   &:active {
@@ -57,7 +56,7 @@ function ProductBuyButton({ children }: Props) {
   const { handlerAddToCart } = useProductContext();
   return (
     <BuyButton onClick={() => handlerAddToCart()}>
-      <I color={theme.colors.tertiary_button_text_color} fontWeight={900} fontSize="1.2">
+      <I color={`${(props) => props.theme.desing.buttons.tertiary.color}`} fontWeight={900} fontSize="1.2">
         {children}
       </I>
     </BuyButton>

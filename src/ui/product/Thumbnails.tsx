@@ -1,8 +1,6 @@
 
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const Body = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
@@ -28,13 +26,13 @@ export const Body = styled.div`
         position: absolute;
         left: 0;
         top: 0;
-        background-color: ${theme.colors.header_text_color};
+        background-color: ${(props) => props.theme.desing.colors.header.textColor};
         opacity: 40%;
       }
     }
   }
   .active {
-    outline: 2px ${theme.colors.header_text_color} solid;
+    outline: 2px ${(props) => props.theme.desing.colors.header.textColor} solid;
     &:after {
       content: "";
       height: 100%;
@@ -42,7 +40,7 @@ export const Body = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      background-color: ${theme.colors.secondary_button_background};
+      background-color: ${(props) => props.theme.desing.buttons.secondary.backgroundColor};
       opacity: 20%;
     }
   }

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const SubMenuContainerStyle = styled.div`
 .subMenuContianer,
 .viewAll {
@@ -15,17 +13,17 @@ export const SubMenuContainerStyle = styled.div`
 .subMenuContianer h3 {
   font-size: 16px;
   font-weight: 500;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 
 .subMenuContianer .viewAll p {
   font-size: 12px;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   font-weight: 400;
 }
 
 .subMenuContianer .viewAll i {
-  background: ${theme.colors.white};
+  background: ${(props) => props.theme.desing.colors.header.textColor};
   width: 20px;
   height: 20px;
   min-width: 20px;

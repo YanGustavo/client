@@ -14,7 +14,7 @@ function ProductTotal({ currency = 'BRL' }: Props) {
   return (
     <P>
     <I>Total: <Space size={5} /></I>  
-    <H5 color={theme.colors.secondary_button_background} fontWeight={600}>
+    <H5 color={`${(props) => props.theme.colors.secondary_button_background}`} fontWeight={600}>
       {new Intl.NumberFormat('en-US', {style: 'currency', currency,}).format(typeof selectedVariation?.price === 'string' ? parseFloat(selectedVariation?.price) * selectedQuantity: 0)}
     </H5>
     </P>

@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 const Button = styled.button`
 border: none;
 background: none;
 
 ${this} .MuiSvgIcon-root{
 font-size: 24px;
-color: ${theme.colors.header_light_text_color};
+color: ${(props) => props.theme.desing.colors.link.default};
 cursor: pointer;
 transition:.5s;
  &:hover{
- color: ${theme.colors.header_text_color};
+ color: ${(props) => props.theme.desing.colors.link.hover};
  transform: rotate(22deg)
 }}
 `;
@@ -23,7 +21,7 @@ const ImageAvatar = styled.div`
   position: absolute;
   border-radius: 50%;
   border: 6px solid white;
-  background-image: linear-gradient(-60deg, ${theme.colors.header_text_color} 0%, ${theme.colors.secondary_button_background} 100%);
+  background-image: linear-gradient(-60deg, ${(props) => props.theme.desing.colors.header.background} 0%, ${(props) => props.theme.desing.buttons.secondary.backgroundColor} 100%);
   top: 15px;
   left: 35px;
   ${this} svg {
@@ -77,7 +75,7 @@ display: grid;
   padding: 0.5rem 1rem;
 `;
 const Card = styled.section`
-background: #fff;
+background: ${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 4px;
   box-shadow: 0px 14px 0.2rem rgba(34, 35, 58, 0.5);
   max-width: 400px;

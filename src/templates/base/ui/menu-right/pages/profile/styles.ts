@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-
-import theme from 'styles/styled-components/theme';
-
-
-
 const MenuTrigger = styled.div`
 @keyframes toggleMenuAnimation {
 	0% { opacity: 0; transform: translateY(-2px); color: white;  }
@@ -19,7 +14,7 @@ const MenuTrigger = styled.div`
 			left:0;
       border-radius: 0 25% 25% 0;
       z-index: 101;
-			background: ${theme.colors.footer_background_color};	
+			background: ${(props) => props.theme.desing.colors.footer.background};	
       display: flex;
       align-items: center;
       align-content: center;
@@ -27,7 +22,7 @@ const MenuTrigger = styled.div`
       ${this} .MuiSvgIcon-root {
         animation: toggleMenuAnimation 1.5s infinite; 
         font-size: 2rem;
-        color: ${theme.colors.secondary_button_text_color};
+        color: ${(props) => props.theme.desing.colors.header.textColor};
 			}
       ${this}:hover {
       width: 2.5rem;
@@ -54,7 +49,7 @@ const MenuTrigger = styled.div`
 			
 `;
 const Nav = styled.nav`
-background: ${theme.colors.footer_background_color};
+background: ${(props) => props.theme.desing.colors.footer.background};
 	height: 100%;
 	width: 100px;
 	position: absolute;
@@ -82,11 +77,11 @@ const Avatar = styled.header`
 			width: 80%;
 			border-radius: 50%;
 			overflow: hidden;
-			border: 4px solid ${theme.colors.secondary_button_background};
+			border: 4px solid ${(props) => props.theme.desing.buttons.secondary.color};
 			box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
 		}
     ${this} img:hover {
-      border: 4px solid ${theme.colors.background_light};
+      border: 4px solid ${(props) => props.theme.desing.colors.background.light};
 			box-shadow: 0 0 0 5px rgba(0,255,255,0.2);
     }
 		
@@ -94,7 +89,7 @@ const Avatar = styled.header`
 			font-weight: normal;
 			margin-bottom: 0;
       font-size: 0.9rem;
-      color: ${theme.colors.secondary_button_text_color};
+      color: ${(props) => props.theme.desing.buttons.secondary.color};
 		}
 `;
 const Ul = styled.ul`
@@ -111,7 +106,7 @@ const Ul = styled.ul`
 			background-size: auto 20px;
 			transition: all 0.15s linear;
 			cursor: pointer;
-      color: ${theme.colors.secondary_button_text_color};
+      color: ${(props) => props.theme.desing.buttons.secondary.color};
       
 			${this} li:hover {
         background-color: rgba(0,0,0,0.3);

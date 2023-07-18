@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const CardStyle = styled.div`
 
 .cards {
@@ -56,7 +54,7 @@ export const CardStyle = styled.div`
 .card-top {
   width: 100%;
   height: 50%;
-  background: #FFFFFF;
+  background: ${(props) => props.theme.desing.colors.header.background};
   padding: 1.5rem;//3rem;
   border-radius: 2.5rem 2.5rem 0 0;
   transition: background 0.5s;
@@ -87,15 +85,15 @@ export const CardStyle = styled.div`
   left: 30%;//5rem;
   width: 40%;
   height: 1.6rem;
-  background: ${theme.colors.heading_color};
-  color: ${theme.colors.white};
+  background: ${(props) => props.theme.desing.colors.header.background};
+  color:${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 0.3rem;
   box-sizing: border-box;  
 }
 
 .card-line-top h1 {
   height: 100%;
-  font-family: ${theme.font.family};
+  font-family: ${(props) => props.theme.desing.font.family};
   font-weight: 300;
   text-transform: uppercase;  
   font-weight: 900;
@@ -107,7 +105,7 @@ export const CardStyle = styled.div`
   align-content: center;
 }
 .card-top-text {
-  color: ${theme.colors.heading_color};
+  color: ${(props) => props.theme.desing.colors.heading};
 }
 
 .card-line-center {
@@ -134,18 +132,18 @@ export const CardStyle = styled.div`
   box-shadow: 0 1rem 2rem rgba(28, 71, 122, 0.5);
 }
 .card-line-center span:first-child {
-  background: ${theme.colors.heading_color};
-  color: ${theme.colors.white};
+  background: ${(props) => props.theme.desing.colors.header.color};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 .card-line-center span:last-child {
   background: yellowgreen;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 .card-bottom {
   width: 100%;
   height: 50%;
   padding: 1rem 1rem 0.5rem 1rem;//2rem 3rem;
-  background-color: #f1ae04;
+  background-color: ${(props) => props.theme.desing.buttons.secondary.backgroundColor};
   border-radius: 0 0 2.5rem 2.5rem;
 }
 .card-bottom .product-name {
@@ -242,12 +240,12 @@ export const CardStyle = styled.div`
 .sizes span {
   font-size: 0.75rem;//1.3rem;
   margin-right: 2.5rem;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
 }
 
 .sizes span.active {
-  background: ${theme.colors.heading_color};
-  color: ${theme.colors.white};
+  background: ${(props) => props.theme.desing.colors.header.background};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 30%;
   display: grid;
   place-items: center;
@@ -281,7 +279,7 @@ export const CardStyle = styled.div`
 }
 
 .size h4, .color h4 {
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   font-size: 0.9rem;//1.2rem;
   text-transform: capitalize;
   letter-spacing: 0.1rem;
@@ -292,7 +290,7 @@ export const CardStyle = styled.div`
 
 .logo {
   width: 2rem;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 0.5rem;
   position: absolute;
   left: 1.2rem;
@@ -306,7 +304,7 @@ export const CardStyle = styled.div`
   width: 6rem;//16rem;
   height: 2rem;//4rem;
   background: #1c477a;
-  color: ${theme.colors.white};
+  color: ${(props) => props.theme.desing.colors.header.textColor};
   border-radius: 0.5rem;
   position: absolute;
   right: -0.5rem;

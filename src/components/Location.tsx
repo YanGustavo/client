@@ -5,9 +5,9 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   align-items: center;
-  font-family: ${(props) => props.theme.font.family};
-  font-size: ${(props) => props.theme.font.sizes.small};
-  color: ${(props) => props.theme.colors.primary_button_text_color};
+  font-family: ${(props) => props.theme.desing.font.family};
+  font-size: ${(props) => props.theme.desing.font.sizes.small};
+  color: ${(props) => props.theme.desing.colors.primaryButton.textColor};
   width: 100%;
 `;
 

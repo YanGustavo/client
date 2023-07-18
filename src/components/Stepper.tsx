@@ -35,7 +35,7 @@ const Step = styled.div<StepProps>`
     position: absolute;
     top: 9px;
     left: -50%;
-    background-color: ${({ theme }) => theme.colors.gray_300};
+    background-color: ${({ theme }) => theme.desing.border.color};
     z-index: -1;
   }
 
@@ -51,19 +51,19 @@ const Step = styled.div<StepProps>`
     border-radius: 50%;
     background-color: ${({ theme, isActive, isCompleted }) =>
       isActive
-        ? theme.colors.primary_button_text_color
+        ? theme.desing.buttons.primary.color
         : isCompleted
-        ? theme.colors.success_color
-        : theme.colors.gray_300};
+        ? theme.desing.buttons.primary.color
+        : theme.desing.border.color};
     color: ${({ theme, isActive, isCompleted }) =>
-      isActive || isCompleted ? theme.colors.white : theme.colors.gray_300};
+      isActive || isCompleted ? theme.desing.colors.white : theme.desing.border.color};
     border: 2px solid
       ${({ theme, isActive, isCompleted }) =>
         isActive
-          ? theme.colors.primary_button_text_color
+          ? theme.desing.buttons.primary.color
           : isCompleted
-          ? theme.colors.success_color
-          : theme.colors.gray_300};
+          ? theme.desing.buttons.primary.color
+          : theme.desing.border.color};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,8 +76,8 @@ const Step = styled.div<StepProps>`
   &:last-child:after {
     border-color: ${({ theme, isActive, isCompleted }) =>
       isActive || isCompleted
-        ? theme.colors.success_color
-        : theme.colors.gray_300};
+        ? theme.desing.buttons.primary.color
+        : theme.desing.border.color};
   }
 
   ${({ isActive }) =>
@@ -100,7 +100,7 @@ const Step = styled.div<StepProps>`
 const StepLabel = styled.div<StepLabelProps>`
   font-weight: ${({ isActive }) => (isActive ? "bold" : "normal")};
   color: ${({ theme, isActive, isCompleted }) =>
-    isActive || isCompleted ? theme.colors.black : theme.colors.gray_300};
+    isActive || isCompleted ? theme.desing.colors.background.lightRadial : theme.desing.colors.background.default};
 `;
 
 export const Stepper: React.FC<StepperProps> = ({

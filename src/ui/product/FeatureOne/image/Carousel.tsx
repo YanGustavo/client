@@ -11,8 +11,6 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const Body = styled.div`
   position: fixed;
   top: 0;
@@ -98,7 +96,7 @@ export const Slide = styled.div`
     .MuiSvgIcon-root {
       background-color: transparent;
     border-radius: 50%;
-    border: 1px solid ${theme.desing.border.color};
+    border: 1px solid ${(props) => props.theme.desing.border.color};
     display: flex;
     align-items: center;
     justify-content: center;

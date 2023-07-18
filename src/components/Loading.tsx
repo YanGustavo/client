@@ -25,7 +25,7 @@ const SkeletonItem = styled.div`
   height: 200px;
   margin: 10px;
   padding: 10px;
-  background-color: ${(props) => props.theme.colors.gray_300};
+  background-color: ${(props) => props.theme.desing.colors.background.default};
   border-radius: 5px;
   animation: ${pulse} 1.5s ease-in-out infinite;
 `;

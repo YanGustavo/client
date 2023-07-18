@@ -9,11 +9,10 @@ import Location from "components/Location";
 import SearchRounded from "@mui/icons-material/SearchRounded";
 
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
 const TopAnnouncement = styled.div`
   height: 40px;
   width: 100%;
-  background: ${theme.colors.background}; 
+  background: ${(props) => props.theme.desing.colors.background}; 
   display: flex;
   align-content: flex-start;
   align-items: center;
@@ -35,7 +34,7 @@ const HeaderCenter = styled.div`
   padding: 5px 15px;
   height: 60px;
   width: 100%;
-  background: ${theme.colors.header_background};   
+  background: ${(props) => props.theme.desing.colors.header.background};   
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
   z-index: 108;
 `;

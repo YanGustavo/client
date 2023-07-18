@@ -1,3 +1,4 @@
+import { VariationOption } from 'lib/types/Product';
 import React from 'react';
 import styled from 'styled-components';
 // Styles
@@ -113,7 +114,8 @@ export default function ProductVariant() {
   const { product, handleSelectVariation } = useProductContext();
   const [selectedKey, setSelectedKey] = React.useState('');
   const [selectedValue, setSelectedValue] = React.useState('');
-  const [selectedOption, setSelectedOption] = React.useState(null);
+  const [selectedOption, setSelectedOption] =
+    React.useState<VariationOption | null>(null);
 
   React.useEffect(() => {
     if (product.variations.length > 0) {
@@ -125,7 +127,6 @@ export default function ProductVariant() {
         const firstOption = firstVariation.options[0];
         setSelectedOption(firstOption);
         handleSelectVariation(firstOption); // Adicionado para atualizar a opção selecionada no contexto
-
       }
     }
   }, [product.variations]);
@@ -137,7 +138,9 @@ export default function ProductVariant() {
 
     // Select the first option when changing variations
     if (product.variations.length > 0) {
-      const variation = product.variations.find((v) => v.value === selected_value);
+      const variation = product.variations.find(
+        (v) => v.value === selected_value
+      );
       if (variation && variation.options.length > 0) {
         setSelectedOption(variation.options[0]);
         handleSelectVariation(variation.options[0]); // Adicionado para atualizar a opção selecionada no contexto
@@ -169,17 +172,24 @@ export default function ProductVariant() {
       {selectedValue && (
         <div className="options-wrapper">
           <ul>
-            {product.variations
-              .find((variation) => variation.value === selectedValue)
-              .options.map((option) => (
-                <li
-                  key={option.sku}
-                  onClick={() => handleOptionClick(option)}
-                  className={selectedOption && selectedOption.sku === option.sku ? 'active' : ''}
-                >
-                  <button onClick={() => handleOptionClick(option)}>{option.value}</button>
-                </li>
-              ))}
+            {product.variations &&
+              product.variations
+                .find((variation) => variation.value === selectedValue)
+                ?.options?.map((option) => (
+                  <li
+                    key={option.sku}
+                    onClick={() => handleOptionClick(option)}
+                    className={
+                      selectedOption && selectedOption.sku === option.sku
+                        ? 'active'
+                        : ''
+                    }
+                  >
+                    <button onClick={() => handleOptionClick(option)}>
+                      {option.value}
+                    </button>
+                  </li>
+                ))}
           </ul>
         </div>
       )}

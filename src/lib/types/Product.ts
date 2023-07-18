@@ -90,18 +90,11 @@ export interface Deposit {
   // Define other properties of Deposit schema as per your requirements
 }
 
-export interface ProductCart extends Omit<Product, "variations" | "image"> {
-  variations: {
-    value: string;
-    image: { link: string }[];
-    sku: string;
-    stock: number;
-    price: string;
-    capacity: string;
-  };
-  image: {
-    link: string;
-    validity: string;
-    storageType: string;
-  }[];
+export interface ProductCart {
+  sku: string;
+  name: string;
+  image: { link: string; validity?: string; storageType?: string }[];
+  price: number;
+  stock: number;
+  quantity: number;
 }

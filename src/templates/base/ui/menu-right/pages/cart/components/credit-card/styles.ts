@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import theme from 'styles/styled-components/theme';
-
 export const CreditCardStyle = styled.div`
 .card,  
  .card__chip {  
@@ -17,7 +15,7 @@ export const CreditCardStyle = styled.div`
  }  
  .card {  
       animation-name: rotate;  
-      background-color: ${theme.colors.heading_color};
+      background-color: ${(props) => props.theme.desing.colors.heading};
       background-image:  
            radial-gradient(circle at 100% 0%,hsla(0,0%,100%,0.08) 29.5%,hsla(0,0%,100%,0) 30%),  
            radial-gradient(circle at 100% 0%,hsla(0,0%,100%,0.08) 39.5%,hsla(0,0%,100%,0) 40%),  
@@ -104,7 +102,7 @@ export const CreditCardStyle = styled.div`
       width: 50%;  
  }  
  .card__valid-thru { 
-     font-family: ${theme.font.family}; 
+     font-family: ${(props) => props.theme.desing.font.family}; 
       font-size: 0.4rem;  
       padding-right: 0.25rem;  
       text-align: right;  

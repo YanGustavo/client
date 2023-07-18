@@ -1,11 +1,10 @@
 'use client';
 //icons
 import KeyboardTabIcon from '@mui/icons-material/KeyboardTab';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+//import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import Button from 'components/Button';
 import styled from 'styled-components';
-import theme from 'styles/styled-components/theme';
-import CreditCard from 'templates/base/ui/menu-right/pages/cart/components/credit-card';
+//import CreditCard from 'templates/base/ui/menu-right/pages/cart/components/credit-card';
 import { Container } from 'templates/base/ui/menu-right/styles';
 import CartItem from './components/cart-item';
 import useItemsCartPage from './hooks/useItemsCartPage';
@@ -31,8 +30,8 @@ const CartCheckOutContianer = styled.div`
   min-height: 280px;
   max-height: 320px;
   scrollbar-width: thin;
-  scrollbar-color: ${(props) => props.theme.colors.header_text_color}
-    ${(props) => props.theme.colors.header_text_color};
+  scrollbar-color: ${(props) => props.theme.desing.colors.header.textColor}
+    ${(props) => props.theme.desing.colors.header.textColor};
   ${this}::-webkit-scrollbar {
     width: 0.4rem;
     border-radius: 3rem; /* width of the entire scrollbar */
@@ -41,9 +40,9 @@ const CartCheckOutContianer = styled.div`
     background: transparent;
   }
   ${this}::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.header_text_color};
+    background-color: ${(props) => props.theme.desing.colors.header.textColor};
     border-radius: 6px;
-    border: 3px solid ${(props) => props.theme.colors.header_text_color};
+    border: 3px solid ${(props) => props.theme.desing.colors.header.textColor};
   }
 `;
 const CartContainer = styled.div`
@@ -79,7 +78,7 @@ const TotalSection = styled.div`
   }
   ${this} p span {
     font-size: 14px;
-    color: ${theme.colors.header_text_color};
+    color: ${(props) => props.theme.desing.colors.header.textColor};
   }
 `;
 export default function ItemsCartPage({ actions }) {

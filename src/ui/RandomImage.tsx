@@ -1,8 +1,9 @@
 import React from 'react';
 import CloudinaryImage from 'ui/CloudinaryImage';
+import { ProductCart } from 'lib/types/Product';
 
 type Props = {
-  images: { link: string }[];
+  images: ProductCart['image'];
   alt?: string;
 };
 
@@ -22,16 +23,16 @@ const RandomImage: React.FC<Props> = ({ images, alt }) => {
     return () => clearInterval(intervalId);
   }, [images]);
 
-  if (images.length === 0) {
-    return (
-      <img src="/images/no_product_image.png" alt="Não foi possível carregar a imagem do produto!" />
-    );
-  } else if (!Array.isArray(images)) {
-    return <CloudinaryImage publicId={images} alt={alt} />;
-  }
+  // if (images.length === 0) {
+  //   return (
+  //     <img src="/images/no_product_image.png" alt="Não foi possível carregar a imagem do produto!" />
+  //   );
+  // } else if (!Array.isArray(images)) {
+  //   return <CloudinaryImage publicId={images.link} alt={alt} />;
+  // }
 
   return (
-    <CloudinaryImage publicId={images[imageIndex]} alt={alt}/>
+    <CloudinaryImage publicId={images[imageIndex].link} alt={alt}/>
   );
 };
 

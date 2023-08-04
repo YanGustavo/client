@@ -28,11 +28,11 @@ const RandomImage: React.FC<Props> = ({ images, alt }) => {
   //     <img src="/images/no_product_image.png" alt="Não foi possível carregar a imagem do produto!" />
   //   );
   // } else if (!Array.isArray(images)) {
-  //   return <CloudinaryImage publicId={images.link} alt={alt} />;
+  //   return <CloudinaryImage publicId={images.link} alt={alt} />;<CloudinaryImage publicId={images[imageIndex].link} alt={alt}/>
   // }
 
   return (
-    <CloudinaryImage publicId={images[imageIndex].link} alt={alt}/>
+    <img src={images[imageIndex].link} alt="Não foi possível carregar a imagem do produto!" />
   );
 };
 

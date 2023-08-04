@@ -31,19 +31,23 @@ const pulseAnimation = keyframes`
       -0.3rem -0.1rem 1.5rem 0.3rem hsla(0, 0%, 0%, 0.3);
     transform: rotateY(10deg);
   }
-}`;
+`;
 
 const BuyButton = styled.button`
   padding: 1.5em 3.1em;
   border: none;
   border-radius: 7px;
   letter-spacing: 1.3px;
+  color: ${(props) => props.theme.desing.buttons.tertiary.color};
   background-color: ${(props) => props.theme.desing.buttons.tertiary.backgroundColor};
   box-shadow: 2px 2px 25px -7px ${(props) => props.theme.desing.border.color};
   cursor: pointer;
   width: 100%;
   &:active {
     transform: scale(0.97);
+  }
+  ${this} i {
+    color: ${(props) => props.theme.desing.buttons.tertiary.color};
   }
   animation: ${pulseAnimation} 2s infinite; // Apply the animation
 `;
@@ -56,7 +60,7 @@ function ProductBuyButton({ children }: Props) {
   const { handlerAddToCart } = useProductContext();
   return (
     <BuyButton onClick={() => handlerAddToCart()}>
-      <I color={`${(props) => props.theme.desing.buttons.tertiary.color}`} fontWeight={900} fontSize="1.2">
+      <I>
         {children}
       </I>
     </BuyButton>

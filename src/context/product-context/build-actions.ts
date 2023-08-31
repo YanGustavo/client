@@ -2,7 +2,7 @@ import axios from "axios";
 import api from "services/api";
 import {useQuery} from "@tanstack/react-query";
 import * as actionTypes from './action-types';
-import { logoutFn } from "context/user-context/build-actions";
+// import { logoutFn } from "context/user-context/build-actions";
 
 export const buildActions = (dispatch,getState) => {
   return {
@@ -76,7 +76,7 @@ const createProductReviewFn =async (productId, review,dispatch, getState) => {
           ? error.response.data.message
           : error.message;
       if (message === "Not authorized, token failed") {
-        logoutFn(dispatch);
+       // logoutFn(dispatch);
       }
       dispatch({
         type: actionTypes.PRODUCT_CREATE_REVIEW_FAIL,

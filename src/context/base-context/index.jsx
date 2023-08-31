@@ -7,7 +7,7 @@ import * as actionTypes from './action-types';
 export const initialState = {
   size_media_query: "",
   background_color: "",
-  menu_right_page: actionTypes.SET_HOME_PAGE,
+  menu_right_page: actionTypes.SET_MENU_RIGHT_VISIBLE,
   cart_page: actionTypes.SET_CART_ITEMS_PAGE,
   profile_page: actionTypes.SET_ORDER_PAGE,
   login_page: actionTypes.SET_SIGNIN_PAGE,

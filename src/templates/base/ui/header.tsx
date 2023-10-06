@@ -2,20 +2,26 @@
 import React from 'react';
 import Link from 'next/link';
 //hooks
+import useBase from '../hooks/useBase';
 import useHeader from "../../../hooks/useHeader";
 //componets
 import Location from "components/Location";
 //icons
 import SearchRounded from "@mui/icons-material/SearchRounded";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import {ToggleMenu} from './styles';
 import styled from 'styled-components';
+import theme from 'styles/styled-components/theme';
+
 const TopAnnouncement = styled.div`
   height: 40px;
   width: 100%;
-  background: ${(props) => props.theme.desing.colors.background}; 
+  background: ${(props) => props.theme.desing.colors.background.default}; 
   display: flex;
   align-content: flex-start;
   align-items: center;
+
 `;
 const Marquee = styled.div`
 @-webkit-keyframes rightThenLeft {
@@ -95,6 +101,7 @@ Link, a {
 `;
 const HeaderPage = ({children} :  {children: React.ReactNode } ) => { 
  const {setQuery, submitHandler, } = useHeader();
+ const {toggle_menu_left_visible, actions} = useBase();
   return (
     <Header>
         <TopAnnouncement>
@@ -103,17 +110,26 @@ const HeaderPage = ({children} :  {children: React.ReactNode } ) => {
           </Marquee>        
         </TopAnnouncement>        
         <HeaderCenter>
-      <Link href="/">
-      <Logo
-        src="/img/logo_name.png"
-        alt="Eai Chefinho!"
-      />
-      </Link>
-      <InputBox>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <ToggleMenu className={toggle_menu_left_visible ? '' : 'hidden'} >
+        <MenuIcon className="toggleIcon" onClick={() => actions.setMenuLeftVisible()} />
+      </ToggleMenu> 
+      <ToggleMenu className={toggle_menu_left_visible ? 'hidden' : ''} >
+        {/* //value={"Fechar"} value={"Menu"} */}
+        <CloseIcon className="toggleIcon" onClick={() => actions.setMenuLeftHidden()}/>
+      </ToggleMenu> 
+          
+          <Link href="/">
+            <Logo src="/img/logo_name.png" alt="Eai Chefinho!" />
+          </Link>
+        </div>
+      {/* <InputBox>
         <SearchRounded className="searchIcon" onClick={submitHandler} />
         <input onChange={(e) => setQuery(e.target.value)} type="text" placeholder="Search" />
-      </InputBox>    
-      {children}      
+      </InputBox>    */}
+      <div style={{ display: 'flex', alignItems: 'center' }}>{children}     </div>
+        
+      {/* Ocultando acimia os icones de carrinho, de botão de fechar menu right e do botão de ir para pagina de login, motivos de terminar o catalog primeiro */}
       </HeaderCenter>
       <div className="lineGradient"></div>    
     </Header>  

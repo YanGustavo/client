@@ -17,7 +17,6 @@ const useHeader = () => {
   const [{count_cart_items}, actionsBase] = useBaseContext();
 
 
-
   const logoutHandler = () => {
    // Cookies.remove('cart');
     //actions.cartClearItems();

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Theme as ThemeLib} from 'lib/types/Theme';
+import { Theme as ThemeLib } from 'lib/types/Theme';
 import defaultTheme from 'styles/styled-components/theme';
+import { getSubdomain } from '../functions/get-subdomain';
 
 interface UseThemeProps {
   theme: ThemeLib;
@@ -10,11 +11,12 @@ interface UseThemeProps {
 
 const useTheme = (): UseThemeProps => {
   const [theme, setTheme] = useState<ThemeLib>(defaultTheme);
-
+  const [subdomain, setSubdomain] = useState<string>('');
 
   const getThemeDataFromDatabase = async (): Promise<ThemeLib | null> => {
+    console.log("subdominio"+subdomain);
     try {
-      const response = await axios.get<ThemeLib>('http://localhost:5000/themes/slug/eaichefinho');
+      const response = await axios.get<ThemeLib>(`http://localhost:5000/themes/slug/eaichefinho`);
       return response.data;
     } catch (error) {
       console.error('Error retrieving theme data:', error);
@@ -23,18 +25,23 @@ const useTheme = (): UseThemeProps => {
   };
 
   const setNewStoreTheme = async (): Promise<ThemeLib> => {
-    const themeDataFromDatabase = await getThemeDataFromDatabase();
+    const newSubdomain = getSubdomain();
 
-    if (themeDataFromDatabase) {
-      setTheme({
-        ...defaultTheme,
-        ...themeDataFromDatabase
-      });
-      return themeDataFromDatabase;
+    // Verifique se o subdomínio mudou
+    if (newSubdomain !== subdomain) {
+      setSubdomain(newSubdomain);
+      const themeDataFromDatabase = await getThemeDataFromDatabase();
+
+      if (themeDataFromDatabase) {
+        setTheme({
+          ...defaultTheme,
+          ...themeDataFromDatabase,
+        });
+        return themeDataFromDatabase;
+      }
     }
 
-    setTheme(defaultTheme);
-    return defaultTheme;
+    return theme; // Retorna o tema atual se o subdomínio não mudar
   };
 
   useEffect(() => {
@@ -43,7 +50,7 @@ const useTheme = (): UseThemeProps => {
 
   return {
     theme,
-    setNewStoreTheme
+    setNewStoreTheme,
   };
 };
 

@@ -71,26 +71,26 @@ color: #373848;
   font-size: 30px !important;
   transition: all 0.5s ease;
 `;
-// const CloseMenu = styled.div`
-// @keyframes closeMenuAnimation {
-// 	0% { opacity: 1; transform: translateY(-2px); color: black;  }
-//   25% { opacity: 0.8; transform: translateY(-2px); color: green;  }
-// 	50% { opacity: 1; transform: translateY(0); color: black;}
-// 	100% { opacity: 1; transform: translateY(2px); color: green;}
-// }  
-//   position: absolute;
-//   top: 0.2rem;
-//   right: 1rem;
-//   z-index: 109;
-//   transform: translateX(0);
-//   background-color: #FFFFFF;
-//   border-radius: 50%;
-//   padding: 0.2rem;
-//   display: flex;
-//   align-items: center;
-//   animation: closeMenuAnimation 1.5s infinite; 
+const CloseMenu = styled.div`
+@keyframes closeMenuAnimation {
+	0% { opacity: 1; transform: translateY(-2px); color: black;  }
+  25% { opacity: 0.8; transform: translateY(-2px); color: green;  }
+	50% { opacity: 1; transform: translateY(0); color: black;}
+	100% { opacity: 1; transform: translateY(2px); color: green;}
+}  
+  position: absolute;
+  top: 0.2rem;
+  right: 1rem;
+  z-index: 109;
+  transform: translateX(0);
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  animation: closeMenuAnimation 1.5s infinite; 
 
-//  `;
+ `;
 const MenuRightTop = styled.div`
 width: 100%;
 height: auto;
@@ -149,7 +149,7 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;  
-  transform: translateX(200%);  
+  transform: translateX(200%);  trecho relacionado ao menu right que vai ficar oculto até que seja terminado o catalogo
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
   border-left: 1px solid ${props => props.theme.desing.colors.header.textColor};;

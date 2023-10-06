@@ -53,7 +53,7 @@ ${this} .toggleIcon {
   
 }
 ${this}::after  {
-  transform: rotate(-90deg);
+   transform: rotate(-90deg);
   content: "";
   position: absolute;
   top: 1.2rem;
@@ -63,9 +63,9 @@ ${this}::after  {
   font-size: 0.7rem;
   color: ${(props) => props.theme.desing.colors.header.textColor};
 }
- /* ${this}.isLoaded .toggleIcon  { 
+  ${this}.isLoaded .toggleIcon  { 
   animation: bounce-down 1.5s infinite; 
-} */
+} 
 `;
 const ProfileContainer = styled.div`
   display: flex;
@@ -170,25 +170,21 @@ const Template = styled.div`
     width: 100vw;
   }
 }
+
+
 @media screen and (min-width: 950px) {//huge
   ${Main}{
     width: calc(100vw - 280px);
   }
-  .sticky {
-  position: fixed;
-  top: 75px;
-  right: 325px;
-}
+}@media screen and (min-width: 951px) {
+  ${ToggleMenu} {
+    display: none;
+  }
 }
 @media screen and (min-width: 1100px) {//huge_one
   ${Main}{
-     width: calc(100vw - 300px);
+    width: calc(100vw - 300px);
   }
-  .sticky {
-  position: fixed;
-  top: 75px;
-  right: 350px;
-}
 }
 `;
 export {Container, ContainerFlush, ContainerDrawable, Main, Template, ShopCart, ToggleMenu, ProfileContainer,}

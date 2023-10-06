@@ -43,8 +43,7 @@ import { Table, TableCell, TableHeaderCell, TableRow } from 'components/Table';
 import { H1, H2 ,P } from 'components/Typography';
 //Advertisement
 //import { AdvertisementList } from 'components/Advertisement';
-import { findProductBySlug, Products } from 'lib/Products';
-import { Product } from 'lib/types/Product';
+
 import React from 'react';
 import { Base } from 'templates/base';
 //styles
@@ -57,9 +56,11 @@ import ProductCard from '@/ui/product/product-card';
 //icons
 //import Tooltip from '@mui/material/Tooltip';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-
+//Lib
+import { Product } from 'lib/types/Product';
+//hooks
+import useProduct from 'hooks/useProduct';
 export default function ComponentsPage() {
-  const product: Product[] = findProductBySlug(Products, 'iphone-8-plus');
   //Snackbar
   const [showSnackBar, setShowSnackBar] = React.useState(false);
 
@@ -159,6 +160,17 @@ export default function ComponentsPage() {
   const images = [  '/images/1.png',  '/images/2.png',  '/images/3.png',  '/images/4.png',  '/images/5.png'];
     //Fim de galery
 
+    
+    const { findProductBySlug} = useProduct();
+    const [data, setData] = React.useState<Product | null>(null);
+    React.useEffect(() => {
+      const fetchData = async () => {
+        const result: Product[] = await findProductBySlug("iphone-8-plus");
+        setData(result[0]);       
+      };
+  
+      fetchData();
+    }, []);
   return (
     <Layout title="Components Page">
       <Base>
@@ -268,44 +280,53 @@ export default function ComponentsPage() {
             <MyComponent>
               <button onClick={handleToggleDrawer}>Open Drawer</button>
               <Drawer open={isDrawerOpen} onClose={handleDrawerClose}>
-              <ProductCard
-            product={product[0]}
-            top={
-              <ProductCard.Top>
-                <ProductCard.Image />
-              </ProductCard.Top>
-            }
-            center={
-              <ProductCard.Center>
-                <ProductCard.Variant />
-              </ProductCard.Center>
-            }
-            bottom={
-              <ProductCard.Bottom>
-                <ProductCard.Left>
-                  <ProductCard.Details>
-                    <ProductCard.Title />
-                    <ProductCard.VariantTitle />
-                    <ProductCard.Price />
-                  </ProductCard.Details>
-                  <ProductCard.BuyButton><i><Tooltip title={'Adicionar ao Carrinho'}><AddShoppingCartIcon/></Tooltip></i></ProductCard.BuyButton>
-                </ProductCard.Left>
-                <ProductCard.Right>
-                  <ProductCard.Done className={'done'} />
-                  <ProductCard.RightDetails>
-                    <ProductCard.Title />
-                    <p>Adicionado ao Carrinho</p>
-                  </ProductCard.RightDetails>
-                  <ProductCard.Remove className={'remove'} />
-                </ProductCard.Right>
-              </ProductCard.Bottom>
-            }
-            inside={
-              <ProductCard.Inside>
-                <ProductCard.ShortDescription />
-              </ProductCard.Inside>
-            }
-          />
+              {data !== null ? (
+  <ProductCard
+    product={data[0]}
+    top={
+      <ProductCard.Top>
+        <ProductCard.Image />
+      </ProductCard.Top>
+    }
+    center={
+      <ProductCard.Center>
+        <ProductCard.Variant />
+      </ProductCard.Center>
+    }
+    bottom={
+      <ProductCard.Bottom>
+        <ProductCard.Left>
+          <ProductCard.Details>
+            <ProductCard.Title />
+            <ProductCard.VariantTitle />
+            <ProductCard.Price />
+          </ProductCard.Details>
+          <ProductCard.BuyButton>
+            <i>
+              <Tooltip title={'Adicionar ao Carrinho'}>
+                <AddShoppingCartIcon />
+              </Tooltip>
+            </i>
+          </ProductCard.BuyButton>
+        </ProductCard.Left>
+        <ProductCard.Right>
+          <ProductCard.Done className={'done'} />
+          <ProductCard.RightDetails>
+            <ProductCard.Title />
+            <p>Adicionado ao Carrinho</p>
+          </ProductCard.RightDetails>
+          <ProductCard.Remove className={'remove'} />
+        </ProductCard.Right>
+      </ProductCard.Bottom>
+    }
+    inside={
+      <ProductCard.Inside>
+        <ProductCard.ShortDescription />
+      </ProductCard.Inside>
+    }
+  />
+) : null}
+
               </Drawer>
             </MyComponent>
             <MyComponent>

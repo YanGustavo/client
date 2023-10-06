@@ -193,7 +193,6 @@ export default function ProductPage({}: Props): JSX.Element {
     const fetchData = async () => {
       const result: Product[] = await findProductBySlug(slugValue);
       setData(result[0]);
-      console.log("resultado de product", result);
       if (!result) {
         setLoading(true);
         setNothingFound(true);
@@ -201,6 +200,7 @@ export default function ProductPage({}: Props): JSX.Element {
       } else {
         // fazer algo com o produto
         setLoading(false);
+        setNothingFound(false);
       }
     };
 
@@ -219,10 +219,10 @@ export default function ProductPage({}: Props): JSX.Element {
   return (
     <Layout title={loading ? 'Carregando' : data ? data.name : ''}>
       <Base>
-      <TryAgain onRetry={handleRetry} />
+      {/* <TryAgain onRetry={handleRetry} /> */}
         {/* start content*/}
         {loading && <Loading />}
-        {nothingFound && <NotFound />}
+        {!loading && data === null && <NotFound />}
         {!loading && data !== null && (
           <Container>
             <ProductContainer>

@@ -4,7 +4,7 @@ import * as actionTypesMediaQuery from 'constants/media-query-constants';
 import {useBaseContext} from "context/base-context";
 
 const useBase = () => {
-  const [{toggle_menu_visible}, actions] = useBaseContext();
+   const [{menu_left_visible, toggle_menu_left_visible, toggle_menu_visible}, actions] = useBaseContext();
 
   const huge_one = useMediaQuery('(min-width: 1100px)');
   const huge = useMediaQuery('(max-width: 1099px) and (min-width: 950px)');
@@ -19,6 +19,8 @@ const useBase = () => {
   },[]);
 
   return {
+    menu_left_visible,
+    toggle_menu_left_visible,
     toggle_menu_visible,
     actions,
   }

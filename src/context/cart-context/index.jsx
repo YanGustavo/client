@@ -121,7 +121,7 @@ const useCartStore = create((set) => ({
         return { cart };
       });
 
-      toast.success('Inserimos seu produto ao carrinho!');
+      toast.success('Inserimos seu produto ao carrinho, Yan!');
     } catch (error) {
       console.error(error);
       toast.error('Não foi possível inserir seu produto ao carrinho!');

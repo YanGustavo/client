@@ -19,6 +19,9 @@ export const buildActions = (dispatch) => {
       //Pages Login
       setSingInPage: () => dispatch({ type: actionTypes.SET_SIGNIN_PAGE }),
       setRegisterPage: () => dispatch({ type: actionTypes.SET_REGISTER_PAGE }),
+      //State Left  and ToggleMenuLeft Visibility 
+      setMenuLeftVisible: () => dispatch({ type: actionTypes.SET_MENU_LEFT_VISIBLE}),
+      setMenuLeftHidden: () => dispatch({ type: actionTypes.SET_MENU_LEFT_HIDDEN}),
       //State Menu Right and ToggleMenu Visibility 
       setMenuRightVisible: () => dispatch({ type: actionTypes.SET_MENU_RIGHT_VISIBLE}),
       setMenuRightHidden: () => dispatch({ type: actionTypes.SET_MENU_RIGHT_HIDDEN}),

@@ -33,6 +33,11 @@ export const reducer = (state, action) => {
         return { ...state, menu_right_page: actionTypes.SET_LOGIN_PAGE, login_page: actionTypes.SET_SIGNIN_PAGE};
         case actionTypes.SET_REGISTER_PAGE:
         return { ...state, menu_right_page: actionTypes.SET_LOGIN_PAGE, login_page: actionTypes.SET_REGISTER_PAGE};
+         //State Left and ToggleMenuLeft Visibility
+         case actionTypes.SET_MENU_LEFT_VISIBLE:
+          return { ...state, menu_left_visible: true, toggle_menu_left_visible: false};
+          case actionTypes.SET_MENU_LEFT_HIDDEN:
+          return { ...state, menu_left_visible: false, toggle_menu_left_visible: true};
         //State Menu Right and ToggleMenu Visibility
         case actionTypes.SET_MENU_RIGHT_VISIBLE:
         return { ...state, menu_right_visible: true, toggle_menu_visible: false};

@@ -42,7 +42,7 @@ return (
         </div>
         )}  
         </ShopCart>     
-      <ProfileContainer> 
+      {/* <ProfileContainer> 
       {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
@@ -90,7 +90,7 @@ return (
                   <i className="p-2"><Tooltip title="Login"><LoginIcon/></Tooltip></i>
                 </Link>
               )} 
- </ProfileContainer>
+ </ProfileContainer> */}
      <ToggleMenu className={toggle_menu_visible ? '' : 'hidden'} >
         <BarChart className="toggleIcon" onClick={() => actions.setMenuRightVisible()} />
       </ToggleMenu> 
@@ -103,14 +103,14 @@ return (
     {children}
   <Footer/>
   </Main>
-  <MenuRight>
-         {/* prettier-ignore */}
-         <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_CART_PAGE} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isActive={menu_right_page === actionTypes.SET_CART_PAGE ? true: false}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem  handleClick={setNewPage} param={actionTypes.SET_PROFILE_PAGE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.SET_PROFILE_PAGE ? true: false}/>
-          {/* prettier-ignore */}
-          <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_LOGIN_PAGE} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.SET_LOGIN_PAGE ? true: false}/>
-    </MenuRight>  
+     <MenuRight>
+      {/* prettier-ignore */}
+       <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_CART_PAGE} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isActive={menu_right_page === actionTypes.SET_CART_PAGE ? true: false}/>
+      {/* prettier-ignore */}
+      {/* <MenuBottomItem  handleClick={setNewPage} param={actionTypes.SET_PROFILE_PAGE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.SET_PROFILE_PAGE ? true: false}/> */}
+      {/* prettier-ignore */}
+      {/* <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_LOGIN_PAGE} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.SET_LOGIN_PAGE ? true: false}/> */}
+    </MenuRight> 
   </Template>
 )
 }

@@ -21,6 +21,9 @@ export const SET_RESET = `${prefix}/RESET`;
 
 export const SET_SIZE = `${prefix}/SET_SIZE`;
 
+export const SET_MENU_LEFT_VISIBLE = `${prefix}/SET_MENU_LEFT_VISIBLE`;
+export const SET_MENU_LEFT_HIDDEN = `${prefix}/SET_MENU_LEFT_HIDDEN`;
+
 export const SET_MENU_RIGHT_VISIBLE = `${prefix}/SET_MENU_RIGHT_VISIBLE`;
 export const SET_MENU_RIGHT_HIDDEN = `${prefix}/SET_MENU_RIGHT_HIDDEN`;
 

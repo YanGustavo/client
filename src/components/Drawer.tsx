@@ -17,18 +17,27 @@ const DrawerOverlay = styled.div<{ open: boolean }>`
   opacity: ${({ open }) => (open ? 1 : 0)};
   pointer-events: ${({ open }) => (open ? 'auto' : 'none')};
   transition: opacity 0.3s ease-in-out;
+  z-index: 999; /* Ajuste a ordem z conforme necessário */
 `;
 
 const DrawerContainer = styled.div<{ open: boolean }>`
   position: fixed;
-  top: 105px;
-  left: 0;
-  height: calc(100% - 105px);
-  width: 300px;
+  top: 0;
+  height: 100%;
+  width: auto;
+  min-width: 10px; /* Tamanho mínimo de 10px */
   background-color: #fff;
   box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
+  z-index: 1000; /* Ajuste a ordem z conforme necessário */
+
+  ${({ open }) => {
+    if (open) {
+      return 'transform: translateX(0);';
+    } else {
+      return 'transform: translateX(100%);';
+    }
+  }}
 `;
 
 const Drawer = ({ open, onClose, children }: DrawerProps) => {
@@ -51,7 +60,7 @@ const Drawer = ({ open, onClose, children }: DrawerProps) => {
   }, [open, onClose]);
 
   return (
-    <DrawerOverlay open={open} >
+    <DrawerOverlay open={open}>
       <DrawerContainer open={open} ref={overlayRef}>
         {children}
       </DrawerContainer>

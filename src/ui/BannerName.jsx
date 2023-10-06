@@ -98,17 +98,17 @@ export const BannerNameStyle = styled.div`
 .bannerContent p {
   font-size: 0.6rem;
   width: 200px;
-  color: ${theme.colors.heading_color};
+  color: ${theme.desing.colors.header.background};
   margin: 5px 0;
 }
 
 .bannerContent p span {
-  color: ${theme.colors.heading_color};
+  color: ${theme.desing.colors.header.background};
   font-weight: 500;
 }
 
 .bannerContent a {
-  background: ${theme.colors.heading_color};
+  background: ${theme.desing.colors.header.background};
   padding: 0.1rem 0.5rem;
   border-radius: 100vw;
   color: #faf9fb;

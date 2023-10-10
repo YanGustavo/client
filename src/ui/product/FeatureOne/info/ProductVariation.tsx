@@ -1,8 +1,9 @@
-import { VariationOption } from 'lib/types/Product';
+
 import React from 'react';
-import styled from 'styled-components';
-// Styles
 import { useProductContext } from '../../ProductContext';
+import RandomImage from 'ui/RandomImage';
+import { VariationOption } from 'lib/types/Product';
+import styled from 'styled-components';
 
 const VariantWrapper = styled.div`
   overflow-x: scroll;
@@ -110,7 +111,7 @@ const VariantWrapper = styled.div`
   }
 `;
 
-export default function ProductVariant() {
+function ProductVariant() {
   const { product, handleSelectVariation } = useProductContext();
   const [selectedKey, setSelectedKey] = React.useState('');
   const [selectedValue, setSelectedValue] = React.useState('');
@@ -118,39 +119,38 @@ export default function ProductVariant() {
     React.useState<VariationOption | null>(null);
 
   React.useEffect(() => {
-    if (product.variations.length > 0) {
+    if (product && product.variations && product.variations.length > 0) {
       const firstVariation = product.variations[0];
       setSelectedKey(firstVariation.key);
       setSelectedValue(firstVariation.value);
 
-      if (firstVariation.options.length > 0) {
+      if (firstVariation.options && firstVariation.options.length > 0) {
         const firstOption = firstVariation.options[0];
         setSelectedOption(firstOption);
-        handleSelectVariation(firstOption); // Adicionado para atualizar a opção selecionada no contexto
+        handleSelectVariation(firstOption);
       }
     }
-  }, [product.variations]);
+  }, [product, handleSelectVariation]);
 
   const handleVariationClick = (selected_key, selected_value) => {
     setSelectedKey(selected_key);
     setSelectedValue(selected_value);
     setSelectedOption(null);
 
-    // Select the first option when changing variations
-    if (product.variations.length > 0) {
+    if (product && product.variations && product.variations.length > 0) {
       const variation = product.variations.find(
         (v) => v.value === selected_value
       );
-      if (variation && variation.options.length > 0) {
+      if (variation && variation.options && variation.options.length > 0) {
         setSelectedOption(variation.options[0]);
-        handleSelectVariation(variation.options[0]); // Adicionado para atualizar a opção selecionada no contexto
+        handleSelectVariation(variation.options[0]);
       }
     }
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-    handleSelectVariation(option); // Adicionado para atualizar a opção selecionada no contexto
+    handleSelectVariation(option);
   };
 
   return (
@@ -159,7 +159,7 @@ export default function ProductVariant() {
         {selectedKey}:{selectedValue}-{selectedOption && selectedOption.value}
       </p>
       <div className="options-wrapper">
-        {product.variations.map((variation) => (
+        {product && product.variations && product.variations.map((variation) => (
           <button
             key={variation.value}
             onClick={() => handleVariationClick(variation.key, variation.value)}
@@ -196,3 +196,5 @@ export default function ProductVariant() {
     </VariantWrapper>
   );
 }
+
+export default ProductVariant;

@@ -12,6 +12,7 @@ type UseProductReturn = {
   getOnlineUsers: () => Promise<number>;
   findProductBySlug: (slugValue: string) => Promise<Product[]>;
   findProductBySKU: (skuValue: string) => Promise<Product[]>;
+  findByCategory: (categoryId: string) => Promise<Product[]>;
 };
 
 const useProduct = (): UseProductReturn => {
@@ -51,7 +52,7 @@ const useProduct = (): UseProductReturn => {
 
   const findProductBySlug = async (slugValue: string): Promise<Product[]> => {
     try {
-      const response = await axios.get('http://localhost:5000/products/slug/iphone-8-plus');
+      const response = await axios.get(`http://localhost:5000/products/slug/${slugValue}`);
       const product = response.data;
       console.log('Product data:', product);
       return product ? [product] : [];
@@ -72,6 +73,17 @@ const useProduct = (): UseProductReturn => {
     }
   };
 
+  const findByCategory = async (categoryId: string): Promise<Product[]> => {
+    try {
+      const response = await axios.get(`http://localhost:5000/products/category/${categoryId}`);
+      const products = response.data;
+      return Array.isArray(products) ? products : [];
+    } catch (error) {
+      console.error('Error retrieving products by category:', error);
+      return [];
+    }
+  };
+
   return {
     onlineUsers,
     discountPrice,
@@ -79,6 +91,7 @@ const useProduct = (): UseProductReturn => {
     getOnlineUsers,
     findProductBySlug,
     findProductBySKU,
+    findByCategory,
   };
 };
 

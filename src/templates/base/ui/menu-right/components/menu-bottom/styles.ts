@@ -90,7 +90,11 @@ export const MenuBottomStyle = styled.div`
 
 .menuBottom ul li.active a .icon {
   transform: translateY(-1.6rem);
+  transition: 0.5s;
+  font-size: 1.6rem;
+  color: ${props => props.theme.desing.colors.header.textColor};
 }
+
 .menuBottom ul li.active a .icon .MuiSvgIcon-root {
   font-size: 1.6rem;
   color:${props => props.theme.desing.colors.header.textColor};
@@ -102,11 +106,12 @@ export const MenuBottomStyle = styled.div`
   height: 3.2rem;
   width: 3.2rem;
   background: ${props => props.theme.desing.colors.background.default};
-  top: -1.45rem;
+  top: -1.45rem; /* Alterado para -1.45rem para ajustar a posição */
   border-radius: 50%;
   border: 6px solid ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
   transition: 0.5s;
 }
+
 .indicator::before {
   content: "";
   position: absolute;
@@ -116,7 +121,6 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-right-radius: 18px;
-  //box-shadow: 0px -10px 0 0 ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
 }
 
 .indicator::after {
@@ -128,7 +132,10 @@ export const MenuBottomStyle = styled.div`
   height: 1rem;
   background: transparent;
   border-top-left-radius: 1rem;
-  //box-shadow: 0px -10px 0 0 ${props => props.theme.desing.colors.rightMenu.backgroundRGB};
+}
+
+.menuBottom ul li.active ~ .indicator {
+  transform: translateY(0); /* Alterado para translateY(0) para manter o indicador no lugar */
 }
 
 .menuBottom ul li:nth-child(1).active ~ .indicator {

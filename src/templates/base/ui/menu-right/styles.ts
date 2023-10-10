@@ -172,7 +172,6 @@ const Body = styled.div`
 @media screen and (min-width: 950px) {
   ${this}{
   width: 280px; 
-  transform: translateX(0%);
   }
 }
 @media screen and (min-width: 1100px) {

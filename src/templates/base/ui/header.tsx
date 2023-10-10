@@ -10,7 +10,7 @@ import Location from "components/Location";
 import SearchRounded from "@mui/icons-material/SearchRounded";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import {ToggleMenu} from './styles';
+import {ToggleDrawer} from './styles';
 import styled from 'styled-components';
 import theme from 'styles/styled-components/theme';
 
@@ -111,13 +111,13 @@ const HeaderPage = ({children} :  {children: React.ReactNode } ) => {
         </TopAnnouncement>        
         <HeaderCenter>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ToggleMenu className={toggle_menu_left_visible ? '' : 'hidden'} >
+        <ToggleDrawer className={toggle_menu_left_visible ? '' : 'hidden'} >
         <MenuIcon className="toggleIcon" onClick={() => actions.setMenuLeftVisible()} />
-      </ToggleMenu> 
-      <ToggleMenu className={toggle_menu_left_visible ? 'hidden' : ''} >
+      </ToggleDrawer> 
+      <ToggleDrawer className={toggle_menu_left_visible ? 'hidden' : ''} >
         {/* //value={"Fechar"} value={"Menu"} */}
         <CloseIcon className="toggleIcon" onClick={() => actions.setMenuLeftHidden()}/>
-      </ToggleMenu> 
+      </ToggleDrawer> 
           
           <Link href="/">
             <Logo src="/img/logo_name.png" alt="Eai Chefinho!" />

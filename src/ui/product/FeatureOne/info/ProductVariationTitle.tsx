@@ -1,12 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 import { useProductContext } from '../../ProductContext';
-//Styles
-import {P} from 'components/Typography';
+import { P } from 'components/Typography';
 
-function ProductVariantTitle() {  
-	const { selectedVariation } = useProductContext();
-	return <P>{selectedVariation.value} </P>; 
-  // - {selectedVariation.key}
+function ProductVariantTitle() {
+  const { selectedVariation } = useProductContext();
+
+  // Check if selectedVariation exists before accessing its properties
+  if (!selectedVariation) {
+    return null; // Or provide a default value or handle the absence of 'selectedVariation'
+  }
+
+  return <P>{selectedVariation.value}</P>;
 }
 
 export default ProductVariantTitle;

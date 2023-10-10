@@ -33,6 +33,38 @@ ${this} .noCartItem {
   display: none;
 }
 `;
+const ToggleDrawer = styled.main`
+@keyframes toggleMenuAnimation {
+	0% { opacity: 0; transform: translateY(-2px); color: indigo;  }
+  25% { opacity: 0; transform: translateY(-2px); color: green;  }
+	50% { opacity: 1; transform: translateY(0); color: greenyellow;}
+	100% { opacity: 0; transform: translateY(2px); color: green;}
+}
+${this} .hidden {
+  display:none;
+}
+
+${this} .toggleIcon {
+  color: #373848;
+  font-size: 30px !important;
+  transition: all 0.5s ease; 
+  animation: toggleMenuAnimation 1.5s infinite; 
+  
+}
+${this}::after  {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  right: -0.7rem;
+  width: 18px;
+  height: auto;
+  font-size: 0.7rem;
+  color: ${(props) => props.theme.desing.colors.header.textColor};
+}
+  ${this}.isLoaded .toggleIcon  { 
+  animation: bounce-down 1.5s infinite; 
+} 
+`;
 const ToggleMenu = styled.main`
 transform: rotate(90deg);
 @keyframes toggleMenuAnimation {
@@ -97,28 +129,49 @@ ${this} .userName {
   ${this} .userName {
     display: block;
   }
-  
-  ${ToggleMenu}{
-    display: none;
-  }
 }
 `;
+
 
 const Container = styled.section`
   margin-left: 2.5%;
   max-width: 95%;
   min-width: 95%;
   margin-top: 1%;
-  position: relative; 
+  position: relative;
   display: flex;
   align-content: center;
   align-items: center;
+
+  @media (max-width: 768px) { // Estilo para telas menores, como celulares
+    flex-direction: column; // Empilhe os elementos verticalmente
+  }
 `;
+
 const ContainerFlush = styled.div`
-background: #FFFFFF;
+  background: #FFFFFF;
   border-radius: 0.2rem;
   padding: 1rem;
   width: 100%;
+
+  @media (min-width: 768px) { // Estilo para telas maiores, como PCs
+    width: 48%; // Defina a largura para que dois contêineres caibam lado a lado
+    margin-right: 2%; // Adicione um espaço entre os contêineres
+    &:nth-child(2n) {
+      margin-right: 0; // Remova a margem direita do último contêiner na linha
+    }
+  }
+`;
+const Item = styled.div`
+width: 100%;
+
+@media (min-width: 768px) { // Estilo para telas maiores, como PCs
+  width: 48%; // Defina a largura para que dois contêineres caibam lado a lado
+  margin-right: 2%; // Adicione um espaço entre os contêineres
+  &:nth-child(2n) {
+    margin-right: 0; // Remova a margem direita do último contêiner na linha
+  }
+}
 `;
 const ContainerDrawable = styled.div`
   width: 100%;
@@ -160,31 +213,21 @@ const Template = styled.div`
   overflow-y: auto;
   overflow-x: hidden; 
   @media screen and (min-width: 541px) {//medium
-  ${Main}{
-    width: 100vw; 
-  }
+
     
 }
 @media screen and (min-width: 650px) {//big
-  ${Main}{ 
-    width: 100vw;
-  }
+  
 }
 
 
 @media screen and (min-width: 950px) {//huge
-  ${Main}{
-    width: calc(100vw - 280px);
-  }
+
 }@media screen and (min-width: 951px) {
-  ${ToggleMenu} {
-    display: none;
-  }
+
 }
 @media screen and (min-width: 1100px) {//huge_one
-  ${Main}{
-    width: calc(100vw - 300px);
-  }
+ 
 }
 `;
-export {Container, ContainerFlush, ContainerDrawable, Main, Template, ShopCart, ToggleMenu, ProfileContainer,}
+export {Container, ContainerFlush, Item, ContainerDrawable, Main, Template, ShopCart, ToggleDrawer, ToggleMenu, ProfileContainer,}

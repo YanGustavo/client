@@ -26,7 +26,7 @@ import ProductVariant from '../FeatureOne/info/ProductVariation';
 import { ProductProvider } from '../ProductContext';
 
 const Body = styled.div`
-  width: 300px;
+  width: 100%;
   height: 500px;
   background: white;
   position: relative;

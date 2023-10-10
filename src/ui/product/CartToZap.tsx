@@ -1,10 +1,8 @@
 import Button from 'components/Button';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../../components/Modal';
-import {H1,P} from "components/Typography";
-
-
+import { H1, P } from 'components/Typography';
 
 const ProductWrapper = styled.div`
   display: flex;
@@ -37,6 +35,7 @@ const ProductPrice = styled.div`
   margin: 0;
   text-align: right;
 `;
+
 interface CartToZapProps {
   product: {
     name: string;
@@ -49,6 +48,22 @@ interface CartToZapProps {
   };
   isModalOpen: boolean;
   setIsModalOpen: (isOpen: boolean) => void;
+  availableAgents: {
+    name: string;
+    contact: string;
+    available: boolean;
+    photoUrl: string;
+  }[];
+  theme: {
+    whatsappMessage: string;
+    whatsappNumber: string;
+    defaultAgent: {
+      name: string;
+      contact: string;
+      available: boolean;
+      photoUrl: string;
+    };
+  };
 }
 
 const CartToZap: React.FC<CartToZapProps> = ({
@@ -56,37 +71,45 @@ const CartToZap: React.FC<CartToZapProps> = ({
   selectedVariation,
   isModalOpen,
   setIsModalOpen,
+  availableAgents,
+  theme,
 }) => {
+  const { whatsappMessage, whatsappNumber, defaultAgent } = theme;
+  const [selectedAgent, setSelectedAgent] = useState(defaultAgent);
 
-  const whatsappNumber = '+5598985428872'; // número do WhatsApp
+  useEffect(() => {
+    // Encontre o primeiro atendente disponível ou use o padrão se nenhum estiver disponível
+    const availableAgent = availableAgents.find((agent) => agent.available) || defaultAgent;
+    setSelectedAgent(availableAgent);
+  }, [availableAgents, defaultAgent]);
 
-const handleModalClose = () => {
-  setIsModalOpen(false);
-};
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
-//Fim do modal
   const handleSendWhatsApp = () => {
-    // cria a mensagem formatada para enviar pelo WhatsApp
-    const title = "Eai Chefinho, achei esse produto interessante e desejo comprar";
-    const message = `${title}:\n\n${product.name}\n${selectedVariation.price}`;
+    const message = `${whatsappMessage}\n\n${product.name}\n${selectedVariation.price}`;
     window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+      `https://wa.me/${selectedAgent.contact}?text=${encodeURIComponent(message)}`
     );
     setIsModalOpen(false);
   };
 
-  console.log('rodou no CartToZap');
   return (
     <>
       <Modal title={product.name} onClose={handleModalClose} open={isModalOpen}>
         <ProductWrapper>
-          <img src={selectedVariation.images[0].link} />
+          <img src={selectedAgent.photoUrl} alt={selectedAgent.name} />
           <ProductDetails>
-            <ProductTitle><H1>{product.name}</H1></ProductTitle>
-            <ProductPrice><P>{selectedVariation.price}</P></ProductPrice>
+            <ProductTitle>
+              <H1>{product.name}</H1>
+            </ProductTitle>
+            <ProductPrice>
+              <P>{selectedVariation.price}</P>
+            </ProductPrice>
           </ProductDetails>
+          <Button onClick={handleSendWhatsApp}>Quero esse produto</Button>
         </ProductWrapper>
-        <Button onClick={handleSendWhatsApp}>Quero esse produto</Button>
       </Modal>
     </>
   );

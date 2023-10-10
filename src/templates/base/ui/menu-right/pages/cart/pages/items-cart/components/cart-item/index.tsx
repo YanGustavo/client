@@ -3,6 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRounded from '@mui/icons-material/RemoveRounded';
 import { useCartStore } from 'context/cart-context';
 import RandomImage from 'ui/RandomImage';
+import { ProductCart } from 'lib/types/Product';
 import React from 'react';
 import {
   CartItemBody,
@@ -19,24 +20,27 @@ import {
 interface CartItemProps {
   sku: string;
   name: string;
-  image: { link: string }[];// add the image property
+  images: ProductCart['image'];
   price: number;
   stock: number;
   quantity: number;
+  children?: React.ReactNode; // Adicione a propriedade children aqui
 }
-const  CartItem =({
+
+const CartItem = ({
   sku,
   name,
   image,
   price,
   stock,
-  quantity
+  quantity,
+  children // Certifique-se de incluir a propriedade children
 }: CartItemProps) => {
   const [qty, setQty] = React.useState(quantity);
   const [itemPrice, setItemPrice] = React.useState(qty * price);
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-
+  const arrayOfStrings = image.map((imageObj) => imageObj.link);
   const updateCartQuantity = (action: string) => {
     if (action === 'add' && qty < stock) {
       setQty(qty + 1);
@@ -53,10 +57,11 @@ const  CartItem =({
   React.useEffect(() => {
     setItemPrice(qty * price);
   }, [qty]);
+
   return (
     <CartItemBody id={sku}>
       <ImageBox>
-      <RandomImage images={image} alt={name}/> 
+        <RandomImage images={arrayOfStrings} alt={name} />
       </ImageBox>
       <ItemSection>
         <ItemName>{name}</ItemName>
@@ -82,8 +87,9 @@ const  CartItem =({
           <DeleteIcon />
         </span>
       </ItemPrice>
+      {children} {/* Renderize os children aqui, se necessário */}
     </CartItemBody>
   );
-}
+};
 
 export default CartItem;

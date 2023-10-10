@@ -1,6 +1,8 @@
+// useMediaQuery.js
+
 import { useDebugValue, useEffect, useState } from 'react';
 
-const useMediaQuery = (queryValue, initialValue = false) => {
+const useMediaQuery = ({ queryValue, initialValue }) => {
   const [match, setMatch] = useState(initialValue);
 
   useDebugValue(`Query: ${queryValue}`, (name) => {
@@ -27,4 +29,5 @@ const useMediaQuery = (queryValue, initialValue = false) => {
 
   return match;
 };
+
 export default useMediaQuery;

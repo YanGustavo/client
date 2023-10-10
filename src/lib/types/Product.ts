@@ -93,7 +93,7 @@ export interface Deposit {
 export interface ProductCart {
   sku: string;
   name: string;
-  image: { link: string; validity?: string; storageType?: string }[];
+  image: { link: string; validity?: string; storageType?: string }[]; // Manter a mesma estrutura de ProductCart
   price: number;
   stock: number;
   quantity: number;

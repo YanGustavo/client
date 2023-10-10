@@ -1,0 +1,166 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import ProductItem from 'pages/dashbord/product/productItem';
+import ProductCreateEdit from 'pages/dashbord/product/productCreateEdit';
+
+// Styled components
+const Navbar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+`;
+
+const NavbarTitle = styled.h2`
+  margin: 0;
+`;
+
+const NavbarButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+`;
+
+const SearchInput = styled.input`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+`;
+
+const ProductMainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  background: #ccc;
+  position: relative;
+`;
+
+const ChildElement = styled.div`
+  width: 90%; /* Ocupa 90% da largura do pai */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  background: #fff; /* Cor de fundo para destacar o elemento filho */
+`;
+
+const CreateProductButton = styled.button`
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+`;
+
+// Componente ProductMain
+const ProductMain: React.FC = () => {
+  const [products, setProducts] = useState([
+    // Produtos fictícios para teste
+    {
+      id: 1,
+      name: 'Produto 1',
+      price: 19.99,
+      imageUrl: '/images/1.png', // Substitua 'url_da_imagem_produto_1' pela URL da imagem do Produto 1
+    },
+    {
+      id: 2,
+      name: 'Produto 2',
+      price: 24.99,
+      imageUrl: '/images/2.png', // Substitua 'url_da_imagem_produto_2' pela URL da imagem do Produto 2
+    },
+    {
+      id: 3,
+      name: 'Produto 3',
+      price: 29.99,
+      imageUrl: '/images/3.png', // Substitua 'url_da_imagem_produto_3' pela URL da imagem do Produto 3
+    },
+  ]);
+  const [selectedOption, setSelectedOption] = useState('list'); // Opções: 'list', 'edit', 'create'
+  const [searchTerm, setSearchTerm] = useState('');
+  const [productToEditId, setProductToEditId] = useState<number | null>(null); // ID do produto para edição
+
+  const handleCreateProduct = () => {
+    setSelectedOption('create'); // Altera para a opção de criação de produto
+  };
+
+  const handleListProducts = () => {
+    setSelectedOption('list'); // Altera para a opção de lista de produtos
+    setProductToEditId(null); // Limpa o ID de edição ao voltar para a lista
+  };
+
+  const handleEditProduct = (productId: number) => {
+    setSelectedOption('edit'); // Altera para a opção de edição
+    setProductToEditId(productId); // Define o ID do produto a ser editado
+  };
+
+  return (
+    <div>
+      <Navbar>
+        <NavbarTitle>
+          {selectedOption === 'list' && 'Lista de Produtos'}
+          {selectedOption === 'edit' && 'Edição de Produto'}
+          {selectedOption === 'create' && 'Cadastro de Produto'}
+        </NavbarTitle>
+        {selectedOption === 'list' && (
+          <>
+            <SearchInput
+              type="text"
+              placeholder="Pesquisar Produtos"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <NavbarButton onClick={handleCreateProduct}>Criar Produto</NavbarButton>
+          </>
+        )}
+        {selectedOption === 'create' && (
+          <NavbarButton onClick={handleListProducts}>Listar Produtos</NavbarButton>
+        )}
+        {selectedOption === 'edit' && (
+          <NavbarButton onClick={handleListProducts}>Listar Produtos</NavbarButton>
+        )}
+      </Navbar>
+      <ProductMainContainer>
+        <ChildElement>
+          {selectedOption === 'list' && (
+            <div>
+              <h2>Lista de Produtos</h2>
+              {products
+                .filter((product) =>
+                  product.name.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .map((product) => (
+                  <ProductItem
+                    key={product.id}
+                    product={product}
+                    onEdit={() => handleEditProduct(product.id)} // Chama a função de edição
+                  />
+                ))}
+            </div>
+          )}
+          {selectedOption === 'create' && (
+            <ProductCreateEdit onSave={handleListProducts} />
+          )}
+          {selectedOption === 'edit' && productToEditId !== null && (
+            <ProductCreateEdit
+              onSave={() => {
+                // Lógica para salvar as edições no produto com ID productToEditId
+                setProductToEditId(null); // Limpar o ID de edição após salvar
+                handleListProducts(); // Voltar para a lista após salvar
+              }}
+              mode="edit"
+              productId={productToEditId}
+              // Passa os dados fictícios do produto com base no ID
+              product={products.find((product) => product.id === productToEditId)}
+            />
+          )}
+        </ChildElement>
+      </ProductMainContainer>
+    </div>
+  );
+};
+
+export default ProductMain;

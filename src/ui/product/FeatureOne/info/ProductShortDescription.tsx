@@ -1,21 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 import { useProductContext } from '../../ProductContext';
-//Styles
-import theme from 'styles/styled-components/theme';
-import styled from 'styled-components';
-import {H3} from 'components/Typography';
+import { H3 } from 'components/Typography';
 
-type Props = {
-};
+function ProductShortDescription() {
+  const { product } = useProductContext();
 
-function ProductShortDescription({}: Props) {
-  const { product} = useProductContext();
+  // Check if product exists and has a shortDescription property before accessing it
+  if (!product || !product.shortDescription) {
+    return null; // Or provide a default value or handle the absence of 'product.shortDescription'
+  }
 
-  return (
-    <H3>
-      {product.shortDescription}
-    </H3>
-  );
+  return <H3>{product.shortDescription}</H3>;
 }
 
 export default ProductShortDescription;

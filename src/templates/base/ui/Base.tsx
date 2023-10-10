@@ -1,6 +1,7 @@
 'use client'
+import React from 'react';
 import Link from 'next/link';
-import { Main, Template, ShopCart, ToggleMenu, ProfileContainer} from './styles';
+import { Main, Template, ShopCart, ToggleDrawer,ToggleMenu, ProfileContainer} from './styles';
 import useBase from '../hooks/useBase';
 import useMenuRight from "templates/base/ui/menu-right/hooks/useMenuRight";
 import HeaderPage from "templates/base/ui/header";
@@ -27,7 +28,9 @@ const Base = ({children}: { children: React.ReactNode }) => {
  const {toggle_menu_visible, actions} = useBase();
  const {menu_right_page, count_cart_items, setNewPage,} = useMenuRight();
  const {status, session, logoutHandler,} = useHeader();
-return (
+// Adicione o estado para controlar a visibilidade do menu direito
+const [menuRightVisible, setMenuRightVisible] = React.useState(!toggle_menu_visible);
+ return (
   <Template id="base_template">
     <HeaderPage>
     <ShopCart onClick={() => actions.setCartPage()}>
@@ -91,26 +94,42 @@ return (
                 </Link>
               )} 
  </ProfileContainer> */}
-     <ToggleMenu className={toggle_menu_visible ? '' : 'hidden'} >
-        <BarChart className="toggleIcon" onClick={() => actions.setMenuRightVisible()} />
-      </ToggleMenu> 
-      <ToggleMenu className={toggle_menu_visible ? 'hidden' : ''} >
-        {/* //value={"Fechar"} value={"Menu"} */}
-        <CloseIcon className="toggleIcon" onClick={() => actions.setMenuRightHidden()}/>
-      </ToggleMenu> 
+  <ToggleMenu
+  className={menuRightVisible ?  'hidden': ''}
+  onClick={() => {
+    actions.setMenuRightVisible(); // Mostra o menu direito
+    setMenuRightVisible(true); // Atualiza o estado para mostrar o menu direito
+  }}
+>
+  <BarChart className="toggleIcon" />
+</ToggleMenu>
+ <ToggleMenu
+  className={menuRightVisible ? '' : 'hidden'}
+  onClick={() => {
+    actions.setMenuRightHidden(); // Oculta o menu direito
+    setMenuRightVisible(false); // Atualiza o estado para ocultar o menu direito
+  }}
+>
+  <CloseIcon className="toggleIcon" />
+</ToggleMenu>
+  
+
+
       </HeaderPage>
   <Main>
     {children}
   <Footer/>
   </Main>
+  {menuRightVisible && (
      <MenuRight>
       {/* prettier-ignore */}
        <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_CART_PAGE} link={'#'} icon={<ShoppingCartRounded/>} counter ={count_cart_items} title= {"Carrinho"} isActive={menu_right_page === actionTypes.SET_CART_PAGE ? true: false}/>
       {/* prettier-ignore */}
-      {/* <MenuBottomItem  handleClick={setNewPage} param={actionTypes.SET_PROFILE_PAGE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.SET_PROFILE_PAGE ? true: false}/> */}
+      <MenuBottomItem  handleClick={setNewPage} param={actionTypes.SET_PROFILE_PAGE} link={'#'} icon={<AccountBoxIcon/>}  title= {"Perfil"} isActive={menu_right_page === actionTypes.SET_PROFILE_PAGE ? true: false}/> 
       {/* prettier-ignore */}
-      {/* <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_LOGIN_PAGE} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.SET_LOGIN_PAGE ? true: false}/> */}
-    </MenuRight> 
+      <MenuBottomItem handleClick={setNewPage} param={actionTypes.SET_LOGIN_PAGE} link={'#'} icon={<LoginIcon/>}  title= {"Login"} isActive={menu_right_page === actionTypes.SET_LOGIN_PAGE ? true: false}/> 
+    </MenuRight>
+    )} 
   </Template>
 )
 }

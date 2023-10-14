@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-
+import ProductItem from './ProductItem';
 import Menu from 'pages/dashbord/product/ui';
 import BasicInfoForm from 'pages/dashbord/product/ui/BasicInfoForm';
 import CharacteristicsForm from 'pages/dashbord/product/ui/CharacteristicsForm';
@@ -145,7 +145,11 @@ function ProductCreateEdit() {
     // setFormData({});
   };
   
-
+  const handleDeleteProduct = () => {
+    // Lógica para excluir o produto
+    // Por exemplo, chamar uma função para excluir o produto do banco de dados
+    // Depois de excluir o produto com sucesso, você pode navegar de volta para a lista de produtos ou fazer outra ação apropriada.
+  };
   return (
     <ProductContainer>
       <MenuContainer>
@@ -173,6 +177,19 @@ function ProductCreateEdit() {
         {step === 5 && (
           <VariationsForm data={selectedProduct.variations} onDataChange={handleDataChange} />
         )}
+        <ProductItem
+  product={{
+    id: selectedProduct.id, // Substitua com o ID correto
+    name: selectedProduct.name, // Substitua com o nome correto
+    price: selectedProduct.price, // Substitua com o preço correto
+    imageUrl: selectedProduct.imageUrl, // Substitua com a URL da imagem correta
+  }}
+  onEdit={() => {
+    /* Lógica de edição do produto */
+  }}
+  onDelete={handleDeleteProduct} // Função para excluir o produto
+/>
+
 
         <NavigationButtons
           step={step}

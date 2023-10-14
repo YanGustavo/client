@@ -73,13 +73,18 @@ function ProductImage({ onChange, click }) {
   const { product, selectedVariation } = useProductContext();
   const [selectedImage, setSelectedImage] = React.useState('');
   const handleVariationClick = (index) => {
-    setSelectedImage(selectedVariation.images[index].link);
+    if (selectedVariation && selectedVariation.images && selectedVariation.images[index]) {
+      setSelectedImage(selectedVariation.images[index].link);
+    }
   };
+
   React.useEffect(() => {
     if (ref.current) {
       onChange(ref.current.offsetWidth);
     }
-    setSelectedImage(selectedVariation.images[0].link);
+    if (selectedVariation && selectedVariation.images && selectedVariation.images[0]) {
+      setSelectedImage(selectedVariation.images[0].link);
+    }
   }, [ref, onChange, selectedVariation]);
   return (
     <ProductPhoto>
@@ -99,7 +104,7 @@ function ProductImage({ onChange, click }) {
           </Controls>
           {selectedVariation !== undefined && (  
             <CloudinaryImage
-            key={selectedVariation.sku}
+            key={selectedVariation?.sku}
             onClick={click}
             publicId={selectedImage}
             alt={product.name}
@@ -110,7 +115,7 @@ function ProductImage({ onChange, click }) {
         </PhotoMain>
         <PhotoAlbum>
           <ul>
-            {selectedVariation.images.map((image, index) => (
+            {selectedVariation?.images.map((image, index) => (
               <li >
                 <CloudinaryImage
               imageKey={index}

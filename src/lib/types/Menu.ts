@@ -98,3 +98,11 @@ export interface ProductCart {
   stock: number;
   quantity: number;
 }
+// lib/types/Menu.ts
+
+export interface Menu {
+  // Defina a estrutura da interface Menu aqui
+  _id: string;
+  name: string;
+  // Outras propriedades...
+}

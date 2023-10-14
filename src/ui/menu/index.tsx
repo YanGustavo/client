@@ -9,7 +9,7 @@ import styled from 'styled-components';
 //Feature one components
 //import MenuVariant from '../FeatureOne/info/MenuVariation';
 //
-import { MenuProvider } from '../MenuContext';
+//import { MenuProvider } from '../MenuContext';
 
 const Body = styled.div`
   width: 300px;
@@ -34,16 +34,16 @@ const ContainerPreview = styled.div`
   height: 100%;
 `;
 interface Props {
-  Menu: Menu;
+  //Menu: Menu;
   top?: ReactNode;
   center?: ReactNode;
   bottom?: ReactNode;
   inside?: ReactNode;
 }
 
-const MenuCard = ({ top, center, bottom, inside, Menu }: Props) => {
+const MenuCard = ({ top, center, bottom, inside }: Props) => { //, Menu
   return (
-    <MenuProvider Menu={Menu}>
+    // <MenuProvider Menu={Menu}>
       <Body>
         <ContainerPreview>
           {top}
@@ -52,7 +52,7 @@ const MenuCard = ({ top, center, bottom, inside, Menu }: Props) => {
         </ContainerPreview>
         {inside}
       </Body>
-    </MenuProvider>
+    //</MenuProvider>
   );
 };
 //MenuCard.Image = MenuCardImage;

@@ -178,7 +178,7 @@ function Carousel({isOpen}: Props): JSX.Element{
                   className="slider"
                   style={{ transform: `translateX(-${carouselPosition}px)` }}
                 >
-                  {selectedVariation.images.map((image, key) => (
+                  {selectedVariation?.images?.map((image, key) => (
                     <img
                       src={selectedVariation[active].link}
                       alt={product.name}
@@ -205,16 +205,19 @@ function Carousel({isOpen}: Props): JSX.Element{
               <NavigateNextIcon/>
             </div>
           </Controls>
-          <img
-            src={selectedVariation[active].link}
-            alt={selectedVariation[active].link}
-            className="active-image"
-          />
+          {selectedVariation && (
+            <img
+              src={selectedVariation.images[active]?.link || ''}
+              alt={selectedVariation.images[active]?.link || ''}
+              className="active-image"
+            />
+          )}
+
         </div>
 
         <div className="thumbnails">
-          <Thumbnails
-            data={selectedVariation.images}
+        <Thumbnails
+            data={selectedVariation?.images || []}
             activeImageHandler={activeImageHandler}
             preview={active}
           />

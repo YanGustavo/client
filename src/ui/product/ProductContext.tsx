@@ -128,13 +128,31 @@ export function ProductProvider({ product, children }: ProductProviderProps) {
     <ProductContext.Provider value={value}>
   {children}
   {isModalOpen && selectedVariation && (
-  <CartToZap
-    product={product}
-    selectedVariation={selectedVariation}
-    isModalOpen={isModalOpen}
-    setIsModalOpen={setIsModalOpen}
-  />
+ <CartToZap
+ product={product}
+ selectedVariation={selectedVariation}
+ isModalOpen={true}
+ setIsModalOpen={setIsModalOpen}
+ availableAgents={[
+  {
+    name: "Yan Gustavo",
+    contact: "Seu número de WhatsApp",
+    available: true,
+    photoUrl: "URL da foto do agente",
+  },
+  {
+    name: "Outro Agente",
+    contact: "Outro número de WhatsApp",
+    available: false,
+    photoUrl: "URL da foto do agente",
+  },
+  // Adicione outros agentes conforme necessário
+]}
+/>
+
 )}
+
+
 </ProductContext.Provider>
 
   );

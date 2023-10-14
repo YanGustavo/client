@@ -54,16 +54,6 @@ interface CartToZapProps {
     available: boolean;
     photoUrl: string;
   }[];
-  theme: {
-    whatsappMessage: string;
-    whatsappNumber: string;
-    defaultAgent: {
-      name: string;
-      contact: string;
-      available: boolean;
-      photoUrl: string;
-    };
-  };
 }
 
 const CartToZap: React.FC<CartToZapProps> = ({
@@ -72,23 +62,21 @@ const CartToZap: React.FC<CartToZapProps> = ({
   isModalOpen,
   setIsModalOpen,
   availableAgents,
-  theme,
 }) => {
-  const { whatsappMessage, whatsappNumber, defaultAgent } = theme;
-  const [selectedAgent, setSelectedAgent] = useState(defaultAgent);
+  const [selectedAgent, setSelectedAgent] = useState(availableAgents[0]);
 
   useEffect(() => {
     // Encontre o primeiro atendente disponível ou use o padrão se nenhum estiver disponível
-    const availableAgent = availableAgents.find((agent) => agent.available) || defaultAgent;
+    const availableAgent = availableAgents.find((agent) => agent.available) || availableAgents[0];
     setSelectedAgent(availableAgent);
-  }, [availableAgents, defaultAgent]);
+  }, [availableAgents]);
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
   const handleSendWhatsApp = () => {
-    const message = `${whatsappMessage}\n\n${product.name}\n${selectedVariation.price}`;
+    const message = `Mensagem personalizada\n\n${product.name}\n${selectedVariation.price}`;
     window.open(
       `https://wa.me/${selectedAgent.contact}?text=${encodeURIComponent(message)}`
     );

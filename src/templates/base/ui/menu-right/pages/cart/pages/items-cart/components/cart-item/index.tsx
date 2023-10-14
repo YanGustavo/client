@@ -20,11 +20,11 @@ import {
 interface CartItemProps {
   sku: string;
   name: string;
-  images: ProductCart['image'];
+  image: { link: string; validity?: string; storageType?: string }[]; // Atualize o tipo de 'image'
   price: number;
   stock: number;
   quantity: number;
-  children?: React.ReactNode; // Adicione a propriedade children aqui
+  children?: React.ReactNode;
 }
 
 const CartItem = ({
@@ -40,7 +40,7 @@ const CartItem = ({
   const [itemPrice, setItemPrice] = React.useState(qty * price);
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const arrayOfStrings = image.map((imageObj) => imageObj.link);
+
   const updateCartQuantity = (action: string) => {
     if (action === 'add' && qty < stock) {
       setQty(qty + 1);
@@ -61,7 +61,7 @@ const CartItem = ({
   return (
     <CartItemBody id={sku}>
       <ImageBox>
-        <RandomImage images={arrayOfStrings} alt={name} />
+        <RandomImage images={image} alt={name} />
       </ImageBox>
       <ItemSection>
         <ItemName>{name}</ItemName>

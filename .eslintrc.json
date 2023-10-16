@@ -21,50 +21,25 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "eslint-config-prettier",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
-  "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  
   "rules": {
-    "react/prop-types": "off", // Desativa a verificação de propTypes
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": "error",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "max-len": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/react-in-jsx-scope": "off",
-    "prettier/prettier": ["error"],
-    "indent": [
-      2,
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "max-len": 0,
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        "newlinesBetween": "always",
-        "groups": [
-        ["/^react/", "/^next/", "/@next/"],
-        "/@types/",
-        "/components/",
-        "/styles/",
-        "/module/", 
-        "/^@shared/",
-        "/absolute/",        
-         ["parent", "sibling", "index"]
-        ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
-      }
-    ],
+    "import-helpers/order-imports": "warn",
     "no-restricted-imports": [
       "error",
       {

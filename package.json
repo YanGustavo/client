@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "main": "src/pages/_app.tsx",
     "dev": "concurrently \"next dev\" \"tailwindcss -i ./src/styles/tailwind/globals.css -o ./src/styles/tailwind/tailwind.css --watch\"",
+    "prebuild": "rimraf .next",
     "build": "tailwindcss -i ./src/styles/tailwind/globals.css -o ./src/styles/tailwind/tailwind.css && next build",
+    "postbuild": "cp -r public .next",
     "start": "next start",
     "lint": "next lint",
     "generate-sitemap": "next-sitemap",

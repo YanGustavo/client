@@ -92,7 +92,7 @@ export const MenuBottomStyle = styled.div`
   transform: translateY(-1.6rem);
   transition: 0.5s;
   font-size: 1.6rem;
-  color: ${props => props.theme.desing.colors.header.textColor};
+  color: ${props => props.theme.desing.colors.white};
 }
 
 .menuBottom ul li.active a .icon .MuiSvgIcon-root {
